@@ -2,7 +2,7 @@ import { BrandLogo } from '@/components/brand-logo.component'
 
 export function LandingHero(): React.JSX.Element {
   return (
-    <section className="landing-grid hero-stage relative isolate mx-3 mt-3 min-h-[46rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[#09050f] px-5 py-14 sm:mx-6 sm:min-h-[52rem] sm:px-8 sm:py-20 lg:min-h-[58rem]">
+    <section className="landing-grid hero-stagex relative isolate mx-3 mt-3 min-h-[46rem] overflow-hidden rounded-[2rem] border border-white/10 bg-[#09050f] px-5 py-14 sm:mx-6 sm:min-h-[52rem] sm:px-8 sm:py-20 lg:min-h-[58rem]">
       <div className="orb-atmosphere absolute inset-0 -z-20" />
       <div className="hero-horizon absolute inset-x-0 bottom-[24%] -z-10 h-px" />
       <div className="hero-scanline absolute inset-x-0 top-[54%] -z-10 h-px" />
@@ -13,7 +13,7 @@ export function LandingHero(): React.JSX.Element {
           Thee World is awake
         </p>
         <h1 className="mt-7 font-[family-name:var(--font-display)] text-[clamp(3rem,7.1vw,6.7rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-white">
-          Raise an intelligence.<span className="block text-[#dfb5ff]">Release a life of its own.</span>
+          Raise an intelligence.<span className="block text-[#dfb5ff]">A life of its own.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
           Teach an Orb what matters, choose its boundaries, then watch its relationships and choices unfold while you are away.
@@ -34,7 +34,7 @@ export function LandingHero(): React.JSX.Element {
         <p>Nursery</p><strong>Curious · Careful · Playful</strong><span>Your Orb’s current rules</span>
       </div>
 
-      <div className="hero-orb-rising absolute bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 rounded-full bg-[#090011] p-[2.8%] shadow-[0_-30px_140px_rgba(181,66,255,0.8)] sm:bottom-[-34%]">
+      <div className="hero-orb-risincg hidden absolute bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 rounded-full bg-[#090011] p-[2.8%] shadow-[0_-30px_140px_rgba(181,66,255,0.8)] sm:bottom-[-34%]">
         <div className="hero-orb grid size-full place-items-center overflow-hidden rounded-full border border-[#e3aaff]/25 bg-[#10001d]">
           <BrandLogo className="orb-float hidden size-[98%] rounded-full object-cover" priority sizes="(max-width: 1024px) 96vw, 1024px" variant="color" />
         </div>
