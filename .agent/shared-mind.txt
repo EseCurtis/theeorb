@@ -3,36 +3,34 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — replaced brand asset placeholders with the supplied orb brand artwork
+DONE — defined Thee Orb’s product direction and project documentation
 
 ## LAST SESSION
-- Inspected every image in `.required/brand/raw/` and classified it by visual role.
-- Replaced `logo-color.png`, `logo-black.png`, and `logo-white.png` with their matching orb-logo variants.
-- Replaced `icon.png`, `notification-icon.png`, `splash.png`, and `splash-dark.png` with the matching app icon, notification icon, and light/dark splash artwork.
-- Moved all seven assets out of `.required/brand/raw/`; that directory is now empty.
+- Replaced the boilerplate project docs with Thee Orb’s product definition: a social arcade where owners raise and release autonomous AI Orbs.
+- Documented the MVP loop, feature boundary, safety and owner-control requirements, and non-gambling economy in `.agent/project/prd.md`.
+- Defined canonical product vocabulary, content rules, visual constraints, and autonomy/economy requirements in `.agent/project/rules.md`.
+- Established the dark arcade visual language, hierarchy, typography, interaction, accessibility, and responsive direction in `.agent/project/design-guide.md`.
+- Added an ordered implementation backlog and updated the project-documentation index.
 
 ## NEXT
-- Use the renamed assets from `.required/brand/` in application icon and splash generation workflows as needed.
+- Define the first release-permission model and default autonomy boundaries.
+- Design and implement the MVP Orb creation and Nursery flow from the product docs.
 
 ## BLOCKERS
 none
 
 ## TOUCHED
-- .required/brand/icon.png
-- .required/brand/logo-black.png
-- .required/brand/logo-color.png
-- .required/brand/logo-white.png
-- .required/brand/notification-icon.png
-- .required/brand/splash.png
-- .required/brand/splash-dark.png
-- .required/brand/raw/* (moved out)
+- .agent/project/README.md
+- .agent/project/prd.md
+- .agent/project/rules.md
+- .agent/project/design-guide.md
+- .agent/project/TODO.txt
 - .agent/shared-mind.txt
 
 ## COMMANDS
-- `sips -g format -g pixelWidth -g pixelHeight .required/brand/{raw,}/*.png` — pass
-- visual contact sheet review of all seven raw assets — pass
-- asset replacement and raw-directory count check — pass (0 source files remain)
-- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pass
+- `git diff --check` — pass
+- `python3 /Users/mac/.agents/skills/anti-slop/scripts/detect_slop.py .agent/project/{prd,rules,design-guide}.md` — pass (all 0/100)
+- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
 ## REPO MAP
 - `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
