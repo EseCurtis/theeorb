@@ -3,14 +3,12 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — added a dimensional violet button system to the landing page
+DONE — restored Thee Orb’s dark landing-page background tokens
 
 ## LAST SESSION
-- Added a shared `orb-button` class with a violet vertical gradient, bright upper bevel, inset lower shading, depth shadow, and pressed state.
-- Applied the new treatment to the header, hero, and release call-to-action buttons.
-- Preserved the user’s concurrent hero/logo layout adjustments while applying the button system.
-- Restored the typed `next/image` logo wrapper so image props are valid and LCP image handling remains optimized.
-- Removed a Google-font network dependency that blocked production builds; typography now uses local system display and monospace fallbacks.
+- Identified that the active default CSS tokens had reverted to the light starter palette, making the page background pale and the translucent header grey.
+- Restored the default near-black background, light foreground, purple surface, border, muted text, accent, and status tokens in `web/src/app/globals.css`.
+- Preserved the explicit optional `[data-theme='dark']` override while making dark Thee Orb styling the default.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -22,11 +20,6 @@ none
 
 ## TOUCHED
 - web/src/app/globals.css
-- web/src/app/layout.tsx
-- web/src/components/brand-logo.component.tsx
-- web/src/components/landing-call-to-action.component.tsx
-- web/src/components/landing-hero.component.tsx
-- web/src/components/site-header.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
