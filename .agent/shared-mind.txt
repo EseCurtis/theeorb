@@ -3,33 +3,38 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — defined Thee Orb’s product direction and project documentation
+DONE — designed and implemented Thee Orb’s web landing page
 
 ## LAST SESSION
-- Replaced the boilerplate project docs with Thee Orb’s product definition: a social arcade where owners raise and release autonomous AI Orbs.
-- Documented the MVP loop, feature boundary, safety and owner-control requirements, and non-gambling economy in `.agent/project/prd.md`.
-- Defined canonical product vocabulary, content rules, visual constraints, and autonomy/economy requirements in `.agent/project/rules.md`.
-- Established the dark arcade visual language, hierarchy, typography, interaction, accessibility, and responsive direction in `.agent/project/design-guide.md`.
-- Added an ordered implementation backlog and updated the project-documentation index.
+- Replaced the web starter UI with a responsive, server-rendered Thee Orb landing page.
+- Added a branded hero using the supplied Orb artwork, plus a clear Create → Raise → Release → Observe → Improve story.
+- Added world-zone messaging for the Nursery, Plaza, Observatory, and Arcade, including autonomy and non-pay-to-win economy positioning.
+- Updated the shared header, footer, metadata, typography, dark token palette, reduced-motion behaviour, and image rendering to use Next Image.
+- Kept calls to action anchored to a future early-access workflow without inventing metrics or product activity.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
+- Implement the early-access capture destination or replace the mailto call to action when the onboarding route exists.
 - Design and implement the MVP Orb creation and Nursery flow from the product docs.
 
 ## BLOCKERS
 none
 
 ## TOUCHED
-- .agent/project/README.md
-- .agent/project/prd.md
-- .agent/project/rules.md
-- .agent/project/design-guide.md
-- .agent/project/TODO.txt
+- web/src/app/globals.css
+- web/src/app/layout.tsx
+- web/src/app/page.tsx
+- web/src/components/brand-logo.component.tsx
+- web/src/components/landing-*.component.tsx
+- web/src/components/site-header.component.tsx
+- web/src/components/site-footer.component.tsx
+- web/tailwind.config.ts
 - .agent/shared-mind.txt
 
 ## COMMANDS
+- `pnpm lint` (in `web/`) — pass
+- `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
-- `python3 /Users/mac/.agents/skills/anti-slop/scripts/detect_slop.py .agent/project/{prd,rules,design-guide}.md` — pass (all 0/100)
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
 ## REPO MAP
