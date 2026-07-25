@@ -3,12 +3,12 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — enlarged and rounded the central Orb network node
+DONE — scaled the central Orb network node to 70vw
 
 ## LAST SESSION
-- Enlarged the hero’s central Orb node from 112/144px to 144/192px across mobile/desktop breakpoints.
-- Made the outer node and inner Orb frame fully circular with `rounded-full`.
-- Increased the Orb artwork coverage and glow so it clearly leads the surrounding world network.
+- Replaced fixed central Orb dimensions with viewport-relative sizing: `min(70vw, 40rem)`.
+- Scaled the World network canvas to the same responsive dimension, preventing the larger Orb from clipping.
+- Kept the outer node and inner frame fully circular, with an expanded glow and artwork coverage.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -19,6 +19,7 @@ DONE — enlarged and rounded the central Orb network node
 none
 
 ## TOUCHED
+- web/src/app/globals.css
 - web/src/components/landing-hero.component.tsx
 - .agent/shared-mind.txt
 
