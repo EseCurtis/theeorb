@@ -1,8 +1,8 @@
-import type { ImgHTMLAttributes } from 'react'
+import Image, { type ImageProps } from 'next/image'
 
 type BrandLogoVariant = 'black' | 'color' | 'white'
 
-type BrandLogoProps = Omit<ImgHTMLAttributes<HTMLImageElement>, 'alt' | 'src'> & {
+type BrandLogoProps = Omit<ImageProps, 'alt' | 'height' | 'src' | 'width'> & {
   alt?: string
   variant?: BrandLogoVariant
 }
@@ -18,5 +18,5 @@ export function BrandLogo({
   variant = 'color',
   ...imageProps
 }: BrandLogoProps): React.JSX.Element {
-  return <img {...imageProps} alt={alt} src={brandLogoSources[variant]} />
+  return <Image {...imageProps} alt={alt} height={1024} src={brandLogoSources[variant]} width={1024} />
 }

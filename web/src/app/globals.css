@@ -3,31 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8f5fc;
-  --foreground: #100034;
-  --surface: #ffffff;
-  --surface-muted: #f1e9f8;
-  --surface-strong: #fcfafe;
-  --border: #e2d3ee;
-  --border-strong: #b790d2;
-  --muted: #746781;
-  --accent: #791dd6;
-  --accent-strong: #5b0db1;
-  --danger: #b42318;
-  --success: #2e8b68;
-}
-
-:root[data-theme='dark'] {
-  --background: #040019;
-  --foreground: #f9dafe;
-  --surface: #100034;
-  --surface-muted: #1f0053;
-  --surface-strong: #310174;
-  --border: #440592;
-  --border-strong: #791dd6;
-  --muted: #b79cc6;
-  --accent: #c16bff;
-  --accent-strong: #db82fd;
+  --background: #07040f;
+  --foreground: #f7efff;
+  --surface: #10031b;
+  --surface-muted: #19042a;
+  --surface-strong: #25063e;
+  --border: #3b164f;
+  --border-strong: #a44fda;
+  --muted: #c4b2cf;
+  --accent: #cf74ff;
+  --accent-strong: #e0a4ff;
   --danger: #ff746c;
   --success: #69d4a8;
 }
@@ -38,18 +23,20 @@ body {
   color: var(--foreground);
 }
 
-.bg-background {
-  background: var(--background);
+body {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 36px 36px;
 }
 
-.text-foreground {
-  color: var(--foreground);
-}
+::selection { background: #d27bff; color: #170024; }
 
-.text-muted {
-  color: var(--muted);
-}
+.landing-grid::before { position: absolute; inset: 0; content: ''; background-image: radial-gradient(rgba(216, 154, 255, 0.16) 1px, transparent 1px); background-size: 22px 22px; mask-image: linear-gradient(to bottom, black, transparent 78%); opacity: 0.45; }
+.orb-atmosphere { background: radial-gradient(circle at 78% 38%, rgba(166, 48, 255, 0.32), transparent 25rem), radial-gradient(circle at 60% 75%, rgba(117, 20, 192, 0.18), transparent 30rem); }
+.orb-rings { animation: pulse-ring 5s ease-in-out infinite; }
+.orb-float { animation: orb-float 6s ease-in-out infinite; }
 
-.border-border {
-  border-color: var(--border);
-}
+@keyframes orb-float { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-12px) scale(1.015); } }
+@keyframes pulse-ring { 0%, 100% { opacity: 0.35; transform: scale(0.96); } 50% { opacity: 0.9; transform: scale(1.03); } }
+
+@media (prefers-reduced-motion: reduce) { .orb-rings, .orb-float { animation: none; } }

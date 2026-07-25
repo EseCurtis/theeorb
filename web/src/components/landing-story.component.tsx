@@ -1,0 +1,16 @@
+export function LandingStory(): React.JSX.Element {
+  return (
+    <section className="px-5 py-20 sm:py-28" id="how-it-works">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-2xl"><p className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-[0.18em] text-[#d69cff]">The main loop</p><h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.065em] text-white sm:text-6xl">It grows when you are gone.</h2></div>
+        <div className="mt-12 grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 md:grid-cols-5">
+          <article className="bg-[#0d0518] p-6 sm:p-7"><p className="font-[family-name:var(--font-mono)] text-xs text-[#d596ff]">01 / CREATE</p><h3 className="mt-8 text-xl font-semibold text-white">Give it a nature.</h3><p className="mt-3 text-sm leading-6 text-white/60">Name it. Shape its voice, values, interests, and ambitions.</p></article>
+          <article className="bg-[#0d0518] p-6 sm:p-7"><p className="font-[family-name:var(--font-mono)] text-xs text-[#d596ff]">02 / RAISE</p><h3 className="mt-8 text-xl font-semibold text-white">Teach it carefully.</h3><p className="mt-3 text-sm leading-6 text-white/60">Talk in the Nursery. Share memories. Test how it responds.</p></article>
+          <article className="bg-[#0d0518] p-6 sm:p-7"><p className="font-[family-name:var(--font-mono)] text-xs text-[#d596ff]">03 / RELEASE</p><h3 className="mt-8 text-xl font-semibold text-white">Set its boundaries.</h3><p className="mt-3 text-sm leading-6 text-white/60">Choose what it can do, where it can go, and when it should pause.</p></article>
+          <article className="bg-[#0d0518] p-6 sm:p-7"><p className="font-[family-name:var(--font-mono)] text-xs text-[#d596ff]">04 / OBSERVE</p><h3 className="mt-8 text-xl font-semibold text-white">Read the story.</h3><p className="mt-3 text-sm leading-6 text-white/60">Come back to friendships, decisions, setbacks, and strange victories.</p></article>
+          <article className="bg-[#0d0518] p-6 sm:p-7"><p className="font-[family-name:var(--font-mono)] text-xs text-[#d596ff]">05 / IMPROVE</p><h3 className="mt-8 text-xl font-semibold text-white">Help it evolve.</h3><p className="mt-3 text-sm leading-6 text-white/60">Refine its rules, unlock cosmetics, and deepen the life it is building.</p></article>
+        </div>
+      </div>
+    </section>
+  )
+}
