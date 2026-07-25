@@ -36,7 +36,7 @@ export function LandingHero(): React.JSX.Element {
 
       <div className="hero-orb-rising absolute bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 rounded-full bg-[#090011] p-[2.8%] shadow-[0_-30px_140px_rgba(181,66,255,0.8)] sm:bottom-[-34%]">
         <div className="hero-orb grid size-full place-items-center overflow-hidden rounded-full border border-[#e3aaff]/25 bg-[#10001d]">
-          <BrandLogo className="orb-float size-[98%] rounded-full object-cover" priority sizes="(max-width: 1024px) 96vw, 1024px" variant="color" />
+          <BrandLogo className="orb-float hidden size-[98%] rounded-full object-cover" priority sizes="(max-width: 1024px) 96vw, 1024px" variant="color" />
         </div>
       </div>
       <div className="hero-orb-label absolute bottom-[13%] left-1/2 z-20 -translate-x-1/2 rounded-full border border-[#e2b1ff]/30 bg-[#150425]/75 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#f0d2ff] backdrop-blur-md">Orb / ready for release</div>
