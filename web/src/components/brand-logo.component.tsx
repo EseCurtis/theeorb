@@ -18,5 +18,5 @@ export function BrandLogo({
   variant = 'color',
   ...imageProps
 }: BrandLogoProps): React.JSX.Element {
-  return <Image {...imageProps} alt={alt} height={1024} src={brandLogoSources[variant]} width={1024} />
+  return <Image  loading="eager"{...imageProps} alt={alt} height={1024} src={brandLogoSources[variant]} width={1024} />
 }
