@@ -15,7 +15,7 @@ DONE — replaced brand asset placeholders with the supplied orb brand artwork
 - Use the renamed assets from `.required/brand/` in application icon and splash generation workflows as needed.
 
 ## BLOCKERS
-- Git is unavailable in this workspace (`/Users/mac/Desktop/Work/REAL LIFE/theorb` has no `.git` directory), so the required commit checkpoint cannot be created.
+none
 
 ## TOUCHED
 - .required/brand/icon.png
@@ -32,6 +32,7 @@ DONE — replaced brand asset placeholders with the supplied orb brand artwork
 - `sips -g format -g pixelWidth -g pixelHeight .required/brand/{raw,}/*.png` — pass
 - visual contact sheet review of all seven raw assets — pass
 - asset replacement and raw-directory count check — pass (0 source files remain)
+- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pass
 
 ## REPO MAP
 - `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
