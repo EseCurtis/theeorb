@@ -224,6 +224,8 @@ body > * {
 }
 
 .network-node p { margin: 0; }
+.orb-network { height: min(70vw, 40rem); }
+.network-core { width: min(70vw, 40rem); height: min(70vw, 40rem); }
 .network-node--nursery { left: 15%; top: 5%; }
 .network-node--plaza { bottom: 5%; left: 28%; }
 .network-node--observatory { right: 15%; top: 5%; }
@@ -238,6 +240,7 @@ body > * {
   .network-node--observatory { right: 2%; top: 7%; }
   .network-node--arcade { bottom: 6%; right: 9%; }
 }
+
 
 @keyframes portal-breathe {
   0%, 100% { opacity: 0.3; transform: scale(0.93) rotate(0deg); }

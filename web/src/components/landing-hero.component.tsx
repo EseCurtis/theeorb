@@ -35,7 +35,7 @@ export function LandingHero(): React.JSX.Element {
           <div className="network-node network-node--observatory"><span>O</span><p>Observatory</p></div>
           <div className="network-node network-node--arcade"><span>A</span><p>Arcade</p></div>
 
-          <div className="network-core absolute left-1/2 top-1/2 z-10 grid size-36 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-[#dc9dff]/40 bg-[#160326] p-3 shadow-[0_0_0_10px_rgba(177,66,255,0.05),0_0_80px_rgba(169,49,255,0.48)] sm:size-48 sm:p-4">
+          <div className="network-core absolute left-1/2 top-1/2 z-10 grid -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-[#dc9dff]/40 bg-[#160326] p-4 shadow-[0_0_0_10px_rgba(177,66,255,0.05),0_0_100px_rgba(169,49,255,0.56)] sm:p-5">
             <div className="hero-orb grid size-full place-items-center overflow-hidden rounded-full bg-[#090011]"><BrandLogo className="orb-float size-[90%] rounded-full object-cover" priority sizes="192px" variant="color" /></div>
           </div>
           <p className="network-status absolute bottom-1 left-1/2 -translate-x-1/2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#d7a5ff]">Orb / ready for release</p>
