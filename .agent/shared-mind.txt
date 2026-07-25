@@ -3,12 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — scaled the central Orb network node to 70vw
+DONE — redesigned the hero as a cinematic stage with a warm multi-colour accent system
 
 ## LAST SESSION
-- Replaced fixed central Orb dimensions with viewport-relative sizing: `min(70vw, 40rem)`.
-- Scaled the World network canvas to the same responsive dimension, preventing the larger Orb from clipping.
-- Kept the outer node and inner frame fully circular, with an expanded glow and artwork coverage.
+- Replaced the network-map hero with a contained, rounded cinematic stage inspired by the supplied reference.
+- Centered the hero copy and calls to action above a large, partially rising Orb horizon.
+- Added product-specific story cards for the Plaza, Observatory, and Nursery instead of fake performance metrics.
+- Added restrained amber, gold, coral, pink, and violet light sources plus matching story-card markers for a polished multi-colour brand feel.
+- Preserved the concurrent change that hides the large Orb artwork, leaving its circular frame, glow, and horizon role intact.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
