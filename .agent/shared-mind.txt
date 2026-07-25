@@ -3,13 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — upgraded the landing-page typography and cosmic background system
+DONE — rebuilt the landing hero as an immersive editorial portal composition
 
 ## LAST SESSION
-- Replaced the ambiguous font aliases with a deliberate local display stack (`Avenir Next`, Avenir, Trebuchet MS) and local mono stack.
-- Added a layered near-black nebula background, fixed starfield, subtle CRT scan texture, vignette, and grid geometry.
-- Restored hero atmosphere and added portal geometry, horizon glow, animated scan lines, breathing orbit rings, Orb float, drifting signals, and staged entrance motion.
-- Added a complete reduced-motion fallback for every added ambient animation.
+- Rebuilt the hero around visible, oversized “RAISE / AN ORB.” typography that is layered into the Orb portal rather than placed below it.
+- Kept the supporting story and both hero calls to action visible at the lower edge of the first viewport.
+- Repositioned world signals around the portal and improved their responsive behaviour on smaller screens.
+- Applied the shared dimensional Orb button treatment to both hero actions, including a darker 3D secondary variant.
+- Added the heading to the hero entrance animation and reduced-motion fallback.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -21,6 +22,7 @@ none
 
 ## TOUCHED
 - web/src/app/globals.css
+- web/src/components/landing-hero.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
