@@ -3,13 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — cropped Thee Orb logo assets to their visible alpha bounds
+DONE — added a dimensional violet button system to the landing page
 
 ## LAST SESSION
-- Measured the alpha bounds of all three `logo-*.png` assets in `.required/brand/`.
-- Cropped `logo-black.png` to 656×680, `logo-color.png` to 623×627, and `logo-white.png` to 643×645.
-- Used the visible alpha boundary (greater than 8/255) so the icon artwork touches every canvas edge without retaining stray near-transparent padding.
-- Verified every resulting file remains PNG with alpha, has transparent pixels, and has visible artwork on every image edge.
+- Added a shared `orb-button` class with a violet vertical gradient, bright upper bevel, inset lower shading, depth shadow, and pressed state.
+- Applied the new treatment to the header, hero, and release call-to-action buttons.
+- Preserved the user’s concurrent hero/logo layout adjustments while applying the button system.
+- Restored the typed `next/image` logo wrapper so image props are valid and LCP image handling remains optimized.
+- Removed a Google-font network dependency that blocked production builds; typography now uses local system display and monospace fallbacks.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -20,14 +21,18 @@ DONE — cropped Thee Orb logo assets to their visible alpha bounds
 none
 
 ## TOUCHED
-- .required/brand/logo-black.png
-- .required/brand/logo-color.png
-- .required/brand/logo-white.png
+- web/src/app/globals.css
+- web/src/app/layout.tsx
+- web/src/components/brand-logo.component.tsx
+- web/src/components/landing-call-to-action.component.tsx
+- web/src/components/landing-hero.component.tsx
+- web/src/components/site-header.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
-- alpha-bound measurement and crop with Sharp — pass
-- `sips -g format -g hasAlpha .required/brand/logo-*.png` — pass
+- `pnpm lint` (in `web/`) — pass
+- `pnpm build` (in `web/`) — pass
+- `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
 ## REPO MAP
