@@ -3,12 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — restored Thee Orb’s dark landing-page background tokens
+DONE — upgraded the landing-page typography and cosmic background system
 
 ## LAST SESSION
-- Identified that the active default CSS tokens had reverted to the light starter palette, making the page background pale and the translucent header grey.
-- Restored the default near-black background, light foreground, purple surface, border, muted text, accent, and status tokens in `web/src/app/globals.css`.
-- Preserved the explicit optional `[data-theme='dark']` override while making dark Thee Orb styling the default.
+- Replaced the ambiguous font aliases with a deliberate local display stack (`Avenir Next`, Avenir, Trebuchet MS) and local mono stack.
+- Added a layered near-black nebula background, fixed starfield, subtle CRT scan texture, vignette, and grid geometry.
+- Restored hero atmosphere and added portal geometry, horizon glow, animated scan lines, breathing orbit rings, Orb float, drifting signals, and staged entrance motion.
+- Added a complete reduced-motion fallback for every added ambient animation.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
