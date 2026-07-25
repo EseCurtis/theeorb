@@ -8,7 +8,7 @@ export function SiteHeader(): React.JSX.Element {
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         <Link className="flex items-center gap-3" href="/">
           <span className="grid size-9 place-items-center overflow-hidden rounded-full border border-white/15 bg-[#190036] shadow-[0_0_22px_rgba(171,65,255,0.45)]">
-            <BrandLogo className="size-12 max-w-none" priority variant="color" />
+            <BrandLogo className="size-full max-w-none" priority variant="color" />
           </span>
           <span className="font-[family-name:var(--font-display)] text-base font-semibold tracking-[-0.04em] text-white">THEE ORB</span>
         </Link>

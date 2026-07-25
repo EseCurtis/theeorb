@@ -1,6 +1,6 @@
 export function LandingStory(): React.JSX.Element {
   return (
-    <section className="px-5 py-20 sm:py-28" id="how-it-works">
+    <section className="scroll-reveal px-5 py-20 sm:py-28" id="how-it-works">
       <div className="mx-auto max-w-7xl">
         <div className="max-w-2xl"><p className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-[0.18em] text-[#d69cff]">The main loop</p><h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.065em] text-white sm:text-6xl">It grows when you are gone.</h2></div>
         <div className="mt-12 grid gap-px overflow-hidden rounded-[2rem] border border-white/10 bg-white/10 md:grid-cols-5">
