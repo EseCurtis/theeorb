@@ -5,18 +5,18 @@
 :root {
   --font-display: ui-rounded;
   --font-mono: ui-monospace;
-  --background: #f8f5fc;
-  --foreground: #100034;
-  --surface: #ffffff;
-  --surface-muted: #f1e9f8;
-  --surface-strong: #fcfafe;
-  --border: #e2d3ee;
-  --border-strong: #b790d2;
-  --muted: #746781;
-  --accent: #791dd6;
-  --accent-strong: #5b0db1;
-  --danger: #b42318;
-  --success: #2e8b68;
+  --background: #07040f;
+  --foreground: #f7efff;
+  --surface: #10031b;
+  --surface-muted: #19042a;
+  --surface-strong: #25063e;
+  --border: #3b164f;
+  --border-strong: #a44fda;
+  --muted: #c4b2cf;
+  --accent: #cf74ff;
+  --accent-strong: #e0a4ff;
+  --danger: #ff746c;
+  --success: #69d4a8;
 }
 
 :root[data-theme='dark'] {
