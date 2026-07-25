@@ -3,13 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — upgraded Thee Orb’s landing page with an immersive portal hero and scroll motion
+DONE — cropped Thee Orb logo assets to their visible alpha bounds
 
 ## LAST SESSION
-- Replaced the two-column hero with a full-height, centred Orb portal scene.
-- Added animated orbit rings, a breathing Orb, drifting world signals, scanning lines, and staged hero entrance motion.
-- Added viewport-driven reveal motion to the loop, world, and release sections when the browser supports CSS scroll timelines.
-- Added a complete `prefers-reduced-motion` fallback that disables both ambient and scroll animations.
+- Measured the alpha bounds of all three `logo-*.png` assets in `.required/brand/`.
+- Cropped `logo-black.png` to 656×680, `logo-color.png` to 623×627, and `logo-white.png` to 643×645.
+- Used the visible alpha boundary (greater than 8/255) so the icon artwork touches every canvas edge without retaining stray near-transparent padding.
+- Verified every resulting file remains PNG with alpha, has transparent pixels, and has visible artwork on every image edge.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -20,17 +20,14 @@ DONE — upgraded Thee Orb’s landing page with an immersive portal hero and sc
 none
 
 ## TOUCHED
-- web/src/app/globals.css
-- web/src/components/landing-hero.component.tsx
-- web/src/components/landing-story.component.tsx
-- web/src/components/landing-world.component.tsx
-- web/src/components/landing-call-to-action.component.tsx
+- .required/brand/logo-black.png
+- .required/brand/logo-color.png
+- .required/brand/logo-white.png
 - .agent/shared-mind.txt
 
 ## COMMANDS
-- `pnpm lint` (in `web/`) — pass
-- `pnpm build` (in `web/`) — pass
-- `git diff --check` — pass
+- alpha-bound measurement and crop with Sharp — pass
+- `sips -g format -g hasAlpha .required/brand/logo-*.png` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
 ## REPO MAP
