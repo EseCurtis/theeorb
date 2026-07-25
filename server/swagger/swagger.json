@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Server",
+    "version": "1.0.0",
+    "description": "Bootstrap API documentation"
+  },
+  "basePath": "/api",
+  "schemes": ["http"],
+  "host": "localhost:4000",
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Service health checks"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Get health status",
+        "description": "Returns database and service health",
+        "responses": {
+          "200": {
+            "description": "Health status retrieved",
+            "schema": {
+              "$ref": "#/definitions/HealthResponse"
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "HealthResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": {
+          "type": "object",
+          "properties": {
+            "code": { "type": "integer", "example": 200 },
+            "desc": { "type": "string", "example": "Health status retrieved" }
+          }
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "database": { "type": "string", "example": "up" },
+            "service": { "type": "string", "example": "up" }
+          }
+        }
+      }
+    }
+  }
+}

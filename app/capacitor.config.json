@@ -1,0 +1,29 @@
+{
+  "appId": "com.theeorb.app",
+  "appName": "TheeOrb",
+  "webDir": "dist",
+  "plugins": {
+    "PushNotifications": {
+      "presentationOptions": [
+        "badge",
+        "sound",
+        "alert"
+      ]
+    },
+    "Keyboard": {
+      "resizeOnFullScreen": true
+    },
+    "SocialLogin": {
+      "providers": {
+        "google": true,
+        "apple": true,
+        "facebook": false,
+        "twitter": false
+      }
+    }
+  },
+  "server": {
+    "androidScheme": "http",
+    "url": "http://localhost:3006"
+  }
+}

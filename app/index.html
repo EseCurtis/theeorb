@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      ;(() => {
+        try {
+          const storedTheme = localStorage.getItem('app-theme')
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const theme = storedTheme || (prefersDark ? 'dark' : 'light')
+          document.documentElement.dataset.theme = theme
+          document.documentElement.style.backgroundColor = theme === 'dark' ? '#111827' : '#f7f6f2'
+        } catch {
+          document.documentElement.dataset.theme = 'light'
+          document.documentElement.style.backgroundColor = '#f7f6f2'
+        }
+      })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#f8f5fc" />
+    <meta
+      name="description"
+      content="Capacitor app starter"
+    />
+    <link rel="manifest" href="/manifest.json" />
+    <title>TheeOrb</title>
+  </head>
+  <body class="font-sans">
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

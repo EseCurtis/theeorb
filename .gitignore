@@ -1,0 +1,31 @@
+.DS_Store
+
+# dependencies
+node_modules/
+
+# env
+.env
+.env.*
+!.env.example
+
+# builds and caches
+dist/
+dist-ssr/
+.next/
+out/
+build/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local tool state
+.tanstack/
+.turbo/
+.vercel/
+.wrangler/

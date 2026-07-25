@@ -1,0 +1,70 @@
+{
+  "app": {
+    "name": "TheeOrb",
+    "shortName": "TheeOrb",
+    "id": "com.theeorb.app",
+    "urlScheme": "com.theeorb.app",
+    "versionName": "0.1.0",
+    "versionCode": 1
+  },
+
+  "colors": {
+    "background": "#f8f5fc",
+    "foreground": "#100034",
+    "surface": "#ffffff",
+    "surfaceMuted": "#f1e9f8",
+    "surfaceStrong": "#fcfafe",
+    "border": "#e2d3ee",
+    "borderStrong": "#b790d2",
+    "muted": "#746781",
+    "accent": "#791dd6",
+    "accentStrong": "#5b0db1",
+    "danger": "#b42318",
+    "success": "#2e8b68"
+  },
+  "darkColors": {
+    "background": "#040019",
+    "foreground": "#f9dafe",
+    "surface": "#100034",
+    "surfaceMuted": "#1f0053",
+    "surfaceStrong": "#310174",
+    "border": "#440592",
+    "borderStrong": "#791dd6",
+    "muted": "#b79cc6",
+    "accent": "#c16bff",
+    "accentStrong": "#db82fd",
+    "danger": "#ff746c",
+    "success": "#69d4a8"
+  },
+  "capacitor": {
+    "server": {
+      "androidScheme": "http",
+      "url": "http://localhost:3006"
+    }
+  },
+  "firebase": {
+    "androidFile": "google-services.json",
+    "iosFile": "GoogleService-Info.plist"
+  },
+  "socialLogin": {
+    "providers": {
+      "google": true,
+      "apple": true,
+      "facebook": false,
+      "twitter": false
+    },
+    "google": {
+      "webClientId": "replace-with-google-web-client-id.apps.googleusercontent.com",
+      "iOSClientId": "replace-with-google-ios-client-id.apps.googleusercontent.com",
+      "iOSServerClientId": "replace-with-google-web-client-id.apps.googleusercontent.com",
+      "mode": "online",
+      "redirectUrl": "http://localhost:4000/auth/google/callback"
+    },
+    "apple": {
+      "clientId": "com.example.starter.web",
+      "redirectUrl": "http://localhost:4000/auth/apple/callback",
+      "useProperTokenExchange": true
+    },
+    "iosUrlSchemes": ["com.example.starter"]
+  }
+}

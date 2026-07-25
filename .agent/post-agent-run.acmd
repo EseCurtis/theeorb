@@ -1,0 +1,42 @@
+# Post-agent-run program — executed after every agent session that touches the repo.
+# Language: Agen v1 — see .agent/ACMD.md
+
+⟦program⟧ post-agent-run
+⟦version⟧ 1
+
+⟦require⟧ handover @ .agent/shared-mind.txt
+  fields: STATUS, LAST_SESSION, NEXT, BLOCKERS, TOUCHED, COMMANDS
+
+⟦when⟧ changed «app/**»
+  ⟦do⟧ log «typecheck app»
+  ⟦do⟧ exec «cd app && pnpm exec tsc --noEmit»
+
+⟦when⟧ changed «server/**»
+  ⟦do⟧ log «build server»
+  ⟦do⟧ exec «cd server && npm run build»
+
+⟦when⟧ changed «server/src/routes/**»
+  ⟦do⟧ log «validating API route versioning and Swagger docs»
+  ⟦do⟧ exec «.agent/scripts/validate-api-contract.sh»
+
+⟦when⟧ changed «server/src/index.ts»
+  ⟦do⟧ log «validating API route versioning and Swagger docs»
+  ⟦do⟧ exec «.agent/scripts/validate-api-contract.sh»
+
+⟦when⟧ changed «server/swagger/**»
+  ⟦do⟧ log «validating API route versioning and Swagger docs»
+  ⟦do⟧ exec «.agent/scripts/validate-api-contract.sh»
+
+⟦when⟧ changed «web/**»
+  ⟦do⟧ log «build web»
+  ⟦do⟧ exec «cd web && npm run build»
+
+⟦when⟧ changed «.agent/**»
+  ⟦do⟧ log «agent config touched — handover should be current»
+
+⟦always⟧
+  ⟦do⟧ log «validating shared-mind handover»
+  ⟦do⟧ exec «.agent/scripts/validate-handover.sh»
+  ⟦do⟧ log «validating git worktree is committed»
+  ⟦do⟧ exec «.agent/scripts/validate-git-clean.sh»
+  ⟦do⟧ log «post-agent-run complete»

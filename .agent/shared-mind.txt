@@ -1,0 +1,39 @@
+# SHARED MIND — cross-agent handover
+# Every agent MUST read this at session start and rewrite the sections below at session end.
+# Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
+
+## STATUS
+DONE — enforced auth response symmetry rules in `.agent`
+
+## LAST SESSION
+- Added mandatory auth response symmetry rules to `.agent/Server.RULES.md`.
+- The rules require generic client-facing messages/statuses for login, signup, password reset, verification, invite flows, profile/resource lookups, and any existence-sensitive endpoint.
+- Added timing rules requiring dummy hashing or equivalent delay work on nonexistent-user paths when real-user paths perform expensive checks.
+- Required detailed auth/resource failure reasons to stay in server logs and out of response bodies.
+- Updated the `INIT.md` AI agent prompt so new models apply the symmetry rule before implementing auth or existence-sensitive APIs.
+
+## NEXT
+- Apply the auth symmetry checklist during future login, signup, reset, verification, invite, and protected resource endpoint work.
+- Keep synced starter-based projects aligned with this auth response symmetry rule.
+
+## BLOCKERS
+none
+
+## TOUCHED
+- .agent/shared-mind.txt
+- .agent/Server.RULES.md
+- INIT.md
+
+## COMMANDS
+- `sed -n ... .agent/shared-mind.txt .agent/Server.RULES.md INIT.md .agent/Agent.Continuity.RULES.md` — pass
+
+## REPO MAP
+- `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
+- `server/` — Express API (Server.RULES.md)
+- `web/` — Next.js (Frontend.Web.RULES.md)
+- `.agent/project/` — product docs (templates — fill in)
+- `.agent/` — code rules, shared-mind, Agen post-run
+
+## CONVENTIONS REMINDER
+- `.agent/` = all agents | `.cursor/` = Cursor only (rules + hooks)
+- Post-run: update this file, then `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd`

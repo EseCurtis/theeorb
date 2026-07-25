@@ -1,0 +1,22 @@
+---
+description: Mandatory agent continuity — shared-mind handover and Agen post-agent-run
+alwaysApply: true
+---
+
+# Agent continuity (MAX priority)
+
+Before any work: read `.agent/shared-mind.txt` and `.agent/Agent.Continuity.RULES.md`.
+
+Before ending any session that touched code:
+
+1. Update `.agent/shared-mind.txt` sections: `STATUS`, `LAST SESSION`, `NEXT`, `BLOCKERS`, `TOUCHED`, `COMMANDS`
+2. Run: `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd`
+3. Do not set `STATUS` to `UNKNOWN`
+
+Post-run tasks live only in `.acmd` files (Agen v1 — see `.agent/ACMD.md`). Never skip the handover.
+
+Tailwind rule (app only): class strings belong in reusable components, not shared class bundles. External config (`colors.shared`, `constants.shared`, env, safe-area, Capacitor) stays.
+
+Repo rules: `.agent/Server.RULES.md`, `.agent/Frontend.Mobile.RULES.md`, `.agent/Frontend.Web.RULES.md`.
+
+**Cursor-only:** this `.mdc` file and `.cursor/hooks.json` apply to Cursor agents in this repo. Other agents rely on `.agent/` docs + manual `agen-run.sh`. See `.agent/Agent.Continuity.RULES.md` §5.

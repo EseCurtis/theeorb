@@ -1,0 +1,12 @@
+{
+  "name": "starter",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@8.15.6",
+  "scripts": {
+    "apply-required": "node scripts/apply-required.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5"
+  }
+}

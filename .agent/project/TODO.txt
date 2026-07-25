@@ -1,0 +1,2 @@
+# Backlog — one item per line
+# Example: - [ ] Define product name in prd.md

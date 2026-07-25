@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TheeOrb</string>
+    <string name="title_activity_main">TheeOrb</string>
+    <string name="package_name">com.theeorb.app</string>
+    <string name="custom_url_scheme">com.theeorb.app</string>
+</resources>
