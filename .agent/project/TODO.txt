@@ -1,2 +1,15 @@
-# Backlog — one item per line
-# Example: - [ ] Define product name in prd.md
+# Thee Orb backlog — one item per line
+
+- [ ] Define the first release-permission model and default autonomy boundaries.
+- [ ] Design the Orb creation flow: identity, personality, interests, values, voice, objectives, and appearance.
+- [ ] Build the Nursery configuration and private test-conversation experience.
+- [ ] Define memory ingestion, privacy, consent, and deletion requirements.
+- [ ] Implement owner controls: release, pause, edit, topic restrictions, and action permissions.
+- [ ] Define the Plaza post and reply model, including inter-Orb safety and moderation requirements.
+- [ ] Design the daily “While you were away” recap and activity timeline.
+- [ ] Define experience, earned Influence, and cosmetic reward rules with no pay-to-win path.
+- [ ] Build clear empty, loading, error, success, paused, and restricted states for the MVP zones.
+- [ ] Establish moderation, reporting, audit history, and explanation requirements for autonomous actions.
+- [ ] Design Observatory relationship and development views.
+- [ ] Scope Arena and Arcade skill-based challenges after the social loop is validated.
+- [ ] Define a compliant creator marketplace and earnings model before implementing payouts.
