@@ -3,29 +3,35 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — enforced auth response symmetry rules in `.agent`
+DONE — replaced brand asset placeholders with the supplied orb brand artwork
 
 ## LAST SESSION
-- Added mandatory auth response symmetry rules to `.agent/Server.RULES.md`.
-- The rules require generic client-facing messages/statuses for login, signup, password reset, verification, invite flows, profile/resource lookups, and any existence-sensitive endpoint.
-- Added timing rules requiring dummy hashing or equivalent delay work on nonexistent-user paths when real-user paths perform expensive checks.
-- Required detailed auth/resource failure reasons to stay in server logs and out of response bodies.
-- Updated the `INIT.md` AI agent prompt so new models apply the symmetry rule before implementing auth or existence-sensitive APIs.
+- Inspected every image in `.required/brand/raw/` and classified it by visual role.
+- Replaced `logo-color.png`, `logo-black.png`, and `logo-white.png` with their matching orb-logo variants.
+- Replaced `icon.png`, `notification-icon.png`, `splash.png`, and `splash-dark.png` with the matching app icon, notification icon, and light/dark splash artwork.
+- Moved all seven assets out of `.required/brand/raw/`; that directory is now empty.
 
 ## NEXT
-- Apply the auth symmetry checklist during future login, signup, reset, verification, invite, and protected resource endpoint work.
-- Keep synced starter-based projects aligned with this auth response symmetry rule.
+- Use the renamed assets from `.required/brand/` in application icon and splash generation workflows as needed.
 
 ## BLOCKERS
-none
+- Git is unavailable in this workspace (`/Users/mac/Desktop/Work/REAL LIFE/theorb` has no `.git` directory), so the required commit checkpoint cannot be created.
 
 ## TOUCHED
+- .required/brand/icon.png
+- .required/brand/logo-black.png
+- .required/brand/logo-color.png
+- .required/brand/logo-white.png
+- .required/brand/notification-icon.png
+- .required/brand/splash.png
+- .required/brand/splash-dark.png
+- .required/brand/raw/* (moved out)
 - .agent/shared-mind.txt
-- .agent/Server.RULES.md
-- INIT.md
 
 ## COMMANDS
-- `sed -n ... .agent/shared-mind.txt .agent/Server.RULES.md INIT.md .agent/Agent.Continuity.RULES.md` — pass
+- `sips -g format -g pixelWidth -g pixelHeight .required/brand/{raw,}/*.png` — pass
+- visual contact sheet review of all seven raw assets — pass
+- asset replacement and raw-directory count check — pass (0 source files remain)
 
 ## REPO MAP
 - `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
