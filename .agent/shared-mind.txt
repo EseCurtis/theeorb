@@ -3,14 +3,12 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — redesigned the landing hero as a centred Thee World network
+DONE — enlarged and rounded the central Orb network node
 
 ## LAST SESSION
-- Replaced the oversized portal typography layout with a calm, centred copy-first hero inspired by the supplied reference.
-- Added a Thee World diagram below the message: a central Orb connected to the Nursery, Plaza, Observatory, and Arcade.
-- Used purposeful zone labels and connection lines rather than decorative social metrics or third-party icon imagery.
-- Kept both actions as the shared 3D Orb button variants and retained responsive placement for mobile.
-- Fixed a CSS syntax error in the new network styles and verified the page build.
+- Enlarged the hero’s central Orb node from 112/144px to 144/192px across mobile/desktop breakpoints.
+- Made the outer node and inner Orb frame fully circular with `rounded-full`.
+- Increased the Orb artwork coverage and glow so it clearly leads the surrounding world network.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -21,7 +19,6 @@ DONE — redesigned the landing hero as a centred Thee World network
 none
 
 ## TOUCHED
-- web/src/app/globals.css
 - web/src/components/landing-hero.component.tsx
 - .agent/shared-mind.txt
 
