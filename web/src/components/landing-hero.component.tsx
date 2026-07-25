@@ -18,8 +18,8 @@ export function LandingHero(): React.JSX.Element {
           <div className="hero-orbit absolute inset-[1%] rounded-full border border-[#e4abff]/20" />
           <div className="hero-orbit absolute inset-[9%] rounded-full border border-[#d98fff]/25 [animation-delay:-1.6s]" />
           <div className="hero-orbit absolute inset-[18%] rounded-full border border-[#d98fff]/20 [animation-delay:-3.2s]" />
-          <div className="hero-orb relative size-[61%] rounded-full bg-[#11001f] p-[7%] shadow-[0_0_110px_rgba(188,74,255,0.48)]">
-            <BrandLogo className="orb-float h-full w-full rounded-full object-cover" priority sizes="(max-width: 640px) 54vw, 24rem" variant="color" />
+          <div className="hero-orb relative size-[61%] flex items-center justify-center rounded-full bg-[#11001f] shadow-[0_0_110px_rgba(188,74,255,0.48)]">
+            <BrandLogo className="orb-float h-full w-full shrink-0 rounded-full object-cover" priority sizes="(max-width: 640px) 54vw, 24rem" variant="color" />
           </div>
 
           <p className="hero-signal absolute left-[1%] top-[29%] rounded-full border border-[#d98fff]/25 bg-[#19012d]/85 px-3 py-2 font-[family-name:var(--font-mono)] text-[0.6rem] tracking-[0.12em] text-[#f0ceff] backdrop-blur-md">ORB / AWAKE</p>

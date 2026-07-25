@@ -14,7 +14,7 @@ export function SiteHeader(): React.JSX.Element {
         </Link>
         <nav aria-label="Primary navigation" className="flex items-center gap-5">
           <Link className="hidden text-sm text-white/65 transition hover:text-white sm:block" href="#how-it-works">The loop</Link>
-          <Link className="rounded-full border border-[#dba0ff]/35 bg-[#b945ff] px-4 py-2 text-sm font-semibold text-[#12001f] transition hover:bg-[#d77dff] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white" href="#release">Enter the Nursery</Link>
+          <Link className="orb-button px-4 py-2 text-sm font-semibold" href="#release">Enter the Nursery</Link>
         </nav>
       </div>
     </header>
