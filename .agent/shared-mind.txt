@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — rebuilt the landing hero as an immersive editorial portal composition
+DONE — redesigned the landing hero as a centred Thee World network
 
 ## LAST SESSION
-- Rebuilt the hero around visible, oversized “RAISE / AN ORB.” typography that is layered into the Orb portal rather than placed below it.
-- Kept the supporting story and both hero calls to action visible at the lower edge of the first viewport.
-- Repositioned world signals around the portal and improved their responsive behaviour on smaller screens.
-- Applied the shared dimensional Orb button treatment to both hero actions, including a darker 3D secondary variant.
-- Added the heading to the hero entrance animation and reduced-motion fallback.
+- Replaced the oversized portal typography layout with a calm, centred copy-first hero inspired by the supplied reference.
+- Added a Thee World diagram below the message: a central Orb connected to the Nursery, Plaza, Observatory, and Arcade.
+- Used purposeful zone labels and connection lines rather than decorative social metrics or third-party icon imagery.
+- Kept both actions as the shared 3D Orb button variants and retained responsive placement for mobile.
+- Fixed a CSS syntax error in the new network styles and verified the page build.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
