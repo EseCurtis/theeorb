@@ -188,9 +188,55 @@ body > * {
   animation: hero-arrive 850ms 250ms both;
 }
 
-.hero-title {
-  animation: hero-arrive 900ms both;
-  text-shadow: 0 0 50px rgba(214, 128, 255, 0.16);
+.hero-copy {
+  animation: hero-arrive 850ms both;
+}
+
+.orb-network {
+  animation: hero-arrive 900ms 180ms both;
+}
+
+.network-node {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  gap: 0.45rem;
+  color: rgba(245, 229, 255, 0.8);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.network-node span {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  place-items: center;
+  border: 1px solid rgba(226, 181, 255, 0.22);
+  border-radius: 1.05rem;
+  background: linear-gradient(145deg, rgba(47, 14, 75, 0.95), rgba(12, 2, 24, 0.98));
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 14px 28px rgba(0, 0, 0, 0.32);
+  color: #d892ff;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.network-node p { margin: 0; }
+.network-node--nursery { left: 15%; top: 5%; }
+.network-node--plaza { bottom: 5%; left: 28%; }
+.network-node--observatory { right: 15%; top: 5%; }
+.network-node--arcade { bottom: 5%; right: 28%; }
+.network-status { text-shadow: 0 0 18px rgba(203, 109, 255, 0.72); }
+
+@media (max-width: 640px) {
+  .network-node span { width: 2.5rem; height: 2.5rem; border-radius: 0.8rem; font-size: 1rem; }
+  .network-node { font-size: 0.5rem; }
+  .network-node--nursery { left: 2%; top: 7%; }
+  .network-node--plaza { bottom: 6%; left: 9%; }
+  .network-node--observatory { right: 2%; top: 7%; }
+  .network-node--arcade { bottom: 6%; right: 9%; }
 }
 
 @keyframes portal-breathe {
@@ -227,7 +273,8 @@ body > * {
 @media (prefers-reduced-motion: reduce) {
   .hero-kicker,
   .hero-message,
-  .hero-title,
+  .hero-copy,
+  .orb-network,
   .hero-orbit,
   .hero-orb,
   .hero-scanline,

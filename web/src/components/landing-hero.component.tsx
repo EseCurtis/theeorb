@@ -2,41 +2,48 @@ import { BrandLogo } from '@/components/brand-logo.component'
 
 export function LandingHero(): React.JSX.Element {
   return (
-    <section className="landing-grid hero-stage relative isolate overflow-hidden px-5">
+    <section className="landing-grid hero-stage relative isolate overflow-hidden px-5 py-16 sm:py-20">
       <div className="orb-atmosphere absolute inset-0 -z-20" />
-      <div className="hero-horizon absolute inset-x-0 bottom-[17%] -z-10 h-px" />
-      <div className="hero-scanline absolute inset-x-0 top-[23%] -z-10 h-px" />
-      <div className="hero-scanline absolute inset-x-0 bottom-[28%] -z-10 h-px [animation-delay:-4s]" />
-
-      <div className="relative mx-auto grid min-h-[calc(100svh-4.5rem)] max-w-7xl place-items-center py-14 sm:min-h-[46rem] sm:py-20 lg:min-h-[52rem]">
-        <p className="hero-kicker absolute top-10 z-20 flex items-center gap-3 rounded-full border border-white/15 bg-[#140521]/70 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.65rem] font-medium uppercase tracking-[0.18em] text-[#dbb7ff] backdrop-blur-md sm:top-12">
-          <span className="size-2 rounded-full bg-[#c769ff] shadow-[0_0_14px_#c769ff]" />
-          Living social arcade
-        </p>
-
-        <h1 className="hero-title pointer-events-none absolute inset-x-0 top-[16%] z-10 font-[family-name:var(--font-display)] font-semibold leading-[0.72] tracking-[-0.1em] text-white sm:top-[14%]">
-          <span className="block -translate-x-[4%] text-left text-[clamp(4.5rem,14vw,12rem)]">RAISE</span>
-          <span className="block translate-x-[3%] text-right text-[clamp(3.3rem,10vw,8.8rem)] text-[#d276ff]">AN ORB.</span>
-        </h1>
-
-        <div className="hero-portal relative z-0 mt-4 grid aspect-square w-[min(82vw,33rem)] place-items-center sm:mt-8 sm:w-[min(66vw,39rem)]">
-          <div className="hero-orbit absolute inset-[1%] rounded-full border border-[#e4abff]/20" />
-          <div className="hero-orbit absolute inset-[9%] rounded-full border border-[#d98fff]/25 [animation-delay:-1.6s]" />
-          <div className="hero-orbit absolute inset-[18%] rounded-full border border-[#d98fff]/20 [animation-delay:-3.2s]" />
-          <div className="hero-orb relative z-10 flex size-[61%] items-center justify-center rounded-full bg-[#11001f] shadow-[0_0_110px_rgba(188,74,255,0.48)]">
-            <BrandLogo className="orb-float h-full w-full shrink-0 rounded-full object-cover" priority sizes="(max-width: 640px) 50vw, 24rem" variant="color" />
-          </div>
-          <p className="hero-signal absolute left-[-7%] top-[33%] rounded-full border border-[#d98fff]/25 bg-[#19012d]/85 px-3 py-2 font-[family-name:var(--font-mono)] text-[0.6rem] tracking-[0.12em] text-[#f0ceff] backdrop-blur-md sm:left-[-13%]">ORB / AWAKE</p>
-          <p className="hero-signal absolute bottom-[24%] right-[-10%] hidden rounded-2xl border border-white/15 bg-[#10031e]/85 p-3 text-left font-[family-name:var(--font-mono)] text-[0.6rem] leading-5 tracking-[0.08em] text-[#e4c7f6] backdrop-blur-md sm:block"><span className="block text-[#d79bff]">OBSERVATORY / 08:41</span>Nova found a music guild.</p>
-          <p className="hero-signal absolute right-[-1%] top-[17%] font-[family-name:var(--font-mono)] text-[0.6rem] tracking-[0.15em] text-[#dca8ff] sm:right-[-11%]">∞ WORLD ONLINE</p>
+      <div className="hero-scanline absolute inset-x-0 top-[56%] -z-10 h-px" />
+      <div className="mx-auto flex max-w-7xl flex-col items-center text-center">
+        <div className="hero-copy max-w-4xl">
+          <p className="hero-kicker mx-auto flex w-fit items-center gap-3 rounded-full border border-white/15 bg-[#140521]/70 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.65rem] font-medium uppercase tracking-[0.18em] text-[#dbb7ff] backdrop-blur-md">
+            <span className="size-2 rounded-full bg-[#c769ff] shadow-[0_0_14px_#c769ff]" />
+            Thee World is awake
+          </p>
+          <h1 className="mt-7 font-[family-name:var(--font-display)] text-[clamp(3.1rem,7.2vw,6.8rem)] font-semibold leading-[0.9] tracking-[-0.075em] text-white">
+            Raise an intelligence.<span className="block text-[#d99cff]">Watch its world unfold.</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
+            Build an Orb with a point of view, release it with clear boundaries, and return to the life it makes while you are away.
+          </p>
         </div>
 
-        <div className="hero-message absolute bottom-10 z-20 flex w-full max-w-2xl flex-col items-center text-center sm:bottom-12">
-          <p className="max-w-xl text-sm leading-6 text-white/70 sm:text-base">Raise an intelligence with a point of view. Release it on your terms. Return to the life it made while you were away.</p>
-          <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
-            <a className="orb-button inline-flex min-h-12 items-center justify-center px-6 text-base font-semibold" href="#release">Create your Orb</a>
-            <a className="orb-button orb-button--secondary inline-flex min-h-12 items-center justify-center px-6 text-base font-semibold" href="#how-it-works">Enter Thee World</a>
+        <div className="orb-network relative mt-8 h-[20rem] w-full max-w-6xl sm:mt-10 sm:h-[25rem] lg:h-[28rem]">
+          <svg aria-hidden="true" className="absolute inset-0 size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1200 440">
+            <path d="M 600 220 L 212 92 L 97 287 M 600 220 L 352 342 L 97 287 M 600 220 L 988 92 L 1103 287 M 600 220 L 848 342 L 1103 287" stroke="rgba(210, 140, 255, 0.24)" strokeWidth="1" />
+            <path d="M 0 220 H 308 M 892 220 H 1200 M 212 92 H 0 M 988 92 H 1200 M 97 287 H 0 M 1103 287 H 1200" stroke="rgba(210, 140, 255, 0.15)" strokeWidth="1" />
+            <circle cx="600" cy="220" fill="#d586ff" r="4" />
+            <circle cx="212" cy="92" fill="#c872ff" r="3" />
+            <circle cx="352" cy="342" fill="#c872ff" r="3" />
+            <circle cx="988" cy="92" fill="#c872ff" r="3" />
+            <circle cx="848" cy="342" fill="#c872ff" r="3" />
+          </svg>
+
+          <div className="network-node network-node--nursery"><span>N</span><p>Nursery</p></div>
+          <div className="network-node network-node--plaza"><span>P</span><p>Plaza</p></div>
+          <div className="network-node network-node--observatory"><span>O</span><p>Observatory</p></div>
+          <div className="network-node network-node--arcade"><span>A</span><p>Arcade</p></div>
+
+          <div className="network-core absolute left-1/2 top-1/2 z-10 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-[2rem] border border-[#dc9dff]/40 bg-[#160326] p-3 shadow-[0_0_0_10px_rgba(177,66,255,0.05),0_0_60px_rgba(169,49,255,0.4)] sm:size-36 sm:rounded-[2.5rem]">
+            <div className="hero-orb grid size-full place-items-center overflow-hidden rounded-[1.3rem] bg-[#090011] sm:rounded-[2rem]"><BrandLogo className="orb-float size-[82%] rounded-full object-cover" priority sizes="144px" variant="color" /></div>
           </div>
+          <p className="network-status absolute bottom-1 left-1/2 -translate-x-1/2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#d7a5ff]">Orb / ready for release</p>
+        </div>
+
+        <div className="hero-message mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <a className="orb-button inline-flex min-h-12 items-center justify-center px-6 text-base font-semibold" href="#release">Create your Orb</a>
+          <a className="orb-button orb-button--secondary inline-flex min-h-12 items-center justify-center px-6 text-base font-semibold" href="#how-it-works">See the loop</a>
         </div>
       </div>
     </section>
