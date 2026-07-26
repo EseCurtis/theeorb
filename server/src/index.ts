@@ -5,16 +5,19 @@ import express from 'express';
 
 import Env from './config/env.config.js';
 import logger from './helpers/logger.js';
+import passport from './middleware/jwt.token.js';
 import { requestLogger } from './middleware/request-logger.middleware.js';
+import authRoute from './routes/auth.route.js';
 import healthRoute from './routes/health.route.js';
 import { swaggerSetup } from './swagger-setup.js';
 
 const app = express();
-const routes = [healthRoute];
+const routes = [healthRoute, authRoute];
 
 app.set('trust proxy', true);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(passport.initialize());
 app.use(
   cors({
     credentials: true,
@@ -37,7 +40,7 @@ app.get('/health', (_request, response) => {
 });
 
 routes.forEach((route) => {
-  app.use('/api', route);
+  app.use('/api/v1', route);
 });
 
 const port = Env.PORT;

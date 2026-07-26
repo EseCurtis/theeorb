@@ -5,13 +5,17 @@
     "version": "1.0.0",
     "description": "Bootstrap API documentation"
   },
-  "basePath": "/api",
+  "basePath": "/api/v1",
   "schemes": ["http"],
   "host": "localhost:4000",
   "tags": [
     {
       "name": "Health",
       "description": "Service health checks"
+    },
+    {
+      "name": "Authentication",
+      "description": "Account access and recovery"
     }
   ],
   "paths": {
@@ -32,9 +36,170 @@
           }
         }
       }
+    },
+    "/auth/sign-up": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Create an account without disclosing existing-account state",
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/SignUpRequest" } }],
+        "responses": {
+          "202": { "description": "Generic sign-up acceptance", "schema": { "$ref": "#/definitions/AcceptedResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/auth/sign-in": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Sign in with email and password",
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/SignInRequest" } }],
+        "responses": {
+          "200": { "description": "Signed in", "schema": { "$ref": "#/definitions/AuthSessionResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "401": { "description": "Invalid email or password", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/auth/password-recovery": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Request password recovery without disclosing account state",
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/PasswordRecoveryRequest" } }],
+        "responses": {
+          "202": { "description": "Generic recovery acceptance", "schema": { "$ref": "#/definitions/AcceptedResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/auth/password-reset": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "Set a new password using a recovery token",
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/PasswordResetRequest" } }],
+        "responses": {
+          "200": { "description": "Password updated", "schema": { "$ref": "#/definitions/AcceptedResponse" } },
+          "400": { "description": "Invalid request or recovery token", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/auth/session": {
+      "get": {
+        "tags": ["Authentication"],
+        "summary": "Read the current signed-in account",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "Session retrieved", "schema": { "$ref": "#/definitions/SessionResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/auth/sign-out": {
+      "post": {
+        "tags": ["Authentication"],
+        "summary": "End the current local session",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "Signed out", "schema": { "$ref": "#/definitions/AcceptedResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
     }
   },
+  "securityDefinitions": {
+    "Bearer": { "type": "apiKey", "name": "Authorization", "in": "header", "description": "Bearer access token" }
+  },
   "definitions": {
+    "SignUpRequest": {
+      "type": "object",
+      "required": ["displayName", "email", "password"],
+      "properties": {
+        "displayName": { "type": "string", "example": "Nova" },
+        "email": { "type": "string", "format": "email", "example": "nova@example.com" },
+        "password": { "type": "string", "format": "password", "example": "long-enough-password" }
+      }
+    },
+    "SignInRequest": {
+      "type": "object",
+      "required": ["email", "password"],
+      "properties": {
+        "email": { "type": "string", "format": "email", "example": "nova@example.com" },
+        "password": { "type": "string", "format": "password", "example": "long-enough-password" }
+      }
+    },
+    "PasswordRecoveryRequest": {
+      "type": "object",
+      "required": ["email"],
+      "properties": {
+        "email": { "type": "string", "format": "email", "example": "nova@example.com" }
+      }
+    },
+    "PasswordResetRequest": {
+      "type": "object",
+      "required": ["password", "token"],
+      "properties": {
+        "password": { "type": "string", "format": "password", "example": "new-long-enough-password" },
+        "token": { "type": "string", "example": "recovery-token-from-email" }
+      }
+    },
+    "AuthenticatedUser": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "example": "clxorb0001" },
+        "email": { "type": "string", "format": "email", "example": "nova@example.com" },
+        "displayName": { "type": "string", "example": "Nova" }
+      }
+    },
+    "AcceptedResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": { "type": "object" }
+      }
+    },
+    "AuthSessionResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "token": { "type": "string" },
+            "user": { "$ref": "#/definitions/AuthenticatedUser" }
+          }
+        }
+      }
+    },
+    "SessionResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": { "type": "object", "properties": { "user": { "$ref": "#/definitions/AuthenticatedUser" } } }
+      }
+    },
+    "ResponseMessage": {
+      "type": "object",
+      "properties": {
+        "code": { "type": "integer", "example": 200 },
+        "desc": { "type": "string", "example": "Operation completed successfully" }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": false },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": { "type": "object" }
+      }
+    },
     "HealthResponse": {
       "type": "object",
       "properties": {
