@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — fixed direct browser loading for the supplied Solomons Key font
+DONE — applied the active pixel font to web headings
 
 ## LAST SESSION
-- Confirmed the supplied font is a valid TrueType face with broad character coverage.
-- Preserved the manual global font-token adjustment in isolated checkpoint commit `3cd49f6` before changing the loader path.
-- Replaced the indirect Next font variable with direct `@font-face` registration for `/fonts/SolomonsKeyTrueType-EXOW.ttf` and a `--font-pixel` token.
-- Verified the active local server returns the exact font at that URL with `200 OK` and `Content-Type: font/ttf`.
-- Preserved the later manual decision to keep `--font-display` readable while using Solomons Key only as the secondary font in isolated checkpoint commit `dbcafdd`.
+- Updated `--font-display` to resolve to `--font-pixel`, so the hero and section heading classes now use the active pixel font.
+- Kept body text and control copy on the readable base typeface.
+- Updated the design guide to make `--font-display` / `--font-pixel` the heading convention.
+- Preserved subsequent manual font-stylesheet spacing and hero-heading adjustments in isolated checkpoint commits `495b87d` and `da0db4f`.
+- Synced the completed seven-commit batch to `origin/master`.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -19,24 +19,22 @@ DONE — fixed direct browser loading for the supplied Solomons Key font
 - Design and implement the MVP Orb creation and Nursery flow from the product docs.
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
 - When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
-- Use `var(--font-mono)` only for compact themed labels; it now resolves to the supplied Solomons Key font.
+- Use `var(--font-display)` / `var(--font-pixel)` for headings and `var(--font-mono)` for compact themed labels.
 - `AnimatedOrb` depends on `orb-sphere.png` and `orb-vertical-flare.png`; retain their identical square dimensions so they stay aligned.
 
 ## BLOCKERS
 No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
 
 ## TOUCHED
-- web/src/components/landing-hero.component.tsx
 - web/src/app/layout.tsx
 - web/src/app/globals.css
-- web/public/fonts/SolomonsKeyTrueType-EXOW.ttf
 - .agent/project/design-guide.md
+- web/src/components/landing-hero.component.tsx (manual checkpoint only)
 - .agent/shared-mind.txt
 
 ## COMMANDS
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
-- `curl -I http://localhost:3000/fonts/SolomonsKeyTrueType-EXOW.ttf` — pass (`200 OK`, `font/ttf`)
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
