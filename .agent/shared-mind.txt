@@ -10,6 +10,7 @@ DONE — fixed direct browser loading for the supplied Solomons Key font
 - Preserved the manual global font-token adjustment in isolated checkpoint commit `3cd49f6` before changing the loader path.
 - Replaced the indirect Next font variable with direct `@font-face` registration for `/fonts/SolomonsKeyTrueType-EXOW.ttf` and a `--font-pixel` token.
 - Verified the active local server returns the exact font at that URL with `200 OK` and `Content-Type: font/ttf`.
+- Preserved the later manual decision to keep `--font-display` readable while using Solomons Key only as the secondary font in isolated checkpoint commit `dbcafdd`.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
