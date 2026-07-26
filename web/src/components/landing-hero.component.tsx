@@ -59,7 +59,7 @@ export function LandingHero(): React.JSX.Element {
         <div className="flex gap-1 border-t-2 border-[#d997ff]/50 px-2 py-1"><span className="h-1 flex-1 bg-[#d997ff]" /><span className="h-1 flex-1 bg-[#d997ff]" /><span className="h-1 flex-1 bg-[#d997ff]" /></div>
       </article>
 
-      <div className="absolute  bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 sm:bottom-[-34%]">
+      <div className="absolute  top-0 left-1/2 z-10 size-[30vw] -translate-x-1/2 sm:bottom-[-34%]">
         <AnimatedOrb />
       </div>
       <div className="hero-orb-label hidden absolute bottom-[13%] left-1/2 z-20 -translate-x-1/2 rounded-full border border-[#e2b1ff]/30 bg-[#150425]/75 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#f0d2ff] backdrop-blur-md">Orb / ready for release</div>
