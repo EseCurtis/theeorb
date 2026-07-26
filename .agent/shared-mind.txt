@@ -3,14 +3,15 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — established and extended the pixel arcade panel system
+DONE — GSAP scroll-motion system added to the landing page
 
 ## LAST SESSION
-- Added a strong, required Pixel Arcade Panels section to the design guide, covering frame geometry, strips, structured readouts, segmented footers, 3D depth, colour semantics, copy, and scope.
-- Rebuilt all five main-loop cards as colour-coded pixel system panels.
-- Rebuilt all four World-zone cards with zone strips, pixel state matrices, semantic colour, segmented footers, and physical arcade depth.
-- Preserved the existing product-specific content and avoided fabricated activity or metrics.
-- Used inline Tailwind utilities only for the new card UI.
+- Added `gsap` and a narrow client-only `LandingScrollMotion` controller; the App Router page remains server-rendered.
+- Built scrubbed ScrollTrigger timelines for the Story, Observatory, World, autonomy, and release sections.
+- Motion sequences introduce system labels, headings, copy, calls to action, and arcade panels with measured staggering; Observatory and World panels enter from alternating directions for depth.
+- Used `data-scroll-*` attributes as motion hooks, without adding CSS selectors or a second styling system.
+- Motion is disabled through `prefers-reduced-motion`; content remains present when JavaScript is unavailable.
+- Preserved the user-owned hero composition and did not alter its layout or visual content.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -23,16 +24,22 @@ DONE — established and extended the pixel arcade panel system
 - `AnimatedOrb` depends on `orb-sphere.png` and `orb-vertical-flare.png`; retain their identical square dimensions so they stay aligned.
 
 ## BLOCKERS
-No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
+No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or source file; do not add a placeholder `.riv`.
 
 ## TOUCHED
-- web/src/app/layout.tsx
+- web/package.json
+- web/pnpm-lock.yaml
+- web/src/app/page.tsx
+- web/src/components/landing-scroll-motion.client.tsx
 - web/src/components/landing-story.component.tsx
+- web/src/components/landing-activity.component.tsx
 - web/src/components/landing-world.component.tsx
-- .agent/project/design-guide.md
+- web/src/components/landing-autonomy.component.tsx
+- web/src/components/landing-call-to-action.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
+- `pnpm add gsap` (in `web/`) — pass
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
