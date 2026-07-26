@@ -10,6 +10,7 @@ DONE — switched the web arcade style font to the supplied Solomons Key file
 - Replaced the external Pixelify Sans loader with Next's local font loader for the supplied Solomons Key font.
 - Continued to expose the arcade font through `--font-pixel` and `--font-mono`, which keeps it visible in compact labels and the header wordmark.
 - Updated the design guide to name the supplied font as the secondary style font.
+- Preserved subsequent manual animated-Orb changes (including its hidden hero placement) in isolated checkpoint commit `39999f7` without altering them.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -30,6 +31,8 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 - web/src/app/globals.css
 - web/public/fonts/SolomonsKeyTrueType-EXOW.ttf
 - .agent/project/design-guide.md
+- web/src/components/animated-orb.component.tsx (manual checkpoint only)
+- web/src/components/landing-hero.component.tsx (manual checkpoint only)
 - .agent/shared-mind.txt
 
 ## COMMANDS
