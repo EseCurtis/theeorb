@@ -66,7 +66,7 @@ export function AnimatedOrb(): React.JSX.Element {
       <div ref={reflectionsRef} className="absolute inset-0 [transform-origin:center] [will-change:transform]">
         <OrbLayer source="/animations/orb_layers_10/surface-reflections.png" />
       </div>
-      <div  className="absolute inset-0 [transform-origin:center] [will-change:transform]">
+      <div  className="absolute hidden inset-0 [transform-origin:center] [will-change:transform]">
         <OrbLayer source="/animations/orb_layers_10/light-droplets.png" />
       </div>
       <div className="pointer-events-none absolute inset-0 z-10">
