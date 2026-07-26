@@ -74,9 +74,8 @@ export function AnimatedOrb(): React.JSX.Element {
   return (
     <div aria-hidden="true" className="relative size-full">
       <OrbLayer source="/animations/orb_layers_10/outer-glow.png" />
-      {/* <OrbLayer priority source="/animations/orb_layers_10/orb-core.png" /> */}
-      <OrbLayer source="/animations/orb_layers_10/outer-rim.png" />
-      <OrbLayer source="/animations/orb_layers_10/inner-rim.png" />
+      <OrbLayer scale={1.03} priority source="/animations/orb_layers_10/orb-core.png" />
+   
       <div
         ref={reflectionsRef}
         className="absolute inset-0 [transform-origin:center] [will-change:transform]"
