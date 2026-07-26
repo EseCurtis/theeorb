@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — strengthened agent protection for manual edits and established inline Tailwind as the web styling default
+DONE — added Pixelify Sans as the web’s compact arcade display font
 
 ## LAST SESSION
-- Preserved the current manual changes to `web/src/components/landing-hero.component.tsx` in the isolated checkpoint commit `604ec28` without altering them.
-- Preserved a later manual update to `web/src/components/landing-call-to-action.component.tsx` in the isolated checkpoint commit `59d2928` without altering it.
-- Added a mandatory manual-edit protocol to the continuity rules: inspect and checkpoint dirty work, re-check before edits, and never repair or revert manual changes without explicit user direction.
-- Added strict web styling rules: inline Tailwind utilities are required for normal UI styling; custom selectors, raw CSS, CSS Modules, and shared class-string utilities are prohibited except for documented rare cases.
-- Aligned the design guide with the new web styling rule.
+- Added `Pixelify Sans` through Next Font with `display: swap` and the `--font-pixel` variable.
+- Routed the existing compact label style token (`--font-mono`) through that pixel font while retaining the readable display/body font for long-form copy, controls, and dense UI.
+- Documented the intended limited use of the secondary font in the design guide.
+- Preserved a fresh manual site-header brand-label edit in isolated checkpoint commit `8e6a391` without altering it.
+- Verified lint, production build, and whitespace checks.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -18,19 +18,22 @@ DONE — strengthened agent protection for manual edits and established inline T
 - Design and implement the MVP Orb creation and Nursery flow from the product docs.
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
 - When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
+- Use `var(--font-mono)` only for compact themed labels; it now resolves to Pixelify Sans.
 
 ## BLOCKERS
 No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
 
 ## TOUCHED
 - .agent/Agent.Continuity.RULES.md
-- .agent/Frontend.Web.RULES.md
 - .agent/project/design-guide.md
-- web/src/components/landing-hero.component.tsx (manual checkpoint only)
-- web/src/components/landing-call-to-action.component.tsx (manual checkpoint only)
+- web/src/app/layout.tsx
+- web/src/app/globals.css
+- web/src/components/site-header.component.tsx (manual checkpoint only)
 - .agent/shared-mind.txt
 
 ## COMMANDS
+- `pnpm lint` (in `web/`) — pass
+- `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
