@@ -6,10 +6,10 @@
 DONE — corrected AnimatedOrb to use clockwise layer rotation
 
 ## LAST SESSION
-- Checkpointed the user’s hero edits that reveal `AnimatedOrb` and place it at the top centre at `30vw`.
+- Checkpointed the user’s hero edits that reveal `AnimatedOrb` and place it at the top centre at `30vw`, plus their `/orb` preview route at `top-[20vh]`.
 - Replaced the incorrect Y-axis/card-flip animation with clockwise in-plane rotation.
 - The Orb core, rims, glow, and flare/trail stack remain visually registered and static.
-- The surface-reflections layer rotates clockwise without rotating the flare. A later user edit removed the droplets-layer ref; preserve that choice unless the user explicitly asks to restore its independent rotation.
+- The surface-reflections layer rotates clockwise without rotating the flare. Later user edits removed the droplets-layer ref and hid the droplets layer; preserve both choices unless the user explicitly asks to restore them.
 - Respects reduced motion and uses `next/image` for every transparent supplied layer.
 - Verified lint, production build, and whitespace checks.
 
@@ -29,6 +29,7 @@ No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or 
 - web/public/animations/orb_layers_10/*.png
 - web/src/components/landing-hero.component.tsx
 - web/src/components/animated-orb.component.tsx
+- web/src/app/orb/page.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
