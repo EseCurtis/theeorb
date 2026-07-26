@@ -3,58 +3,40 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — mobile account flow, protected tab shell, and pixel arcade visual system
+DONE — mobile auth experience rebuilt with a three-step onboarding flow
 
 ## LAST SESSION
-- Preserved and checkpointed the user’s uncommitted web edits before beginning app work (`8029909`). Do not modify those hero/orb edits unless the user explicitly asks.
-- Added a versioned `/api/v1` authentication foundation: sign-up, sign-in, password recovery, password reset, current session, and sign-out. Prisma now has `User` and `PasswordResetToken` models with migration `20260727003000_add_auth`.
-- Implemented symmetric account-sensitive responses, dummy bcrypt comparison for unknown users, hashed recovery tokens, Passport JWT session protection, and matching Swagger documentation.
-- Added mobile secure-on-native session persistence with Capacitor Preferences, TanStack Query auth hooks, sign-in/sign-up/recovery/reset screens, protected Home and Settings routes, and a fixed Home/Settings tab navigator.
-- Home is an intentional empty Nursery state, not fake activity. Settings supports theme selection and local sign-out.
-- Recovery token delivery requires an email provider. The API creates a one-time hashed token and returns the same generic accepted response for every email, but it must be wired to an email plugin before recovery links can reach end users. Never log reset tokens.
-- Applied the web’s pixel-arcade panel language to the app: sharp physical frames, compact system strips, matrix markers, segmented footers, thematic violet/cyan/pink/amber treatments, and dimensional controls.
-- Per the latest direction, Pixel Digivolve is now the global mobile typeface. It applies to body copy, helper/error text, links, and native form controls as well as headings, labels, tabs, and panels.
-- Refined `AuthField` after visual feedback: inputs now use a square inset console-slot frame with a visible required-state label, high-contrast readable entry text, and a focused violet boundary. Do not reintroduce soft rounded input containers.
+- Preserved the user’s prior manual web edits in checkpoint `8029909`; do not alter the landing Hero/Orb composition unless the user requests it.
+- Authentication API remains versioned under `/api/v1`, with symmetric account-sensitive responses, Prisma-backed users/recovery tokens, Passport JWT, and Swagger coverage.
+- Rebuilt all mobile sign-in, sign-up, recovery, and password-reset screens around a single calm `AuthFormFrame` terminal, replacing the previous scattered rounded form surfaces.
+- Auth fields are now straight-edged, high-contrast console slots with visible labels, required markers, and a focused violet state. Do not reintroduce soft rounded fields.
+- Added `/onboarding`: a no-fake-metrics, three-step Raise → Release → Observe introduction. Root now redirects here; the final action opens sign-up, while existing members can enter sign-in at any point.
+- Pixel Digivolve is the global app typeface, including native form controls. The previous Inter/system body stack must not be restored without explicit direction.
 
 ## NEXT
-- Add an email delivery plugin/service for password-recovery links and configure the app’s deep-link handler to open `/auth/reset` with its token.
-- Build the first real Nursery/Orb creation flow, then replace the disabled Home CTA.
+- Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
+- Implement the first real Nursery/Orb creation flow and replace the disabled Home CTA.
 - Define the release-permission model and default autonomy boundaries.
-- The mobile app now bundles `app/public/fonts/PixelDigivolve-mOm9.ttf` and maps it to `var(--font-pixel)` as the global font. Do not reinstate the former Inter/system body font without explicit direction.
 
 ## BLOCKERS
-- No configured email provider or app recovery deep-link scheme yet, so recovery link delivery is not end-user complete despite the secure reset endpoint and screens being implemented.
+- No email provider or app recovery deep-link scheme is configured. Recovery endpoints and screens are complete, but reset links cannot yet reach end users.
 
 ## TOUCHED
-- server/prisma/schema.prisma
-- server/prisma/migrations/20260727003000_add_auth/migration.sql
-- server/src/routes/auth.route.ts
-- server/src/controllers/auth.controller.ts
-- server/src/services/auth.service.ts
-- server/src/middleware/jwt.token.ts
-- server/src/schemas/auth.schema.ts
-- server/swagger/swagger.json
-- app/src/app/{sign-in,sign-up,password-recovery,password-reset,home,settings}.screen.tsx
-- app/src/components/auth/*
-- app/src/components/navigation/*
-- app/src/hooks/use-auth.hook.ts
-- app/src/shared/{auth-session.util.ts,api/auth.api.ts,types/auth.types.ts}
-- app/src/routes/{app.tsx,app/settings.tsx,auth/*}
+- app/src/app/onboarding.screen.tsx
+- app/src/app/{sign-in,sign-up,password-recovery,password-reset}.screen.tsx
+- app/src/components/auth/{auth-shell,auth-form-frame,auth-field}.component.tsx
+- app/src/routes/{index,onboarding}.tsx
+- app/src/routeTree.gen.ts
 - app/src/styles.css
-- app/public/fonts/PixelDigivolve-mOm9.ttf
-- app/src/components/common/{panel,button-primary,button-secondary}.component.tsx
-- app/src/components/layout/screen-layout.component.tsx
+- server/src/{routes,controllers,services}/auth.*
+- server/prisma/migrations/20260727003000_add_auth/migration.sql
+- server/swagger/swagger.json
 
 ## COMMANDS
-- `DATABASE_URL='file:./dev.db' pnpm prisma migrate deploy` (in `server/`) — pass
-- `DATABASE_URL='file:./dev.db' pnpm prisma generate` (in `server/`) — pass
-- `pnpm build` (in `server/`) — pass
-- Manual HTTP verification of health, sign-up, sign-in, session, invalid credentials, and generic unknown-account recovery — pass
 - `pnpm build` (in `app/`) — pass
 - `pnpm lint` (in `app/`) — pass
-- Verified the bundled Pixel Digivolve font is referenced by `app/src/styles.css` and used by the mobile account and tab labels.
-- Used the UI/UX design-system review for pixel-art accessibility, touch targets, responsive layout, and font loading; retained readable body typography and visible labels.
 - `git diff --check` — pass
+- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
 ## REPO MAP
 - `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
@@ -64,8 +46,7 @@ DONE — mobile account flow, protected tab shell, and pixel arcade visual syste
 - `.agent/` — code rules, shared-mind, Agen post-run
 
 ## CONVENTIONS REMINDER
-- `.agent/` = all agents | `.cursor/` = Cursor only (rules + hooks)
-- Preserve manual user edits. If present at task start or during work, checkpoint the exact state before implementation changes.
-- New normal backend routes are versioned under `/api/v1` and must update Swagger.
-- Mobile UI composition uses `View` and `Text`; screens call domain hooks, never APIs directly.
-- Post-run: update this file, commit handover, then run `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd`.
+- Preserve any user/manual changes in an isolated checkpoint before implementation work.
+- Normal backend routes must remain under `/api/v1` and update Swagger in the same change.
+- Mobile UI composition uses `View` and `Text`; screens call hooks rather than APIs directly.
+- Commit milestones, sync each group of seven local commits, then run `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` before declaring work complete.
