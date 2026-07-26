@@ -10,7 +10,7 @@
 }
 
 :root {
-  --font-pixel: 'Solomons Key', monospace;
+  --font-pixel: "Solomons Key", monospace;
   --font-display:  "Avenir Next", Avenir, "Trebuchet MS", sans-serif;
   --font-mono: var(--font-pixel), "Solomons Key", "SFMono-Regular", monospace;
   --background: #07040f;
