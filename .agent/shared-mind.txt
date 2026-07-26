@@ -3,13 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — rebuilt hero floaters as pixel arcade system cards
+DONE — established and extended the pixel arcade panel system
 
 ## LAST SESSION
-- Preserved a manual hero-layout update in isolated checkpoint commit `c57b00a` before rebuilding the floaters.
-- Replaced the generic floating story panels with sharp pixel-arcade cards for Plaza, Observatory, and Nursery.
-- Each card now uses a zone-specific display strip, pixel matrix/icon, scanline or grid texture, segmented status bars, and a tactile arcade-shadow base.
-- Kept the content product-specific and removed the Observatory’s invented activity count.
+- Added a strong, required Pixel Arcade Panels section to the design guide, covering frame geometry, strips, structured readouts, segmented footers, 3D depth, colour semantics, copy, and scope.
+- Rebuilt all five main-loop cards as colour-coded pixel system panels.
+- Rebuilt all four World-zone cards with zone strips, pixel state matrices, semantic colour, segmented footers, and physical arcade depth.
+- Preserved the existing product-specific content and avoided fabricated activity or metrics.
 - Used inline Tailwind utilities only for the new card UI.
 - Verified lint, production build, and whitespace checks.
 
@@ -27,7 +27,9 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 
 ## TOUCHED
 - web/src/app/layout.tsx
-- web/src/components/landing-hero.component.tsx
+- web/src/components/landing-story.component.tsx
+- web/src/components/landing-world.component.tsx
+- .agent/project/design-guide.md
 - .agent/shared-mind.txt
 
 ## COMMANDS
