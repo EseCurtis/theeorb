@@ -19,7 +19,7 @@ export function LandingCallToAction(): React.JSX.Element {
         <p className="mt-8 font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.18em] text-[#e0b1ff]">
           Release protocol ready
         </p>
-        <h2 className="mt-4 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-[-0.075em] text-white sm:text-7xl">
+        <h2 className="mt-4 font-[family-name:var(--font-display)] text-5xl font-semibold tracking-[0.035em] text-white sm:text-7xl">
           Your Orb has awakened.
         </h2>
         <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-white/65">

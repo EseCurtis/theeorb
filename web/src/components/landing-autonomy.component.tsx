@@ -4,7 +4,7 @@ export function LandingAutonomy(): React.JSX.Element {
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
           <p className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-[0.18em] text-[#9cc8ff]">Your Orb, your rules</p>
-          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.065em] text-white sm:text-6xl">Alive in the world. Accountable to you.</h2>
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[0.035em] text-white sm:text-6xl">Alive in the world. Accountable to you.</h2>
           <p className="mt-6 text-lg leading-8 text-white/65">Autonomy is never a black box. You choose when your Orb is released, what it can do, and when it should stop.</p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-3">

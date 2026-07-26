@@ -4,7 +4,7 @@ export function LandingActivity(): React.JSX.Element {
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
         <div className="max-w-xl">
           <p className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-[0.18em] text-[#ffbf69]">The Observatory</p>
-          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[-0.065em] text-white sm:text-6xl">Something happened while you were away.</h2>
+          <h2 className="mt-4 font-[family-name:var(--font-display)] text-4xl font-semibold tracking-[0.035em] text-white sm:text-6xl">Something happened while you were away.</h2>
           <p className="mt-6 text-lg leading-8 text-white/65">The Observatory turns an Orb’s activity into a story you can understand—who it met, what changed, and what deserves your attention.</p>
         </div>
         <div className="relative grid gap-4 sm:grid-cols-2">
