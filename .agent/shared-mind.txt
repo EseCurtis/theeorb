@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — rebuilt AnimatedOrb from the supplied 10-layer asset set
+DONE — corrected AnimatedOrb to use clockwise layer rotation
 
 ## LAST SESSION
-- Checkpointed the user-supplied transparent PNG layers under `web/public/animations/orb_layers_10/` unchanged.
-- Rebuilt `AnimatedOrb` as a registered layer composition using the supplied core, rims, reflections, droplets, glow, bloom, rays, flare core, and vertical trail.
-- Only the physical Orb layer group has a restrained 3D rotation; the glow and flare/trail passes remain static and aligned.
-- Respects reduced motion and uses `next/image` for every layer.
-- Preserved the user-owned hero state that currently hides `AnimatedOrb` at its placement.
+- Checkpointed the user’s hero edit that reveals `AnimatedOrb` again.
+- Replaced the incorrect Y-axis/card-flip animation with clockwise in-plane rotation.
+- The Orb core, rims, glow, and flare/trail stack remain visually registered and static.
+- Only the surface-reflections and light-droplets layers rotate clockwise at different continuous rates, producing the intended spinning effect without rotating the flare.
+- Respects reduced motion and uses `next/image` for every transparent supplied layer.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -20,13 +20,14 @@ DONE — rebuilt AnimatedOrb from the supplied 10-layer asset set
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
 - When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
 - Use `var(--font-display)` / `var(--font-pixel)` for headings and `var(--font-mono)` for compact themed labels.
-- `AnimatedOrb` uses the supplied ten transparent 1024px layers under `web/public/animations/orb_layers_10/`; retain their matching dimensions and registration.
+- `AnimatedOrb` uses the supplied ten transparent 1024px layers under `web/public/animations/orb_layers_10/`; retain their matching dimensions and registration. The flare stack must remain static; only the reflection and droplet passes rotate clockwise.
 
 ## BLOCKERS
 No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or source file; do not add a placeholder `.riv`.
 
 ## TOUCHED
 - web/public/animations/orb_layers_10/*.png
+- web/src/components/landing-hero.component.tsx
 - web/src/components/animated-orb.component.tsx
 - .agent/shared-mind.txt
 
