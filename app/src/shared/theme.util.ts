@@ -22,3 +22,7 @@ export function applyTheme(theme: AppTheme): void {
   document.documentElement.dataset.theme = theme
   document.documentElement.style.colorScheme = theme
 }
+
+export function storeTheme(theme: AppTheme): void {
+  localStorage.setItem(THEME_STORAGE_KEY, theme)
+}

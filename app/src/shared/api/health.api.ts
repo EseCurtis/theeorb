@@ -15,6 +15,6 @@ type HealthResponse = {
 }
 
 export async function fetchHealthStatus(): Promise<HealthStatus> {
-  const { data } = await http.get<HealthResponse>('/api/health')
+  const { data } = await http.get<HealthResponse>('/api/v1/')
   return data.data
 }

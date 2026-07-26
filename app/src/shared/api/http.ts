@@ -9,6 +9,15 @@ export const http = axios.create({
   withCredentials: false,
 })
 
+export function setAuthenticationToken(token: string | null): void {
+  if (!token) {
+    delete http.defaults.headers.common.Authorization
+    return
+  }
+
+  http.defaults.headers.common.Authorization = `Bearer ${token}`
+}
+
 http.interceptors.response.use(
   (response) => response,
   (error: unknown) => {

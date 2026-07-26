@@ -2,6 +2,9 @@
 
 
 export default [
+  {
+    ignores: ['dist/**', 'ios/DerivedData/**'],
+  },
   // ...tanstackConfig,
   // {
   //   rules: {
