@@ -3,15 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — GSAP scroll-motion system added to the landing page
+DONE — landing motion refined with floating hero panels and faster reveals
 
 ## LAST SESSION
-- Added `gsap` and a narrow client-only `LandingScrollMotion` controller; the App Router page remains server-rendered.
-- Built scrubbed ScrollTrigger timelines for the Story, Observatory, World, autonomy, and release sections.
-- Motion sequences introduce system labels, headings, copy, calls to action, and arcade panels with measured staggering; Observatory and World panels enter from alternating directions for depth.
-- Used `data-scroll-*` attributes as motion hooks, without adding CSS selectors or a second styling system.
-- Motion is disabled through `prefers-reduced-motion`; content remains present when JavaScript is unavailable.
-- Preserved the user-owned hero composition and did not alter its layout or visual content.
+- Added three independent GSAP float paths to the hero’s arcade panels, keeping their existing layout and visual framing intact.
+- Added fine-pointer 3D panel tilt to hero and scroll-revealed cards; it cleans up with the GSAP media context.
+- Retimed ScrollTrigger reveals to start earlier, complete over a shorter span, and stagger more tightly.
+- Kept all motion behind `prefers-reduced-motion`; mobile/touch and reduced-motion visitors retain the static, fully usable layout.
+- Used existing `data-*` motion hooks and inline Tailwind styling only; no new CSS selectors or keyframes were added.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -27,19 +26,11 @@ DONE — GSAP scroll-motion system added to the landing page
 No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or source file; do not add a placeholder `.riv`.
 
 ## TOUCHED
-- web/package.json
-- web/pnpm-lock.yaml
-- web/src/app/page.tsx
+- web/src/components/landing-hero.component.tsx
 - web/src/components/landing-scroll-motion.client.tsx
-- web/src/components/landing-story.component.tsx
-- web/src/components/landing-activity.component.tsx
-- web/src/components/landing-world.component.tsx
-- web/src/components/landing-autonomy.component.tsx
-- web/src/components/landing-call-to-action.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
-- `pnpm add gsap` (in `web/`) — pass
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
