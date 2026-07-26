@@ -7,6 +7,7 @@ DONE — strengthened agent protection for manual edits and established inline T
 
 ## LAST SESSION
 - Preserved the current manual changes to `web/src/components/landing-hero.component.tsx` in the isolated checkpoint commit `604ec28` without altering them.
+- Preserved a later manual update to `web/src/components/landing-call-to-action.component.tsx` in the isolated checkpoint commit `59d2928` without altering it.
 - Added a mandatory manual-edit protocol to the continuity rules: inspect and checkpoint dirty work, re-check before edits, and never repair or revert manual changes without explicit user direction.
 - Added strict web styling rules: inline Tailwind utilities are required for normal UI styling; custom selectors, raw CSS, CSS Modules, and shared class-string utilities are prohibited except for documented rare cases.
 - Aligned the design guide with the new web styling rule.
@@ -25,6 +26,8 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 - .agent/Agent.Continuity.RULES.md
 - .agent/Frontend.Web.RULES.md
 - .agent/project/design-guide.md
+- web/src/components/landing-hero.component.tsx (manual checkpoint only)
+- web/src/components/landing-call-to-action.component.tsx (manual checkpoint only)
 - .agent/shared-mind.txt
 
 ## COMMANDS
