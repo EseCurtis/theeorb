@@ -133,22 +133,21 @@ function createSectionTimeline(section: HTMLElement): gsap.core.Timeline {
   })
 
   if (eyebrow) {
-    timeline.from(eyebrow, { autoAlpha: 0, y: 18 }, 0)
+    timeline.from(eyebrow, { y: 18 }, 0)
   }
 
   if (heading) {
-    timeline.from(heading, { autoAlpha: 0, y: 46 }, 0.05)
+    timeline.from(heading, { y: 46 }, 0.05)
   }
 
   if (description) {
-    timeline.from(description, { autoAlpha: 0, y: 28 }, 0.12)
+    timeline.from(description, { y: 28 }, 0.12)
   }
 
   for (const [cardIndex, card] of cards.entries()) {
     const offset = getCardOffset(sectionKind, cardIndex)
 
     timeline.from(card, {
-      autoAlpha: 0,
       scale: 0.94,
       x: offset.x,
       y: offset.y,
@@ -156,7 +155,7 @@ function createSectionTimeline(section: HTMLElement): gsap.core.Timeline {
   }
 
   if (action) {
-    timeline.from(action, { autoAlpha: 0, scale: 0.92, y: 24 }, 0.31)
+    timeline.from(action, { scale: 0.92, y: 24 }, 0.31)
   }
 
   return timeline
