@@ -3,14 +3,15 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — added button-like tactile depth to the landing-page cards
+DONE — replaced the hero Orb with independently composited animated sphere and flare layers
 
 ## LAST SESSION
-- Added button-like depth to the three floating hero story cards with a bright inset edge, recessed underside, hard base shadow, and hover lift.
-- Applied the same tactile card treatment to the product-loop cards, Observatory recap cards, world-zone cards, and autonomy cards.
-- Kept each card’s existing purple, amber, teal, pink, blue, gold, and green surface identity while tailoring its recess/base shadow to that surface.
-- Used only inline Tailwind utilities for the new styling.
-- Verified lint, production build, and whitespace checks.
+- Generated and chroma-key removed two independent RGBA PNG layers: a clean glossy Orb sphere with no centre flare and a separate stationary vertical idle flare.
+- Added `AnimatedOrb`, a narrow client component that overlays the flare on the sphere and uses the Web Animations API to rotate only the sphere on its Y axis.
+- Verified all four generated-image corners have alpha zero after removal; only transparent final assets are tracked in `web/public/animations/orb-layered/`.
+- Made Pixelify Sans unmistakable by applying the pixel font token to the visible header wordmark.
+- Added a continuity rule that checks the remote-ahead count after every commit and pushes each group of seven commits before an eighth accumulates.
+- Synced the prior 15 local commits to `origin/master` before making this change, then verified lint, production build, and whitespace checks.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -19,16 +20,18 @@ DONE — added button-like tactile depth to the landing-page cards
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
 - When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
 - Use `var(--font-mono)` only for compact themed labels; it now resolves to Pixelify Sans.
+- `AnimatedOrb` depends on `orb-sphere.png` and `orb-vertical-flare.png`; retain their identical square dimensions so they stay aligned.
 
 ## BLOCKERS
 No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
 
 ## TOUCHED
 - web/src/components/landing-hero.component.tsx
-- web/src/components/landing-story.component.tsx
-- web/src/components/landing-activity.component.tsx
-- web/src/components/landing-world.component.tsx
-- web/src/components/landing-autonomy.component.tsx
+- web/src/components/animated-orb.component.tsx
+- web/src/components/site-header.component.tsx
+- web/public/animations/orb-layered/orb-sphere.png
+- web/public/animations/orb-layered/orb-vertical-flare.png
+- .agent/Agent.Continuity.RULES.md
 - .agent/shared-mind.txt
 
 ## COMMANDS
