@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — redesigned the hero as a cinematic stage with a warm multi-colour accent system
+DONE — expanded the landing page with colourful product storytelling sections
 
 ## LAST SESSION
-- Replaced the network-map hero with a contained, rounded cinematic stage inspired by the supplied reference.
-- Centered the hero copy and calls to action above a large, partially rising Orb horizon.
-- Added product-specific story cards for the Plaza, Observatory, and Nursery instead of fake performance metrics.
-- Added restrained amber, gold, coral, pink, and violet light sources plus matching story-card markers for a polished multi-colour brand feel.
-- Preserved the concurrent change that hides the large Orb artwork, leaving its circular frame, glow, and horizon role intact.
+- Kept the contained cinematic hero and its warm multi-colour lighting system.
+- Added an Observatory activity-recap section with amber, teal, and pink cards that explain what the owner learns while away.
+- Added an autonomy section with blue, gold, and green cards for boundaries, activity review, and immediate pausing.
+- Added both sections to the landing-page composition between the product loop, world zones, and release CTA.
+- Used product-specific examples and controls; no fake growth metrics or synthetic social proof were introduced.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -21,8 +21,9 @@ DONE — redesigned the hero as a cinematic stage with a warm multi-colour accen
 none
 
 ## TOUCHED
-- web/src/app/globals.css
-- web/src/components/landing-hero.component.tsx
+- web/src/app/page.tsx
+- web/src/components/landing-activity.component.tsx
+- web/src/components/landing-autonomy.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
