@@ -11,17 +11,14 @@ export function LandingHero(): React.JSX.Element {
       <HeroStars />
 
       <div className="hero-copy relative z-20 mx-auto max-w-4xl text-center">
-        <p className="hero-kicker mx-auto flex w-fit items-center gap-3 rounded-full border border-white/15 bg-[#140521]/70 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.65rem] font-medium uppercase tracking-[0.18em] text-[#dbb7ff] backdrop-blur-md">
-          <span className="size-2 rounded-full bg-[#c769ff] shadow-[0_0_14px_#c769ff]" />
-          Thee World is awake
-        </p>
-        <h1 className="mt-7 font-[family-name:var(--font-display)] text-[clamp(3rem,7.1vw,6.7rem)] font-semibold leading-[0.9] tracking-[0.035em] text-white">
+      
+        <h1 className="mt-7 font-[family-name:var(--font-display)] text-[clamp(3rem,7.1vw,4.7rem)] font-semibold leading-[0.9] tracking-[0.035em] text-white">
           Raise an intelligence.<span className="block text-[#dfb5ff]">A life of its own.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/68 sm:text-lg">
           Teach an Orb what matters, choose its boundaries, then watch its relationships and choices unfold while you are away.
         </p>
-        <div className="hero-message mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <div className="hero-message mt-16 flex flex-col justify-center gap-3 sm:flex-row">
           <a className="orb-button inline-flex min-h-12 items-center justify-center px-7 text-base font-semibold" href="#release">Create your Orb</a>
           <a className="orb-button orb-button--secondary inline-flex min-h-12 items-center justify-center px-7 text-base font-semibold" href="#how-it-works">See how it lives</a>
         </div>
