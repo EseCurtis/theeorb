@@ -24,7 +24,7 @@ export function LandingHero(): React.JSX.Element {
         </div>
       </div>
 
-      <article className="absolute left-[6%] top-[53%] z-20 hidden w-60 rotate-[-7deg] border-2 border-[#ffb45a] bg-[#170c16] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff2dc] shadow-[inset_0_2px_0_rgba(255,237,206,0.48),inset_0_-4px_0_rgba(79,27,4,0.9),0_7px_0_#5d2508,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block">
+      <article className="absolute left-[6%] top-[53%] z-20 hidden w-60 rotate-[-7deg] border-2 border-[#ffb45a] bg-[#170c16] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff2dc] shadow-[inset_0_2px_0_rgba(255,237,206,0.48),inset_0_-4px_0_rgba(79,27,4,0.9),0_7px_0_#5d2508,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block" data-hero-float>
         <div className="flex items-center justify-between border-b-2 border-[#ffb45a]/70 bg-[#3a1807] px-2 py-1 text-[#ffd199]">
           <span>Plaza // signal</span><span className="size-2 bg-[#ffb45a] shadow-[0_0_8px_#ffb45a]" />
         </div>
@@ -38,7 +38,7 @@ export function LandingHero(): React.JSX.Element {
         </div>
         <div className="flex gap-1 border-t-2 border-[#ffb45a]/50 px-2 py-1"><span className="h-1 flex-1 bg-[#ffb45a]" /><span className="h-1 flex-1 bg-[#ffb45a]" /><span className="h-1 flex-1 bg-[#ffb45a]/25" /><span className="h-1 flex-1 bg-[#ffb45a]/25" /></div>
       </article>
-      <article className="absolute right-[6%] top-[50%] z-20 hidden w-60 rotate-[7deg] border-2 border-[#68e6dd] bg-[#07181d] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#e6fffc] shadow-[inset_0_2px_0_rgba(216,255,251,0.45),inset_0_-4px_0_rgba(3,52,58,0.9),0_7px_0_#063b44,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block">
+      <article className="absolute right-[6%] top-[50%] z-20 hidden w-60 rotate-[7deg] border-2 border-[#68e6dd] bg-[#07181d] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#e6fffc] shadow-[inset_0_2px_0_rgba(216,255,251,0.45),inset_0_-4px_0_rgba(3,52,58,0.9),0_7px_0_#063b44,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block" data-hero-float>
         <div className="flex items-center justify-between border-b-2 border-[#68e6dd]/70 bg-[#083037] px-2 py-1 text-[#a8fff8]">
           <span>Observatory // log</span><span className="size-2 bg-[#68e6dd] shadow-[0_0_8px_#68e6dd]" />
         </div>
@@ -48,7 +48,7 @@ export function LandingHero(): React.JSX.Element {
         </div>
         <div className="border-t-2 border-[#68e6dd]/50 px-2 py-1 text-[#a8fff8]">RECAP // UNREAD</div>
       </article>
-      <article className="absolute bottom-[13%] left-[14%] z-20 hidden w-60 rotate-[6deg] border-2 border-[#d997ff] bg-[#190721] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff0ff] shadow-[inset_0_2px_0_rgba(255,224,255,0.45),inset_0_-4px_0_rgba(63,11,79,0.9),0_7px_0_#430e54,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 lg:block">
+      <article className="absolute bottom-[13%] left-[14%] z-20 hidden w-60 rotate-[6deg] border-2 border-[#d997ff] bg-[#190721] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff0ff] shadow-[inset_0_2px_0_rgba(255,224,255,0.45),inset_0_-4px_0_rgba(63,11,79,0.9),0_7px_0_#430e54,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 lg:block" data-hero-float>
         <div className="flex items-center justify-between border-b-2 border-[#d997ff]/70 bg-[#3a104a] px-2 py-1 text-[#f1c7ff]">
           <span>Nursery // ruleset</span><span className="size-2 bg-[#d997ff] shadow-[0_0_8px_#d997ff]" />
         </div>
