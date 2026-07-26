@@ -72,7 +72,7 @@ export function AnimatedOrb(): React.JSX.Element {
   }, []);
 
   return (
-    <div aria-hidden="true" className="relative size-full">
+    <div aria-hidden="true" className="relative size-full rounded-full overflow-clip">
       <OrbLayer source="/animations/orb_layers_10/outer-glow.png" />
       <OrbLayer scale={1.03} priority source="/animations/orb_layers_10/orb-core.png" />
    
@@ -80,10 +80,10 @@ export function AnimatedOrb(): React.JSX.Element {
         ref={reflectionsRef}
         className="absolute inset-0 [transform-origin:center] [will-change:transform]"
       >
-        <OrbLayer scale={0.9} source="/animations/orb_layers_10/surface-reflections.png" />
+        <OrbLayer scale={0.87} source="/animations/orb_layers_10/surface-reflections.png" />
       </div>
       <div className="absolute hidden inset-0 [transform-origin:center] [will-change:transform]">
-        <OrbLayer source="/animations/orb_layers_10/light-droplets.png" />
+        <OrbLayer scale={0.7} source="/animations/orb_layers_10/light-droplets.png" />
       </div>
       <div className="pointer-events-none absolute inset-0 z-10">
         <OrbLayer source="/animations/orb_layers_10/flare-bloom.png" />
