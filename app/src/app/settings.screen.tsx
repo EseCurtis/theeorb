@@ -32,10 +32,7 @@ export function SettingsScreen(): React.JSX.Element {
 
   return (
     <ScreenLayout description="Control your own access to Thee World." title="Settings">
-      <Panel>
-        <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.1em] text-[#e0b1ff]">
-          ACCOUNT
-        </Text>
+      <Panel label="ACCOUNT // LINKED" tone="violet">
         <View className="gap-1">
           <Text className="text-base font-semibold text-[var(--foreground)]">
             {session?.user.displayName ?? 'Unknown traveller'}
@@ -43,10 +40,7 @@ export function SettingsScreen(): React.JSX.Element {
           <Text className="text-sm text-[var(--muted)]">{session?.user.email ?? 'No email available'}</Text>
         </View>
       </Panel>
-      <Panel>
-        <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.1em] text-[#e0b1ff]">
-          DISPLAY
-        </Text>
+      <Panel label="DISPLAY // LOCAL" tone="cyan">
         <Text className="text-sm leading-6 text-[var(--muted)]">
           Choose the interface light level that is most comfortable for you.
         </Text>
@@ -54,10 +48,7 @@ export function SettingsScreen(): React.JSX.Element {
           Use {currentTheme === 'dark' ? 'light' : 'dark'} mode
         </ButtonSecondary>
       </Panel>
-      <Panel>
-        <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.1em] text-[#e0b1ff]">
-          SESSION
-        </Text>
+      <Panel label="SESSION // DEVICE" tone="pink">
         <Text className="text-sm leading-6 text-[var(--muted)]">
           Signing out removes this device’s local access token.
         </Text>
