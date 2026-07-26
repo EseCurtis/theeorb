@@ -1,4 +1,4 @@
-import { BrandLogo } from "@/components/brand-logo.component";
+import { AnimatedOrb } from "./animated-orb.component";
 import { HeroStars } from "./hero-stars.component";
 
 export function LandingCallToAction(): React.JSX.Element {
@@ -12,11 +12,12 @@ export function LandingCallToAction(): React.JSX.Element {
       
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(159,50,255,0.3),transparent_34rem)]" />
       <div className="relative mx-auto max-w-3xl text-center">
-        <BrandLogo
-          className="mx-auto size-28 rounded-full object-cover shadow-[0_0_70px_rgba(185,78,255,0.52)]"
-          sizes="112px"
-          variant="color"
-        />
+
+
+        <div className="mx-auto size-28 rounded-full  shadow-[0_0_70px_rgba(185,78,255,0.52)]">
+          <AnimatedOrb/>
+          
+        </div>
         <p className="mt-8 font-[family-name:var(--font-mono)] text-xs uppercase tracking-[0.18em] text-[#e0b1ff]" data-scroll-eyebrow>
           Release protocol ready
         </p>
