@@ -41,7 +41,7 @@ Silver highlights should support focus, dividers, and special states; they must 
 ## Typography
 
 - Use the existing readable UI font for body copy, forms, account controls, and dense activity.
-- Reserve arcade or pixel display treatment for short headings, zone labels, achievements, and one-line system messages.
+- Use `var(--font-display)` / `var(--font-pixel)` for headings, zone labels, achievements, and one-line system messages.
 - The web secondary style font is Solomons Key (`web/public/fonts/SolomonsKeyTrueType-EXOW.ttf`); use it through `var(--font-mono)` for compact themed labels only.
 - Never use pixel display type for paragraphs, error explanations, form fields, or long user-generated content.
 - Use sentence case for clear actions and status labels. Theme language belongs in context, not every label.
