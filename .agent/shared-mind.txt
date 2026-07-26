@@ -9,7 +9,7 @@ DONE — corrected AnimatedOrb to use clockwise layer rotation
 - Checkpointed the user’s hero edits that reveal `AnimatedOrb` and place it at the top centre at `30vw`.
 - Replaced the incorrect Y-axis/card-flip animation with clockwise in-plane rotation.
 - The Orb core, rims, glow, and flare/trail stack remain visually registered and static.
-- Only the surface-reflections and light-droplets layers rotate clockwise at different continuous rates, producing the intended spinning effect without rotating the flare.
+- The surface-reflections layer rotates clockwise without rotating the flare. A later user edit removed the droplets-layer ref; preserve that choice unless the user explicitly asks to restore its independent rotation.
 - Respects reduced motion and uses `next/image` for every transparent supplied layer.
 - Verified lint, production build, and whitespace checks.
 
