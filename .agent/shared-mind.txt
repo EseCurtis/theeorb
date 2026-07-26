@@ -13,14 +13,14 @@ DONE — mobile account flow, protected tab shell, and pixel arcade visual syste
 - Home is an intentional empty Nursery state, not fake activity. Settings supports theme selection and local sign-out.
 - Recovery token delivery requires an email provider. The API creates a one-time hashed token and returns the same generic accepted response for every email, but it must be wired to an email plugin before recovery links can reach end users. Never log reset tokens.
 - Applied the web’s pixel-arcade panel language to the app: sharp physical frames, compact system strips, matrix markers, segmented footers, thematic violet/cyan/pink/amber treatments, and dimensional controls.
-- Pixel Digivolve is now used for mobile page headings, action buttons, field labels, tabs, and panel labels; body/form entry text remains on the readable UI face.
+- Per the latest direction, Pixel Digivolve is now the global mobile typeface. It applies to body copy, helper/error text, links, and native form controls as well as headings, labels, tabs, and panels.
 - Refined `AuthField` after visual feedback: inputs now use a square inset console-slot frame with a visible required-state label, high-contrast readable entry text, and a focused violet boundary. Do not reintroduce soft rounded input containers.
 
 ## NEXT
 - Add an email delivery plugin/service for password-recovery links and configure the app’s deep-link handler to open `/auth/reset` with its token.
 - Build the first real Nursery/Orb creation flow, then replace the disabled Home CTA.
 - Define the release-permission model and default autonomy boundaries.
-- The mobile app now bundles `app/public/fonts/PixelDigivolve-mOm9.ttf` and maps it to `var(--font-pixel)` for themed headings and system labels. Keep body and form text on the readable UI font.
+- The mobile app now bundles `app/public/fonts/PixelDigivolve-mOm9.ttf` and maps it to `var(--font-pixel)` as the global font. Do not reinstate the former Inter/system body font without explicit direction.
 
 ## BLOCKERS
 - No configured email provider or app recovery deep-link scheme yet, so recovery link delivery is not end-user complete despite the secure reset endpoint and screens being implemented.
