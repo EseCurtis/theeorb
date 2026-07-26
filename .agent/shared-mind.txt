@@ -3,36 +3,31 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — added an animated arc-star field and Orb rotation frames to the web landing hero
+DONE — strengthened agent protection for manual edits and established inline Tailwind as the web styling default
 
 ## LAST SESSION
-- Added six decorative four-point stars drawn with curved SVG paths and placed them throughout the landing hero.
-- Animated each star independently with warm yellow, orange, pink, violet, and lilac treatments that complement the existing cosmic surface.
-- Restored the hero’s active stage and Orb classes, then added a three-frame rotation cycle using the front, left, and right Orb views.
-- Added the transparent rotation-frame assets in `web/public/animations/orb-rotation/`; they are used directly by the hero.
-- Verified the web app with lint, production build, and whitespace checks.
+- Preserved the current manual changes to `web/src/components/landing-hero.component.tsx` in the isolated checkpoint commit `604ec28` without altering them.
+- Added a mandatory manual-edit protocol to the continuity rules: inspect and checkpoint dirty work, re-check before edits, and never repair or revert manual changes without explicit user direction.
+- Added strict web styling rules: inline Tailwind utilities are required for normal UI styling; custom selectors, raw CSS, CSS Modules, and shared class-string utilities are prohibited except for documented rare cases.
+- Aligned the design guide with the new web styling rule.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
 - Implement the early-access capture destination or replace the mailto call to action when the onboarding route exists.
 - Design and implement the MVP Orb creation and Nursery flow from the product docs.
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
+- When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
 
 ## BLOCKERS
 No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
 
 ## TOUCHED
-- web/src/components/landing-hero.component.tsx
-- web/src/components/hero-stars.component.tsx
-- web/src/app/globals.css
-- web/public/animations/orb-rotation/orb-rotation-00.png
-- web/public/animations/orb-rotation/orb-rotation-28.png
-- web/public/animations/orb-rotation/orb-rotation-minus-28.png
+- .agent/Agent.Continuity.RULES.md
+- .agent/Frontend.Web.RULES.md
+- .agent/project/design-guide.md
 - .agent/shared-mind.txt
 
 ## COMMANDS
-- `pnpm lint` (in `web/`) — pass
-- `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
