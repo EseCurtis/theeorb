@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
+import { Pixelify_Sans } from 'next/font/google'
 
 import { SiteFooter } from '@/components/site-footer.component'
 import { SiteHeader } from '@/components/site-header.component'
 
 import './globals.css'
+
+const pixelifySans = Pixelify_Sans({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-pixel',
+})
 
 export const metadata: Metadata = {
   title: 'Thee Orb — Raise an intelligence. Release it into the world.',
@@ -17,7 +24,7 @@ export default function RootLayout({
 }>): React.JSX.Element {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-background text-foreground">
+      <body className={`${pixelifySans.variable} min-h-screen bg-background text-foreground`}>
         <SiteHeader />
         {children}
         <SiteFooter />
