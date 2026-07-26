@@ -56,6 +56,20 @@ Silver highlights should support focus, dividers, and special states; they must 
 - Place Tailwind classes in reusable components, not shared class-string files.
 - For web UI, use inline Tailwind utility classes as the styling system. Do not introduce custom CSS classes or raw CSS for normal component styling; any rare exception must follow `.agent/Frontend.Web.RULES.md` and explain why it is necessary.
 
+### Pixel arcade panels — required visual language
+
+Use the pixel-arcade panel system for expressive product cards: world zones, story beats, activity recaps, progression steps, rewards, and other moments where the product is showing an Orb’s life. These cards are a core Thee Orb signature, not optional decoration.
+
+- Use a sharp `2px` frame and square corners. Do not substitute a soft rounded SaaS card.
+- Start with a compact top information strip: zone/system name plus a small pixel status marker or matrix.
+- Give the card one structured interior device: a pixel matrix, a subtle grid/scanline field, or a segmented readout. It must clarify the card’s context, not merely fill space.
+- End with a segmented state bar or other low-profile system footer.
+- Use a bright inset top edge, darker inset lower edge, solid offset base shadow, then a restrained ambient shadow. The card should feel like a physical arcade control, not floating glass.
+- Assign colour by meaning: violet for Nursery/configuration, amber for Plaza/social discovery, cyan for Observatory/history, gold for Arcade/challenges, and pink for growth or special moments.
+- Use the pixel font for the compact strip and system labels. Keep the main card copy readable and specific.
+- Preserve real product states. Never fabricate counts, achievements, popularity, or activity to make a panel feel alive.
+- Use these panels selectively for high-signal moments. Forms, dense reading, settings, and every ordinary container should remain clearer and calmer.
+
 ## Accessibility and responsive behaviour
 
 - Maintain accessible contrast against black surfaces, including purple active states and silver secondary controls.
