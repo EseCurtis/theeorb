@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — fixed landing-card visibility on page reload
+DONE — removed the remaining hidden-card failure path from landing motion
 
 ## LAST SESSION
-- Diagnosed the reload issue: scrubbed GSAP `from()` timelines were applying `opacity: 0` to cards before their ScrollTriggers were reached.
-- Reworked section reveals into one-time trigger-time timelines, so cards remain visible in the initial HTML and animate only as their section enters the viewport.
-- Retained the faster reveal timing, floating hero panels, and fine-pointer tilt interactions from the previous motion pass.
-- Reduced-motion visitors and users without JavaScript now always see the full landing content immediately.
-- Verified lint, production build, and whitespace checks.
+- Confirmed the trigger-time timeline still used GSAP `autoAlpha`, which could leave a card hidden if a reveal was interrupted.
+- Removed every visibility/opacity mutation from landing scroll reveals. Motion now changes only position and scale.
+- This makes all cards visible by default after reload, with no JavaScript branch capable of setting them to hidden.
+- Retained the floating hero panels, fine-pointer tilt, faster trigger timing, and reduced-motion handling.
+- Verified lint, production build, source-level absence of `autoAlpha`/hidden visibility, and whitespace checks.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
@@ -31,6 +31,7 @@ No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or 
 ## COMMANDS
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
+- `rg -n "autoAlpha|opacity: 0|visibility: hidden" web/src/components/landing-scroll-motion.client.tsx` — no matches
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pass
 
