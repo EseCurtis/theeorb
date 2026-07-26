@@ -3,12 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — widened tracking for all pixel display headings
+DONE — rebuilt hero floaters as pixel arcade system cards
 
 ## LAST SESSION
-- Replaced the old negative display tracking with `0.035em` positive tracking on the hero, CTA, Observatory, autonomy, product-loop, and world-zone headings.
-- Kept compact label tracking and body copy unchanged.
-- Preserved manual hero-heading changes made immediately before this style pass in isolated checkpoint commits `da0db4f` and `e423f82`.
+- Preserved a manual hero-layout update in isolated checkpoint commit `c57b00a` before rebuilding the floaters.
+- Replaced the generic floating story panels with sharp pixel-arcade cards for Plaza, Observatory, and Nursery.
+- Each card now uses a zone-specific display strip, pixel matrix/icon, scanline or grid texture, segmented status bars, and a tactile arcade-shadow base.
+- Kept the content product-specific and removed the Observatory’s invented activity count.
+- Used inline Tailwind utilities only for the new card UI.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -26,11 +28,6 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 ## TOUCHED
 - web/src/app/layout.tsx
 - web/src/components/landing-hero.component.tsx
-- web/src/components/landing-call-to-action.component.tsx
-- web/src/components/landing-activity.component.tsx
-- web/src/components/landing-autonomy.component.tsx
-- web/src/components/landing-story.component.tsx
-- web/src/components/landing-world.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
