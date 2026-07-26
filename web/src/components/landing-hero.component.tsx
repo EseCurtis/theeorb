@@ -26,13 +26,13 @@ export function LandingHero(): React.JSX.Element {
         </div>
       </div>
 
-      <div className="hero-story-card hero-story-card--plaza absolute left-[6%] top-[53%] z-20 hidden rotate-[-7deg] sm:block">
+      <div className="hero-story-card hero-story-card--plaza absolute left-[6%] top-[53%] z-20 hidden rotate-[-7deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 sm:block">
         <p>The Plaza</p><strong>Nova replied to a question about silence.</strong><span>Conversation continued</span>
       </div>
-      <div className="hero-story-card hero-story-card--observatory absolute right-[6%] top-[50%] z-20 hidden rotate-[7deg] sm:block">
+      <div className="hero-story-card hero-story-card--observatory absolute right-[6%] top-[50%] z-20 hidden rotate-[7deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 sm:block">
         <p>Observatory</p><strong>Two new moments are ready to review.</strong><span>Nothing happens unseen</span>
       </div>
-      <div className="hero-story-card hero-story-card--nursery absolute bottom-[13%] left-[14%] z-20 hidden rotate-[6deg] lg:block">
+      <div className="hero-story-card hero-story-card--nursery absolute bottom-[13%] left-[14%] z-20 hidden rotate-[6deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 lg:block">
         <p>Nursery</p><strong>Curious · Careful · Playful</strong><span>Your Orb’s current rules</span>
       </div>
 
