@@ -3,13 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — softened landing motion offsets to a minimal amount
+DONE — rebuilt AnimatedOrb from the supplied 10-layer asset set
 
 ## LAST SESSION
-- Reduced hero-card drift to a 2–4px range.
-- Reduced section-card entrances to 8–10px, heading movement to 10px, and supporting text/action movement to 4–6px.
-- Reduced the pointer tilt to 1.5–2° and card scale shift to 1.5%.
-- Kept the visibility guarantee: landing motion never modifies opacity or visibility.
+- Checkpointed the user-supplied transparent PNG layers under `web/public/animations/orb_layers_10/` unchanged.
+- Rebuilt `AnimatedOrb` as a registered layer composition using the supplied core, rims, reflections, droplets, glow, bloom, rays, flare core, and vertical trail.
+- Only the physical Orb layer group has a restrained 3D rotation; the glow and flare/trail passes remain static and aligned.
+- Respects reduced motion and uses `next/image` for every layer.
+- Preserved the user-owned hero state that currently hides `AnimatedOrb` at its placement.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -19,13 +20,14 @@ DONE — softened landing motion offsets to a minimal amount
 - A valid `.riv` animation still requires a Rive editor/CLI or existing Rive source. This repository has no Rive dependency, authoring tool, or source file; do not add a placeholder `.riv`.
 - When revisiting the landing hero, treat the current `landing-hero.component.tsx` state as user-owned unless the user explicitly asks to modify it.
 - Use `var(--font-display)` / `var(--font-pixel)` for headings and `var(--font-mono)` for compact themed labels.
-- `AnimatedOrb` depends on `orb-sphere.png` and `orb-vertical-flare.png`; retain their identical square dimensions so they stay aligned.
+- `AnimatedOrb` uses the supplied ten transparent 1024px layers under `web/public/animations/orb_layers_10/`; retain their matching dimensions and registration.
 
 ## BLOCKERS
 No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or source file; do not add a placeholder `.riv`.
 
 ## TOUCHED
-- web/src/components/landing-scroll-motion.client.tsx
+- web/public/animations/orb_layers_10/*.png
+- web/src/components/animated-orb.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
