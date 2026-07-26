@@ -3,14 +3,14 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — removed the remaining hidden-card failure path from landing motion
+DONE — softened landing motion offsets to a minimal amount
 
 ## LAST SESSION
-- Confirmed the trigger-time timeline still used GSAP `autoAlpha`, which could leave a card hidden if a reveal was interrupted.
-- Removed every visibility/opacity mutation from landing scroll reveals. Motion now changes only position and scale.
-- This makes all cards visible by default after reload, with no JavaScript branch capable of setting them to hidden.
-- Retained the floating hero panels, fine-pointer tilt, faster trigger timing, and reduced-motion handling.
-- Verified lint, production build, source-level absence of `autoAlpha`/hidden visibility, and whitespace checks.
+- Reduced hero-card drift to a 2–4px range.
+- Reduced section-card entrances to 8–10px, heading movement to 10px, and supporting text/action movement to 4–6px.
+- Reduced the pointer tilt to 1.5–2° and card scale shift to 1.5%.
+- Kept the visibility guarantee: landing motion never modifies opacity or visibility.
+- Verified lint, production build, and whitespace checks.
 
 ## NEXT
 - Define the first release-permission model and default autonomy boundaries.
