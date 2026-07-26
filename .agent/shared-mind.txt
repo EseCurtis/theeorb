@@ -14,6 +14,7 @@ DONE — mobile account flow, protected tab shell, and pixel arcade visual syste
 - Recovery token delivery requires an email provider. The API creates a one-time hashed token and returns the same generic accepted response for every email, but it must be wired to an email plugin before recovery links can reach end users. Never log reset tokens.
 - Applied the web’s pixel-arcade panel language to the app: sharp physical frames, compact system strips, matrix markers, segmented footers, thematic violet/cyan/pink/amber treatments, and dimensional controls.
 - Pixel Digivolve is now used for mobile page headings, action buttons, field labels, tabs, and panel labels; body/form entry text remains on the readable UI face.
+- Refined `AuthField` after visual feedback: inputs now use a square inset console-slot frame with a visible required-state label, high-contrast readable entry text, and a focused violet boundary. Do not reintroduce soft rounded input containers.
 
 ## NEXT
 - Add an email delivery plugin/service for password-recovery links and configure the app’s deep-link handler to open `/auth/reset` with its token.
