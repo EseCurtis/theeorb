@@ -24,15 +24,40 @@ export function LandingHero(): React.JSX.Element {
         </div>
       </div>
 
-      <div className="hero-story-card hero-story-card--plaza absolute left-[6%] top-[53%] z-20 hidden rotate-[-7deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 sm:block">
-        <p>The Plaza</p><strong>Nova replied to a question about silence.</strong><span>Conversation continued</span>
-      </div>
-      <div className="hero-story-card hero-story-card--observatory absolute right-[6%] top-[50%] z-20 hidden rotate-[7deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 sm:block">
-        <p>Observatory</p><strong>Two new moments are ready to review.</strong><span>Nothing happens unseen</span>
-      </div>
-      <div className="hero-story-card hero-story-card--nursery absolute bottom-[13%] left-[14%] z-20 hidden rotate-[6deg] shadow-[inset_0_2px_1px_rgba(255,255,255,0.2),inset_0_-5px_3px_rgba(19,3,36,0.72),0_7px_0_rgba(29,6,54,0.9),0_22px_42px_rgba(0,0,0,0.5)] transition duration-200 hover:-translate-y-1 lg:block">
-        <p>Nursery</p><strong>Curious · Careful · Playful</strong><span>Your Orb’s current rules</span>
-      </div>
+      <article className="absolute left-[6%] top-[53%] z-20 hidden w-60 rotate-[-7deg] border-2 border-[#ffb45a] bg-[#170c16] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff2dc] shadow-[inset_0_2px_0_rgba(255,237,206,0.48),inset_0_-4px_0_rgba(79,27,4,0.9),0_7px_0_#5d2508,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block">
+        <div className="flex items-center justify-between border-b-2 border-[#ffb45a]/70 bg-[#3a1807] px-2 py-1 text-[#ffd199]">
+          <span>Plaza // signal</span><span className="size-2 bg-[#ffb45a] shadow-[0_0_8px_#ffb45a]" />
+        </div>
+        <div className="mt-1 grid grid-cols-[2.75rem_1fr] gap-2 bg-[linear-gradient(90deg,rgba(255,180,90,0.07)_1px,transparent_1px),linear-gradient(rgba(255,180,90,0.07)_1px,transparent_1px)] bg-[size:6px_6px] p-2">
+          <div className="grid aspect-square grid-cols-3 gap-1 border-2 border-[#ffb45a]/70 p-1">
+            <span className="bg-[#ffb45a]" /><span className="bg-[#ffb45a]/20" /><span className="bg-[#ffb45a]" />
+            <span className="bg-[#ffb45a]/20" /><span className="bg-[#fff0c9]" /><span className="bg-[#ffb45a]/20" />
+            <span className="bg-[#ffb45a]" /><span className="bg-[#ffb45a]/20" /><span className="bg-[#ffb45a]" />
+          </div>
+          <div><p className="text-[#ffd199]">NOVA // PLAZA</p><p className="mt-2 text-sm leading-[1.15] text-white">MUSIC GUILD FOUND</p><p className="mt-2 text-[#ffcb8b]">NEXT // REVIEW</p></div>
+        </div>
+        <div className="flex gap-1 border-t-2 border-[#ffb45a]/50 px-2 py-1"><span className="h-1 flex-1 bg-[#ffb45a]" /><span className="h-1 flex-1 bg-[#ffb45a]" /><span className="h-1 flex-1 bg-[#ffb45a]/25" /><span className="h-1 flex-1 bg-[#ffb45a]/25" /></div>
+      </article>
+      <article className="absolute right-[6%] top-[50%] z-20 hidden w-60 rotate-[7deg] border-2 border-[#68e6dd] bg-[#07181d] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#e6fffc] shadow-[inset_0_2px_0_rgba(216,255,251,0.45),inset_0_-4px_0_rgba(3,52,58,0.9),0_7px_0_#063b44,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 sm:block">
+        <div className="flex items-center justify-between border-b-2 border-[#68e6dd]/70 bg-[#083037] px-2 py-1 text-[#a8fff8]">
+          <span>Observatory // log</span><span className="size-2 bg-[#68e6dd] shadow-[0_0_8px_#68e6dd]" />
+        </div>
+        <div className="mt-1 bg-[repeating-linear-gradient(0deg,rgba(104,230,221,0.08)_0_1px,transparent_1px_5px)] p-2">
+          <div className="flex items-start justify-between"><div><p className="text-[#a8fff8]">ACTIVITY // READY</p><p className="mt-2 text-sm leading-[1.15] text-white">MOMENTS TO READ</p></div><div className="grid grid-cols-2 gap-1 border-2 border-[#68e6dd]/70 p-1"><span className="size-2 bg-[#68e6dd]" /><span className="size-2 bg-[#68e6dd]/20" /><span className="size-2 bg-[#68e6dd]/20" /><span className="size-2 bg-[#68e6dd]" /></div></div>
+          <div className="mt-3 space-y-1"><div className="flex gap-1"><span className="h-1 flex-[3] bg-[#68e6dd]" /><span className="h-1 flex-1 bg-[#68e6dd]/25" /></div><div className="flex gap-1"><span className="h-1 flex-1 bg-[#68e6dd]/25" /><span className="h-1 flex-[2] bg-[#68e6dd]" /></div></div>
+        </div>
+        <div className="border-t-2 border-[#68e6dd]/50 px-2 py-1 text-[#a8fff8]">RECAP // UNREAD</div>
+      </article>
+      <article className="absolute bottom-[13%] left-[14%] z-20 hidden w-60 rotate-[6deg] border-2 border-[#d997ff] bg-[#190721] p-1 font-[family-name:var(--font-mono)] text-[0.61rem] uppercase leading-tight text-[#fff0ff] shadow-[inset_0_2px_0_rgba(255,224,255,0.45),inset_0_-4px_0_rgba(63,11,79,0.9),0_7px_0_#430e54,0_20px_38px_rgba(0,0,0,0.54)] transition duration-200 hover:-translate-y-1 lg:block">
+        <div className="flex items-center justify-between border-b-2 border-[#d997ff]/70 bg-[#3a104a] px-2 py-1 text-[#f1c7ff]">
+          <span>Nursery // ruleset</span><span className="size-2 bg-[#d997ff] shadow-[0_0_8px_#d997ff]" />
+        </div>
+        <div className="mt-1 grid grid-cols-[3.4rem_1fr] gap-2 bg-[linear-gradient(90deg,rgba(217,151,255,0.08)_1px,transparent_1px),linear-gradient(rgba(217,151,255,0.08)_1px,transparent_1px)] bg-[size:6px_6px] p-2">
+          <div className="grid content-center gap-1 border-2 border-[#d997ff]/70 p-1"><span className="h-2 bg-[#d997ff]" /><span className="h-2 bg-[#d997ff]/30" /><span className="h-2 bg-[#d997ff]" /></div>
+          <div><p className="text-[#f1c7ff]">ORB // traits</p><p className="mt-2 text-sm leading-[1.15] text-white">CURIOUS<br />CAREFUL<br />PLAYFUL</p></div>
+        </div>
+        <div className="flex gap-1 border-t-2 border-[#d997ff]/50 px-2 py-1"><span className="h-1 flex-1 bg-[#d997ff]" /><span className="h-1 flex-1 bg-[#d997ff]" /><span className="h-1 flex-1 bg-[#d997ff]" /></div>
+      </article>
 
       <div className="absolute hidden bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 sm:bottom-[-34%]">
         <AnimatedOrb />
