@@ -130,13 +130,6 @@ function createSectionTimeline(section: HTMLElement): gsap.core.Timeline {
   const cards = gsap.utils.toArray<HTMLElement>('[data-scroll-card]', section)
   const timeline = gsap.timeline({
     defaults: { duration: 0.44, ease: 'power3.out' },
-    scrollTrigger: {
-      end: 'bottom 48%',
-      invalidateOnRefresh: true,
-      scrub: 0.38,
-      start: 'top 88%',
-      trigger: section,
-    },
   })
 
   if (eyebrow) {
@@ -169,6 +162,17 @@ function createSectionTimeline(section: HTMLElement): gsap.core.Timeline {
   return timeline
 }
 
+function createSectionTrigger(section: HTMLElement): void {
+  ScrollTrigger.create({
+    onEnter: () => {
+      createSectionTimeline(section)
+    },
+    once: true,
+    start: 'top 88%',
+    trigger: section,
+  })
+}
+
 export function LandingScrollMotion(): React.JSX.Element | null {
   useLayoutEffect((): (() => void) => {
     gsap.registerPlugin(ScrollTrigger)
@@ -179,7 +183,7 @@ export function LandingScrollMotion(): React.JSX.Element | null {
       const sections = gsap.utils.toArray<HTMLElement>('[data-scroll-section]')
 
       for (const section of sections) {
-        createSectionTimeline(section)
+        createSectionTrigger(section)
       }
 
       createHeroCardFloat()
