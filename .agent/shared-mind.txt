@@ -3,7 +3,7 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — first mobile account flow and protected tab shell
+DONE — mobile account flow, protected tab shell, and pixel arcade visual system
 
 ## LAST SESSION
 - Preserved and checkpointed the user’s uncommitted web edits before beginning app work (`8029909`). Do not modify those hero/orb edits unless the user explicitly asks.
@@ -12,6 +12,8 @@ DONE — first mobile account flow and protected tab shell
 - Added mobile secure-on-native session persistence with Capacitor Preferences, TanStack Query auth hooks, sign-in/sign-up/recovery/reset screens, protected Home and Settings routes, and a fixed Home/Settings tab navigator.
 - Home is an intentional empty Nursery state, not fake activity. Settings supports theme selection and local sign-out.
 - Recovery token delivery requires an email provider. The API creates a one-time hashed token and returns the same generic accepted response for every email, but it must be wired to an email plugin before recovery links can reach end users. Never log reset tokens.
+- Applied the web’s pixel-arcade panel language to the app: sharp physical frames, compact system strips, matrix markers, segmented footers, thematic violet/cyan/pink/amber treatments, and dimensional controls.
+- Pixel Digivolve is now used for mobile page headings, action buttons, field labels, tabs, and panel labels; body/form entry text remains on the readable UI face.
 
 ## NEXT
 - Add an email delivery plugin/service for password-recovery links and configure the app’s deep-link handler to open `/auth/reset` with its token.
@@ -39,6 +41,8 @@ DONE — first mobile account flow and protected tab shell
 - app/src/routes/{app.tsx,app/settings.tsx,auth/*}
 - app/src/styles.css
 - app/public/fonts/PixelDigivolve-mOm9.ttf
+- app/src/components/common/{panel,button-primary,button-secondary}.component.tsx
+- app/src/components/layout/screen-layout.component.tsx
 
 ## COMMANDS
 - `DATABASE_URL='file:./dev.db' pnpm prisma migrate deploy` (in `server/`) — pass
@@ -48,6 +52,7 @@ DONE — first mobile account flow and protected tab shell
 - `pnpm build` (in `app/`) — pass
 - `pnpm lint` (in `app/`) — pass
 - Verified the bundled Pixel Digivolve font is referenced by `app/src/styles.css` and used by the mobile account and tab labels.
+- Used the UI/UX design-system review for pixel-art accessibility, touch targets, responsive layout, and font loading; retained readable body typography and visible labels.
 - `git diff --check` — pass
 
 ## REPO MAP
