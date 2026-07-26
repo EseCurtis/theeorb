@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import { Pixelify_Sans } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import { SiteFooter } from '@/components/site-footer.component'
 import { SiteHeader } from '@/components/site-header.component'
 
 import './globals.css'
 
-const pixelifySans = Pixelify_Sans({
+const solomonsKey = localFont({
   display: 'swap',
-  subsets: ['latin'],
+  src: '../../public/fonts/SolomonsKeyTrueType-EXOW.ttf',
   variable: '--font-pixel',
 })
 
@@ -24,7 +24,7 @@ export default function RootLayout({
 }>): React.JSX.Element {
   return (
     <html lang="en">
-      <body className={`${pixelifySans.variable} min-h-screen bg-background text-foreground`}>
+      <body className={`${solomonsKey.variable} min-h-screen bg-background text-foreground`}>
         <SiteHeader />
         {children}
         <SiteFooter />
