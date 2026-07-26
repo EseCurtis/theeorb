@@ -3,13 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — added Pixelify Sans as the web’s compact arcade display font
+DONE — added button-like tactile depth to the landing-page cards
 
 ## LAST SESSION
-- Added `Pixelify Sans` through Next Font with `display: swap` and the `--font-pixel` variable.
-- Routed the existing compact label style token (`--font-mono`) through that pixel font while retaining the readable display/body font for long-form copy, controls, and dense UI.
-- Documented the intended limited use of the secondary font in the design guide.
-- Preserved a fresh manual site-header brand-label edit in isolated checkpoint commit `8e6a391` without altering it.
+- Added button-like depth to the three floating hero story cards with a bright inset edge, recessed underside, hard base shadow, and hover lift.
+- Applied the same tactile card treatment to the product-loop cards, Observatory recap cards, world-zone cards, and autonomy cards.
+- Kept each card’s existing purple, amber, teal, pink, blue, gold, and green surface identity while tailoring its recess/base shadow to that surface.
+- Used only inline Tailwind utilities for the new styling.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -24,11 +24,11 @@ DONE — added Pixelify Sans as the web’s compact arcade display font
 No local Rive authoring tool, `.riv` source, or Rive project dependency was available. The implemented HTML/CSS animation and PNG keyframes are ready for a later Rive import/export pass.
 
 ## TOUCHED
-- .agent/Agent.Continuity.RULES.md
-- .agent/project/design-guide.md
-- web/src/app/layout.tsx
-- web/src/app/globals.css
-- web/src/components/site-header.component.tsx (manual checkpoint only)
+- web/src/components/landing-hero.component.tsx
+- web/src/components/landing-story.component.tsx
+- web/src/components/landing-activity.component.tsx
+- web/src/components/landing-world.component.tsx
+- web/src/components/landing-autonomy.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
