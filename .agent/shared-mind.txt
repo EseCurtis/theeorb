@@ -3,14 +3,12 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — applied the active pixel font to web headings
+DONE — widened tracking for all pixel display headings
 
 ## LAST SESSION
-- Updated `--font-display` to resolve to `--font-pixel`, so the hero and section heading classes now use the active pixel font.
-- Kept body text and control copy on the readable base typeface.
-- Updated the design guide to make `--font-display` / `--font-pixel` the heading convention.
-- Preserved subsequent manual font-stylesheet spacing and hero-heading adjustments in isolated checkpoint commits `495b87d` and `da0db4f`.
-- Synced the completed seven-commit batch to `origin/master`.
+- Replaced the old negative display tracking with `0.035em` positive tracking on the hero, CTA, Observatory, autonomy, product-loop, and world-zone headings.
+- Kept compact label tracking and body copy unchanged.
+- Preserved manual hero-heading changes made immediately before this style pass in isolated checkpoint commits `da0db4f` and `e423f82`.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -27,9 +25,12 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 
 ## TOUCHED
 - web/src/app/layout.tsx
-- web/src/app/globals.css
-- .agent/project/design-guide.md
-- web/src/components/landing-hero.component.tsx (manual checkpoint only)
+- web/src/components/landing-hero.component.tsx
+- web/src/components/landing-call-to-action.component.tsx
+- web/src/components/landing-activity.component.tsx
+- web/src/components/landing-autonomy.component.tsx
+- web/src/components/landing-story.component.tsx
+- web/src/components/landing-world.component.tsx
 - .agent/shared-mind.txt
 
 ## COMMANDS
