@@ -3,14 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — switched the web arcade style font to the supplied Solomons Key file
+DONE — fixed direct browser loading for the supplied Solomons Key font
 
 ## LAST SESSION
-- Preserved the supplied `web/public/fonts/SolomonsKeyTrueType-EXOW.ttf` asset in its own checkpoint commit.
-- Replaced the external Pixelify Sans loader with Next's local font loader for the supplied Solomons Key font.
-- Continued to expose the arcade font through `--font-pixel` and `--font-mono`, which keeps it visible in compact labels and the header wordmark.
-- Updated the design guide to name the supplied font as the secondary style font.
-- Preserved subsequent manual animated-Orb changes (including its hidden hero placement) in isolated checkpoint commit `39999f7` without altering them.
+- Confirmed the supplied font is a valid TrueType face with broad character coverage.
+- Preserved the manual global font-token adjustment in isolated checkpoint commit `3cd49f6` before changing the loader path.
+- Replaced the indirect Next font variable with direct `@font-face` registration for `/fonts/SolomonsKeyTrueType-EXOW.ttf` and a `--font-pixel` token.
+- Verified the active local server returns the exact font at that URL with `200 OK` and `Content-Type: font/ttf`.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -31,13 +30,12 @@ No local Rive authoring tool, `.riv` source, or Rive project dependency was avai
 - web/src/app/globals.css
 - web/public/fonts/SolomonsKeyTrueType-EXOW.ttf
 - .agent/project/design-guide.md
-- web/src/components/animated-orb.component.tsx (manual checkpoint only)
-- web/src/components/landing-hero.component.tsx (manual checkpoint only)
 - .agent/shared-mind.txt
 
 ## COMMANDS
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
+- `curl -I http://localhost:3000/fonts/SolomonsKeyTrueType-EXOW.ttf` — pass (`200 OK`, `font/ttf`)
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
