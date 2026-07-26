@@ -8,14 +8,6 @@ type OrbLayerProps = {
   source: string
 }
 
-const ORB_SPHERE_LAYERS = [
-  '/animations/orb_layers_10/orb-core.png',
-  '/animations/orb_layers_10/outer-rim.png',
-  '/animations/orb_layers_10/inner-rim.png',
-  '/animations/orb_layers_10/surface-reflections.png',
-  '/animations/orb_layers_10/light-droplets.png',
-]
-
 function OrbLayer({ priority = false, source }: OrbLayerProps): React.JSX.Element {
   return (
     <Image
@@ -29,40 +21,53 @@ function OrbLayer({ priority = false, source }: OrbLayerProps): React.JSX.Elemen
   )
 }
 
+function createClockwiseRotation(element: HTMLElement | null, duration: number): Animation | undefined {
+  if (!element) {
+    return undefined
+  }
+
+  return element.animate(
+    [
+      { transform: 'rotate(0deg)' },
+      { transform: 'rotate(360deg)' },
+    ],
+    {
+      duration,
+      easing: 'linear',
+      iterations: Infinity,
+    },
+  )
+}
+
 export function AnimatedOrb(): React.JSX.Element {
-  const sphereRef = useRef<HTMLDivElement>(null)
+  const dropletsRef = useRef<HTMLDivElement>(null)
+  const reflectionsRef = useRef<HTMLDivElement>(null)
 
   useEffect((): (() => void) | undefined => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return undefined
     }
 
-    const sphereElement = sphereRef.current
-    if (!sphereElement) {
-      return undefined
+    const dropletsRotation = createClockwiseRotation(dropletsRef.current, 13_000)
+    const reflectionsRotation = createClockwiseRotation(reflectionsRef.current, 18_000)
+
+    return () => {
+      dropletsRotation?.cancel()
+      reflectionsRotation?.cancel()
     }
-
-    const rotation = sphereElement.animate(
-      [
-        { transform: 'rotateX(1deg) rotateY(-14deg) scale(0.995)' },
-        { transform: 'rotateX(-1deg) rotateY(14deg) scale(1.005)' },
-      ],
-      {
-        direction: 'alternate',
-        duration: 9_600,
-        easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
-        iterations: Infinity,
-      },
-    )
-
-    return () => rotation.cancel()
   }, [])
 
   return (
-    <div aria-hidden="true" className="relative size-full [perspective:1400px]">
-      <OrbLayer priority source="/animations/orb_layers_10/outer-glow.png" />
-      <div ref={sphereRef} className="absolute inset-0 [transform-origin:center] [transform-style:preserve-3d] [will-change:transform]">
-        {ORB_SPHERE_LAYERS.map((source, index) => <OrbLayer key={source} priority={index === 0} source={source} />)}
+    <div aria-hidden="true" className="relative size-full">
+      <OrbLayer source="/animations/orb_layers_10/outer-glow.png" />
+      <OrbLayer priority source="/animations/orb_layers_10/orb-core.png" />
+      <OrbLayer source="/animations/orb_layers_10/outer-rim.png" />
+      <OrbLayer source="/animations/orb_layers_10/inner-rim.png" />
+      <div ref={reflectionsRef} className="absolute inset-0 [transform-origin:center] [will-change:transform]">
+        <OrbLayer source="/animations/orb_layers_10/surface-reflections.png" />
+      </div>
+      <div ref={dropletsRef} className="absolute inset-0 [transform-origin:center] [will-change:transform]">
+        <OrbLayer source="/animations/orb_layers_10/light-droplets.png" />
       </div>
       <div className="pointer-events-none absolute inset-0 z-10">
         <OrbLayer source="/animations/orb_layers_10/flare-bloom.png" />
