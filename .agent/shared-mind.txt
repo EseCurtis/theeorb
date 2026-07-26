@@ -43,7 +43,7 @@ No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or 
 - `pnpm lint` (in `web/`) — pass
 - `pnpm build` (in `web/`) — pass
 - `git diff --check` — pass
-- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
+- `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pass
 
 ## REPO MAP
 - `app/` — Capacitor + Vite mobile (Frontend.Mobile.RULES.md)
