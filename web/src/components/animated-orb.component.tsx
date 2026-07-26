@@ -3,43 +3,73 @@
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
+type OrbLayerProps = {
+  priority?: boolean
+  source: string
+}
+
+const ORB_SPHERE_LAYERS = [
+  '/animations/orb_layers_10/orb-core.png',
+  '/animations/orb_layers_10/outer-rim.png',
+  '/animations/orb_layers_10/inner-rim.png',
+  '/animations/orb_layers_10/surface-reflections.png',
+  '/animations/orb_layers_10/light-droplets.png',
+]
+
+function OrbLayer({ priority = false, source }: OrbLayerProps): React.JSX.Element {
+  return (
+    <Image
+      alt=""
+      className="pointer-events-none absolute inset-0 object-contain"
+      fill
+      priority={priority}
+      sizes="(max-width: 1024px) 96vw, 1024px"
+      src={source}
+    />
+  )
+}
+
 export function AnimatedOrb(): React.JSX.Element {
   const sphereRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return
+      return undefined
     }
 
     const sphereElement = sphereRef.current
     if (!sphereElement) {
-      return
+      return undefined
     }
 
     const rotation = sphereElement.animate(
       [
-        { transform: 'rotate(-18deg)' },
-        { transform: 'rotate(18deg)' },
-        { transform: 'rotate(8deg)' },
+        { transform: 'rotateX(1deg) rotateY(-14deg) scale(0.995)' },
+        { transform: 'rotateX(-1deg) rotateY(14deg) scale(1.005)' },
       ],
       {
-        duration: 11_000,
-        easing: 'ease-in-out',
+        direction: 'alternate',
+        duration: 9_600,
+        easing: 'cubic-bezier(0.45, 0, 0.55, 1)',
         iterations: Infinity,
       },
     )
 
-    return () => {
-      rotation.cancel()
-    }
+    return () => rotation.cancel()
   }, [])
 
   return (
     <div aria-hidden="true" className="relative size-full [perspective:1400px]">
-      <div ref={sphereRef} className="absolute inset-0 [transform-style:preserve-3d] [will-change:transform]">
-        <Image alt="" className="object-contain" fill priority sizes="(max-width: 1024px) 96vw, 1024px" src="/animations/orb-layered/orb-sphere.png" />
+      <OrbLayer priority source="/animations/orb_layers_10/outer-glow.png" />
+      <div ref={sphereRef} className="absolute inset-0 [transform-origin:center] [transform-style:preserve-3d] [will-change:transform]">
+        {ORB_SPHERE_LAYERS.map((source, index) => <OrbLayer key={source} priority={index === 0} source={source} />)}
       </div>
-      <Image alt="" className="pointer-events-none absolute inset-0 z-10 object-contain" fill priority sizes="(max-width: 1024px) 96vw, 1024px" src="/animations/orb-layered/orb-vertical-flare.png" />
+      <div className="pointer-events-none absolute inset-0 z-10">
+        <OrbLayer source="/animations/orb_layers_10/flare-bloom.png" />
+        <OrbLayer source="/animations/orb_layers_10/vertical-light-trail.png" />
+        <OrbLayer source="/animations/orb_layers_10/flare-rays.png" />
+        <OrbLayer source="/animations/orb_layers_10/flare-core.png" />
+      </div>
     </div>
   )
 }
