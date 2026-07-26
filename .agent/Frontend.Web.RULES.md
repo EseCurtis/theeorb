@@ -222,3 +222,17 @@ When modifying a legacy file:
 - Keep public hook return shapes backward-compatible unless all call sites are updated.
 - Preserve App Router paths and public URLs unless the feature explicitly requires a migration.
 
+## 10. Styling Rules
+
+Use inline Tailwind utility classes in JSX for all new web UI styling. This is the default and the expected implementation style.
+
+Do not add custom CSS class selectors, CSS Modules, raw CSS layout/styling rules, `@keyframes`, or shared class-string utilities for ordinary component styling. Do not give a Tailwind-styled element a semantic custom class merely to target it from `globals.css`.
+
+Allowed rare exceptions require all of the following:
+
+- Tailwind cannot express the requirement cleanly (for example, a necessary browser-specific selector, a complex pseudo-element, or a reusable keyframe definition).
+- The exception is local and minimal; it must not become a parallel styling system.
+- A nearby code comment states why Tailwind was insufficient.
+- The agent records the exception in `.agent/shared-mind.txt` at handoff.
+
+Keep `web/src/app/globals.css` limited to design tokens, browser defaults/resets, and approved rare exceptions. Prefer Tailwind's arbitrary values and built-in motion utilities before adding raw CSS.

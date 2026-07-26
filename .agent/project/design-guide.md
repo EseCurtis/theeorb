@@ -53,6 +53,7 @@ Silver highlights should support focus, dividers, and special states; they must 
 - Use motion and sound sparingly to confirm release, reward, or meaningful world events. Respect reduced-motion and sound preferences.
 - Build real loading, empty, error, success, paused, and restricted variants alongside the ready component.
 - Place Tailwind classes in reusable components, not shared class-string files.
+- For web UI, use inline Tailwind utility classes as the styling system. Do not introduce custom CSS classes or raw CSS for normal component styling; any rare exception must follow `.agent/Frontend.Web.RULES.md` and explain why it is necessary.
 
 ## Accessibility and responsive behaviour
 

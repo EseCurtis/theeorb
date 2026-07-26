@@ -78,6 +78,21 @@ Allowed exceptions:
 - Doing all substantial work in one final commit when multiple meaningful milestones were completed.
 - Ending a repo-changing session with uncommitted changes unless the user explicitly requested no commits.
 
+### Manual changes are protected
+
+Treat every uncommitted change as user-owned unless the current agent can prove it wrote the change in the same uninterrupted action. A dirty file is never permission to correct, tidy, overwrite, or revert it.
+
+Required flow when the worktree is dirty:
+
+1. Inspect `git diff` and preserve the exact change in a checkpoint commit before starting new work, unless the user explicitly says not to commit.
+2. Keep the checkpoint isolated from agent work; do not fold manual edits into a feature commit.
+3. Before editing any file, re-check `git status --short`. If a file changed after the initial checkpoint, stop editing that file. Do not restore it, rename its classes, or remove its content without the user's explicit instruction.
+4. If a post-run finds a fresh manual change, preserve it in a new checkpoint and rerun post-run. Never "repair" a manual change merely because it breaks the agent's implementation, lint, or visual result.
+
+**Forbidden:**
+- Reverting, overwriting, hiding, deleting, or "fixing" a manual edit without an explicit user request.
+- Reusing a manual diff as if it were an agent-authored change in a later feature commit.
+
 ---
 
 ## 4. Agen is the only post-run DSL
@@ -146,6 +161,7 @@ When in conflict on session exit: **continuity rules win**.
 - [ ] Read shared-mind at start (acknowledge in thinking or first action)
 - [ ] Committed any pre-existing dirty worktree before new edits, unless user said not to commit
 - [ ] Committed each meaningful milestone before starting the next milestone
+- [ ] Preserved all manual/uncommitted edits in isolated checkpoints without modifying them
 - [ ] Updated `.agent/shared-mind.txt` all required sections
 - [ ] Ran relevant verification commands
 - [ ] Committed all session changes
