@@ -19,9 +19,9 @@ type FloatingCardMotion = {
 }
 
 const HERO_FLOAT_MOTIONS: FloatingCardMotion[] = [
-  { delay: -1.2, duration: 4.8, x: 9, y: -14 },
-  { delay: -2.6, duration: 5.4, x: -11, y: -17 },
-  { delay: -3.8, duration: 6.1, x: 7, y: 13 },
+  { delay: -1.2, duration: 4.8, x: 2, y: -4 },
+  { delay: -2.6, duration: 5.4, x: -3, y: -4 },
+  { delay: -3.8, duration: 6.1, x: 2, y: 3 },
 ]
 
 function isSectionKind(value: string | undefined): value is SectionKind {
@@ -36,14 +36,14 @@ function getSectionKind(section: HTMLElement): SectionKind {
 
 function getCardOffset(sectionKind: SectionKind, index: number): MotionOffset {
   if (sectionKind === 'activity') {
-    return { x: index % 2 ? 52 : -52, y: 42 }
+    return { x: index % 2 ? 10 : -10, y: 10 }
   }
 
   if (sectionKind === 'world') {
-    return { x: index % 2 ? 40 : -40, y: 34 }
+    return { x: index % 2 ? 8 : -8, y: 8 }
   }
 
-  return { x: 0, y: 48 }
+  return { x: 0, y: 10 }
 }
 
 function getInteractiveTarget(event: PointerEvent): HTMLElement | null {
@@ -65,8 +65,8 @@ function handlePanelPointerMove(event: PointerEvent): void {
     duration: 0.2,
     ease: 'power2.out',
     overwrite: 'auto',
-    rotationX: pointerY * -4,
-    rotationY: pointerX * 5,
+    rotationX: pointerY * -1.5,
+    rotationY: pointerX * 2,
     transformPerspective: 900,
   })
 }
@@ -133,29 +133,29 @@ function createSectionTimeline(section: HTMLElement): gsap.core.Timeline {
   })
 
   if (eyebrow) {
-    timeline.from(eyebrow, { y: 18 }, 0)
+    timeline.from(eyebrow, { y: 4 }, 0)
   }
 
   if (heading) {
-    timeline.from(heading, { y: 46 }, 0.05)
+    timeline.from(heading, { y: 10 }, 0.05)
   }
 
   if (description) {
-    timeline.from(description, { y: 28 }, 0.12)
+    timeline.from(description, { y: 6 }, 0.12)
   }
 
   for (const [cardIndex, card] of cards.entries()) {
     const offset = getCardOffset(sectionKind, cardIndex)
 
     timeline.from(card, {
-      scale: 0.94,
+      scale: 0.985,
       x: offset.x,
       y: offset.y,
     }, 0.18 + cardIndex * 0.065)
   }
 
   if (action) {
-    timeline.from(action, { scale: 0.92, y: 24 }, 0.31)
+    timeline.from(action, { scale: 0.98, y: 6 }, 0.31)
   }
 
   return timeline
