@@ -3,6 +3,7 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 
 import { AuthField } from '@/components/auth/auth-field.component'
+import { AuthFormFrame } from '@/components/auth/auth-form-frame.component'
 import { AuthShell } from '@/components/auth/auth-shell.component'
 import { ButtonPrimary } from '@/components/common/button-primary.component'
 import { Text } from '@/components/layout/text.component'
@@ -28,43 +29,47 @@ export function PasswordRecoveryScreen(): React.JSX.Element {
   }
 
   return (
-    <AuthShell description="We’ll help you regain access without revealing account details." title="Recover your signal">
+    <AuthShell
+      description="We will help you restore access without revealing account details."
+      systemLabel="RECOVERY // 01"
+      title="RECLAIM YOUR SIGNAL"
+    >
       {isRequested ? (
-        <View className="gap-5 rounded-[1.25rem] border border-[#8ff5c6]/25 bg-[var(--surface)] p-5 shadow-[var(--shadow)]">
-          <Text className="font-[family-name:var(--font-pixel)] text-base tracking-[0.08em] text-[#9bffd0]">
-            CHECK YOUR INBOX
-          </Text>
+        <AuthFormFrame label="RECOVERY // SENT">
+          <Text className="text-base leading-7 tracking-[0.06em] text-[#9bffd0]">CHECK YOUR INBOX</Text>
           <Text className="text-sm leading-6 text-[var(--muted)]">
             If that account exists, we’ve sent a recovery link. Use the link to set a new password.
           </Text>
-          <Link className="text-sm font-semibold text-[#e0b1ff]" to="/auth/reset">
-            I have a recovery code
+          <Link className="text-[0.62rem] tracking-[0.06em] text-[#e9bcff]" to="/auth/reset">
+            I HAVE A RECOVERY CODE
           </Link>
-        </View>
+        </AuthFormFrame>
       ) : (
-        <form className="flex flex-col gap-5" onSubmit={(event) => void handleSubmit(event)}>
-          <AuthField
-            autoComplete="email"
-            label="Email"
-            onChange={(event) => setEmail(event.target.value)}
-            placeholder="you@example.com"
-            required
-            type="email"
-            value={email}
-          />
-          {requestPasswordRecoveryError ? (
-            <View className="rounded-xl border border-[#ff998f]/35 bg-[#551718]/45 p-4">
-              <Text className="text-sm leading-5 text-[#ffd0ca]">Unable to request recovery right now. Try again.</Text>
-            </View>
-          ) : null}
-          <ButtonPrimary disabled={isRequestingRecovery} type="submit">
-            {isRequestingRecovery ? 'Sending signal…' : 'Send recovery link'}
-          </ButtonPrimary>
-          <Link className="text-center text-sm font-semibold text-[#e0b1ff]" to="/auth/sign-in">
-            Back to sign in
-          </Link>
-        </form>
+        <AuthFormFrame label="RECOVERY // REQUEST">
+          <form className="flex flex-col gap-4" onSubmit={(event) => void handleSubmit(event)}>
+            <AuthField
+              autoComplete="email"
+              label="Email address"
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="you@example.com"
+              required
+              type="email"
+              value={email}
+            />
+            {requestPasswordRecoveryError ? (
+              <View className="border border-[#ff998f]/55 bg-[#3a1014] p-3" role="alert">
+                <Text className="text-[0.6rem] leading-5 text-[#ffd0ca]">Unable to request recovery right now. Try again.</Text>
+              </View>
+            ) : null}
+            <ButtonPrimary disabled={isRequestingRecovery} type="submit">
+              {isRequestingRecovery ? 'SENDING SIGNAL...' : 'SEND RECOVERY LINK'}
+            </ButtonPrimary>
+          </form>
+        </AuthFormFrame>
       )}
+      <Link className="pt-1 text-center text-[0.58rem] tracking-[0.05em] text-[#e9bcff]" to="/auth/sign-in">
+        BACK TO SIGN IN
+      </Link>
     </AuthShell>
   )
 }

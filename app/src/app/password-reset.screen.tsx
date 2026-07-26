@@ -3,6 +3,7 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 
 import { AuthField } from '@/components/auth/auth-field.component'
+import { AuthFormFrame } from '@/components/auth/auth-form-frame.component'
 import { AuthShell } from '@/components/auth/auth-shell.component'
 import { ButtonPrimary } from '@/components/common/button-primary.component'
 import { Text } from '@/components/layout/text.component'
@@ -30,50 +31,52 @@ export function PasswordResetScreen(): React.JSX.Element {
   }
 
   return (
-    <AuthShell description="Use the recovery code from the link we sent." title="Set a new password">
+    <AuthShell
+      description="Use the recovery code from the link we sent."
+      systemLabel="RECOVERY // 02"
+      title="SET A NEW PASSWORD"
+    >
       {isComplete ? (
-        <View className="gap-5 rounded-[1.25rem] border border-[#8ff5c6]/25 bg-[var(--surface)] p-5 shadow-[var(--shadow)]">
-          <Text className="font-[family-name:var(--font-pixel)] text-base tracking-[0.08em] text-[#9bffd0]">
-            ACCESS RESTORED
-          </Text>
+        <AuthFormFrame label="RECOVERY // COMPLETE">
+          <Text className="text-base leading-7 tracking-[0.06em] text-[#9bffd0]">ACCESS RESTORED</Text>
           <Text className="text-sm leading-6 text-[var(--muted)]">Your password has been updated.</Text>
-          <ButtonPrimary onClick={() => void navigate({ to: '/auth/sign-in' })}>
-            Sign in now
-          </ButtonPrimary>
-        </View>
+          <ButtonPrimary onClick={() => void navigate({ to: '/auth/sign-in' })}>SIGN IN NOW</ButtonPrimary>
+        </AuthFormFrame>
       ) : (
-        <form className="flex flex-col gap-5" onSubmit={(event) => void handleSubmit(event)}>
-          <AuthField
-            autoCapitalize="none"
-            label="Recovery code"
-            onChange={(event) => setToken(event.target.value)}
-            placeholder="Paste the code from your link"
-            required
-            value={token}
-          />
-          <AuthField
-            autoComplete="new-password"
-            label="New password"
-            minLength={8}
-            onChange={(event) => setPassword(event.target.value)}
-            placeholder="At least 8 characters"
-            required
-            type="password"
-            value={password}
-          />
-          {resetPasswordError ? (
-            <View className="rounded-xl border border-[#ff998f]/35 bg-[#551718]/45 p-4">
-              <Text className="text-sm leading-5 text-[#ffd0ca]">Unable to reset your password. Request another link.</Text>
-            </View>
-          ) : null}
-          <ButtonPrimary disabled={isResettingPassword} type="submit">
-            {isResettingPassword ? 'Restoring access…' : 'Update password'}
-          </ButtonPrimary>
-          <Link className="text-center text-sm font-semibold text-[#e0b1ff]" to="/auth/recovery">
-            Request another link
-          </Link>
-        </form>
+        <AuthFormFrame label="RECOVERY // VERIFY">
+          <form className="flex flex-col gap-4" onSubmit={(event) => void handleSubmit(event)}>
+            <AuthField
+              autoCapitalize="none"
+              label="Recovery code"
+              onChange={(event) => setToken(event.target.value)}
+              placeholder="Paste the code from your link"
+              required
+              value={token}
+            />
+            <AuthField
+              autoComplete="new-password"
+              label="New password"
+              minLength={8}
+              onChange={(event) => setPassword(event.target.value)}
+              placeholder="At least 8 characters"
+              required
+              type="password"
+              value={password}
+            />
+            {resetPasswordError ? (
+              <View className="border border-[#ff998f]/55 bg-[#3a1014] p-3" role="alert">
+                <Text className="text-[0.6rem] leading-5 text-[#ffd0ca]">Unable to reset your password. Request another link.</Text>
+              </View>
+            ) : null}
+            <ButtonPrimary disabled={isResettingPassword} type="submit">
+              {isResettingPassword ? 'RESTORING ACCESS...' : 'UPDATE PASSWORD'}
+            </ButtonPrimary>
+          </form>
+        </AuthFormFrame>
       )}
+      <Link className="pt-1 text-center text-[0.58rem] tracking-[0.05em] text-[#e9bcff]" to="/auth/recovery">
+        REQUEST ANOTHER LINK
+      </Link>
     </AuthShell>
   )
 }
