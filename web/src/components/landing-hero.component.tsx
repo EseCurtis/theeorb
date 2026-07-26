@@ -37,10 +37,10 @@ export function LandingHero(): React.JSX.Element {
         <p>Nursery</p><strong>Curious · Careful · Playful</strong><span>Your Orb’s current rules</span>
       </div>
 
-      <div className="absolute bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 sm:bottom-[-34%]">
+      <div className="absolute hidden bottom-[-26%] left-1/2 z-10 size-[min(96vw,64rem)] -translate-x-1/2 sm:bottom-[-34%]">
         <AnimatedOrb />
       </div>
-      <div className="hero-orb-label absolute bottom-[13%] left-1/2 z-20 -translate-x-1/2 rounded-full border border-[#e2b1ff]/30 bg-[#150425]/75 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#f0d2ff] backdrop-blur-md">Orb / ready for release</div>
+      <div className="hero-orb-label hidden absolute bottom-[13%] left-1/2 z-20 -translate-x-1/2 rounded-full border border-[#e2b1ff]/30 bg-[#150425]/75 px-4 py-2 font-[family-name:var(--font-mono)] text-[0.62rem] uppercase tracking-[0.16em] text-[#f0d2ff] backdrop-blur-md">Orb / ready for release</div>
     </section>
   )
 }

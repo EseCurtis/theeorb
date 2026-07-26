@@ -20,7 +20,7 @@ export function AnimatedOrb(): React.JSX.Element {
       [
         { transform: 'rotate(-18deg)' },
         { transform: 'rotate(18deg)' },
-        { transform: 'rotate(-18deg)' },
+        { transform: 'rotate(8deg)' },
       ],
       {
         duration: 11_000,
