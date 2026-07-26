@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Required local font registration; Tailwind utilities cannot declare a font source. */
+@font-face {
+  font-family: 'Solomons Key';
+  font-display: swap;
+  src: url('/fonts/SolomonsKeyTrueType-EXOW.ttf') format('truetype');
+}
+
 :root {
-  --font-display: var(--font-pixel), "Solomons Key", "SFMono-Regular", monospace;
+  --font-pixel: 'Solomons Key', monospace;
+  --font-display:  "Avenir Next", Avenir, "Trebuchet MS", sans-serif;
   --font-mono: var(--font-pixel), "Solomons Key", "SFMono-Regular", monospace;
   --background: #07040f;
   --foreground: #f7efff;
