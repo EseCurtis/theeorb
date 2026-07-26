@@ -69,6 +69,18 @@ Milestone commits are required when any of these boundaries are reached:
 
 The post-run program validates that the worktree is clean. If it fails because the worktree is dirty, commit the remaining changes and run post-agent-run again.
 
+### Remote synchronization is mandatory
+
+After every local commit, check how many commits are ahead of the tracked remote branch:
+
+```sh
+git log --oneline origin/HEAD..HEAD
+```
+
+When seven local commits are waiting to be synchronized, immediately push them to the tracked remote branch with `git push origin <branch>`. Do not let an eighth unsynchronized local commit accumulate.
+
+If the remote is unavailable, credentials are missing, or the push is rejected, preserve the local work, record the exact failure in `BLOCKERS`, and retry when the blocker is resolved.
+
 Allowed exceptions:
 - User explicitly says not to commit.
 - Git is unavailable or the repository has no commits yet; document the blocker in `BLOCKERS`.
@@ -165,6 +177,7 @@ When in conflict on session exit: **continuity rules win**.
 - [ ] Updated `.agent/shared-mind.txt` all required sections
 - [ ] Ran relevant verification commands
 - [ ] Committed all session changes
+- [ ] Synced every group of seven local commits to the tracked remote branch
 - [ ] Ran `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` and it passed with a clean worktree
 - [ ] `STATUS` reflects true state (DONE / IN_PROGRESS / BLOCKED)
 - [ ] `NEXT` is actionable without chat context
