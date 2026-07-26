@@ -3,14 +3,13 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — landing motion refined with floating hero panels and faster reveals
+DONE — fixed landing-card visibility on page reload
 
 ## LAST SESSION
-- Added three independent GSAP float paths to the hero’s arcade panels, keeping their existing layout and visual framing intact.
-- Added fine-pointer 3D panel tilt to hero and scroll-revealed cards; it cleans up with the GSAP media context.
-- Retimed ScrollTrigger reveals to start earlier, complete over a shorter span, and stagger more tightly.
-- Kept all motion behind `prefers-reduced-motion`; mobile/touch and reduced-motion visitors retain the static, fully usable layout.
-- Used existing `data-*` motion hooks and inline Tailwind styling only; no new CSS selectors or keyframes were added.
+- Diagnosed the reload issue: scrubbed GSAP `from()` timelines were applying `opacity: 0` to cards before their ScrollTriggers were reached.
+- Reworked section reveals into one-time trigger-time timelines, so cards remain visible in the initial HTML and animate only as their section enters the viewport.
+- Retained the faster reveal timing, floating hero panels, and fine-pointer tilt interactions from the previous motion pass.
+- Reduced-motion visitors and users without JavaScript now always see the full landing content immediately.
 - Verified lint, production build, and whitespace checks.
 
 ## NEXT
@@ -26,7 +25,6 @@ DONE — landing motion refined with floating hero panels and faster reveals
 No blocking issue. A valid `.riv` animation still requires a Rive editor/CLI or source file; do not add a placeholder `.riv`.
 
 ## TOUCHED
-- web/src/components/landing-hero.component.tsx
 - web/src/components/landing-scroll-motion.client.tsx
 - .agent/shared-mind.txt
 
