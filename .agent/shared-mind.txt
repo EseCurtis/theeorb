@@ -5,7 +5,7 @@
 ## STATUS
 DONE — first mobile account flow and protected tab shell
 
-## LAST_SESSION
+## LAST SESSION
 - Preserved and checkpointed the user’s uncommitted web edits before beginning app work (`8029909`). Do not modify those hero/orb edits unless the user explicitly asks.
 - Added a versioned `/api/v1` authentication foundation: sign-up, sign-in, password recovery, password reset, current session, and sign-out. Prisma now has `User` and `PasswordResetToken` models with migration `20260727003000_add_auth`.
 - Implemented symmetric account-sensitive responses, dummy bcrypt comparison for unknown users, hashed recovery tokens, Passport JWT session protection, and matching Swagger documentation.
