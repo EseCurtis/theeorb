@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Avenir Next", Avenir, "Trebuchet MS", sans-serif;
+  --font-display: var(--font-pixel), "Solomons Key", "SFMono-Regular", monospace;
   --font-mono: var(--font-pixel), "Solomons Key", "SFMono-Regular", monospace;
   --background: #07040f;
   --foreground: #f7efff;
