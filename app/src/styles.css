@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Pixel Digivolve';
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/PixelDigivolve-mOm9.ttf') format('truetype');
+}
+
 :root {
   --app-boundary-x: 1.25rem;
   --background: #080411;
@@ -17,7 +25,7 @@
   --danger: #ff8a7f;
   --success: #7ee5b5;
   --shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-  --font-pixel: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-pixel: 'Pixel Digivolve', ui-monospace, "SFMono-Regular", Menlo, monospace;
   --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
   --safe-area-inset-left: env(safe-area-inset-left, 0px);
   --safe-area-inset-right: env(safe-area-inset-right, 0px);
