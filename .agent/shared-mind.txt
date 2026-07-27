@@ -3,45 +3,43 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — private Gemini-powered Nursery is implemented and verified end-to-end
+DONE — TheeOrb is now a private AI job-application copilot across product guidance, server APIs, data model, and mobile workspace.
 
-## LAST SESSION
-- Added `20260727065154_add_orb_nursery`: private owner behaviour rules on `Orb` plus durable `OrbLesson` records for owner messages and Orb replies.
-- Added protected, versioned Nursery endpoints under `/api/v1/orb/nursery` for private state, private teaching/testing, and behaviour-rule updates. Swagger fully documents the endpoints and response shapes.
-- Gemini is called only from `server/src/services/plugins/gemini.service.ts`; `GEMINI_API_KEY` remains server-only. Provider failures surface a generic 503 to the app and retain only safe diagnostics in server logs.
-- Corrected the Gemini REST parser to read text from Interactions `steps` rather than the SDK-only `output_text` helper.
-- Rebuilt `/app/nursery` into a real workbench with explicit private-DRAFT state, editable owner rules, persisted teaching transcript, and loading/empty/error/saving states. It still cannot release or trigger public actions.
-- Verified a full temporary-database flow: sign-up, sign-in, Orb creation, and Gemini Nursery lesson returned HTTP 201 with a non-empty persisted reply. The disposable database was removed afterwards.
-- Server build, app lint/build, and Prisma migration application pass. The seven outstanding commits through `a9268e4` were pushed to `origin/master`.
+## LAST_SESSION
+- Pivoted product guidance from matching to career applications: private CV/profile, Career Orb, Job Desk extraction, reviewed cover-letter drafts, Gmail review/send, and application history.
+- Added forward migration `20260727074125_pivot_to_career_copilot` which preserves prior history while dropping the now-unused matching/chat tables and creating career profile, private CV, job listing, application, Gmail connection, and OAuth-state records.
+- Added protected `/api/v1` career, job-listing, application, and Gmail OAuth endpoints, documented in Swagger. CV uploads use authenticated Cloudinary raw uploads; server-side signed retrieval attaches the selected original CV only during explicit Gmail sends.
+- Gemini remains server-only. Listing extraction uses strict bounded JSON handling and ignores instructions in pasted listings. Cover letters are constrained to 120–180 words and confirmed profile/listing facts.
+- Added mobile Career setup, private CV upload, Job Desk extraction/review, application tracker with editable recipient/subject/cover letter, explicit Gmail connection, and explicit review/send controls. The Nursery is now the Career Orb surface.
+- Removed the interrupted, agent-generated dating-only mobile files as authorized by the approved pivot plan; no unrelated user work was reverted.
 
 ## NEXT
-- Define release permissions, topic/action boundaries, and the visible pause model before building any autonomous behaviour.
-- Add safe document/memory teaching with explicit source review, deletion, and owner control.
-- Add editable Orb identity beyond behaviour rules, including visual form and objective revisions.
-- Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
+- Configure `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REDIRECT_URI`, and a base64 32-byte `GMAIL_TOKEN_ENCRYPTION_KEY` for end-to-end upload/OAuth/send verification.
+- Add focused integration tests for CV ownership, Gemini failures, Gmail OAuth state, encrypted tokens, send failures, and direct MIME attachment delivery once provider credentials are available.
+- Add richer profile editors for experience, education, links, CV parsing, job-detail correction, and attachment selection in the mobile UI.
 
 ## BLOCKERS
-- No email provider or app recovery deep-link scheme is configured. Recovery endpoints and screens are complete, but reset links cannot yet reach end users.
+- Provider credentials and a mobile OAuth return/deep-link configuration are not present, so real Cloudinary uploads, Gmail authorization, and delivery cannot be exercised locally.
+- `prisma migrate status` reports the checked-in development database is up to date. A clean SQLite `prisma migrate deploy` attempt exits with an empty Prisma schema-engine error in this environment before a database file is created; investigate the local Prisma engine/runtime before relying on that clean-database check.
 
 ## TOUCHED
-- app/src/app/{home,orb-setup}.screen.tsx
-- app/src/components/{navigation/app-tab-navigator,orb/orb-setup-form,orb/nursery-workbench}.component.tsx
-- app/src/{hooks/use-orb.hook,hooks/use-nursery.hook,shared/api/orb.api,shared/types/orb.types}.ts
-- app/src/routes/app/nursery.tsx
-- app/src/routeTree.gen.ts
-- server/prisma/{schema.prisma,migrations/20260727010000_add_orb_setup/migration.sql}
-- server/prisma/migrations/migration_lock.toml
-- server/prisma/migrations/20260727065154_add_orb_nursery/migration.sql
-- server/src/{controllers/nursery.controller,schemas/nursery.schema,routes/nursery.route,services/nursery.service,services/plugins/gemini.service}.ts
-- server/src/{services/orb.service,types/orb.types}.ts
-- server/src/index.ts
-- server/swagger/swagger.json
+- `.agent/project/{prd,rules,design-guide}.md`
+- `server/prisma/{schema.prisma,migrations/20260727074125_pivot_to_career_copilot/migration.sql}`
+- `server/src/{config/env.config,index,controllers/{application,career,gmail}.controller,routes/{application,career,gmail}.route,schemas/career.schema,services/{application,career,gmail-connection,plugins/{cloudinary,gemini,gmail}}.service,types/career.types}.ts`
+- `server/swagger/swagger.json`
+- `server/package.json`, `server/pnpm-lock.yaml`
+- `app/src/app/{home,career,applications,onboarding,orb-setup,settings}.screen.tsx`
+- `app/src/{hooks/{use-applications,use-career}.hook,shared/api/career.api,shared/types/career.types,routes/app/{career,applications}}.ts`
+- `app/src/components/navigation/app-tab-navigator.component.tsx`
+- `app/src/routeTree.gen.ts`
 
 ## COMMANDS
-- `pnpm exec prisma migrate dev --name add_orb_nursery` (in `server/`) — pass
-- `pnpm run build` (in `server/`) — pass
-- temporary-database private Nursery integration flow through Gemini — pass (HTTP 201 with persisted reply)
-- `pnpm --dir app lint` and `pnpm --dir app build` — pass
+- `pnpm exec prisma migrate dev --name pivot_to_career_copilot` (in `server/`) — pass
+- `pnpm exec prisma migrate status` (in `server/`) — pass, current development DB up to date
+- `DATABASE_URL=... pnpm exec prisma migrate deploy` against clean SQLite — blocked by empty Prisma schema-engine error before DB creation
+- `pnpm --dir server run build` — pass
+- `pnpm --dir app run build` — pass
+- `.agent/scripts/validate-api-contract.sh` — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
@@ -53,7 +51,7 @@ DONE — private Gemini-powered Nursery is implemented and verified end-to-end
 - `.agent/` — code rules, shared-mind, Agen post-run
 
 ## CONVENTIONS REMINDER
-- Preserve any user/manual changes in an isolated checkpoint before implementation work.
+- Preserve manual/user changes through review and isolated checkpoints before implementation work.
 - Normal backend routes must remain under `/api/v1` and update Swagger in the same change.
 - Mobile UI composition uses `View` and `Text`; screens call hooks rather than APIs directly.
 - Commit milestones, sync each group of seven local commits, then run `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` before declaring work complete.
