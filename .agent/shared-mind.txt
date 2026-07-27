@@ -3,24 +3,21 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — private Orb setup is implemented across the API and mobile Nursery
+DONE — Prisma migration history is valid and private Orb setup is ready for local development
 
 ## LAST SESSION
-- Preserved a user manual simplification of `CosmicBackground` in isolated checkpoint `baec6f2`; do not restore its removed orbital layers unless requested.
-- Added the protected, versioned `/api/v1/orb` API: owners can read their own Orb and create exactly one private `DRAFT` Orb. Swagger, strict validation, service/controller/route separation, and a Prisma migration are included.
-- Added the mobile `/app/nursery` flow: three clear stages capture name and form, personality and speaking style, then interests, values, and first objective.
-- The app holds a new Orb as private after creation; release is explicitly described as locked. No autonomous actions, social posting, or release controls are implied or enabled.
-- Home now reflects loading, error, empty, and private-draft Orb states, and the tab navigation includes Nursery.
-- Server Prisma generation/build and app lint/build pass. The seven pending commits through `ce5c6a6` were synced to `origin/master`; `c8664ab` is one new local commit ahead.
+- Repaired the local `server/prisma/dev.db` history without deleting data: its schema already contained the two migration results but lacked `_prisma_migrations`, so both committed migrations were marked applied through Prisma.
+- Added the standard `server/prisma/migrations/migration_lock.toml`, declaring SQLite. This was the missing repository artifact that prevented Prisma’s migration tooling from determining the connector for a clean database.
+- Verified a clean, initialized disposable SQLite database applies both `20260727003000_add_auth` and `20260727010000_add_orb_setup`, and Prisma subsequently reports it up to date.
+- The local development database now reports two migrations and is up to date; Prisma schema validation, client generation, and the server TypeScript build all pass.
+- The private Orb API and mobile Nursery setup from the previous session remain intact. No autonomous action or release capability is enabled.
 
 ## NEXT
-- Resolve the local SQLite migration-history drift without deleting user data, then apply `20260727010000_add_orb_setup` to local development data.
 - Add editable Orb identity, private teaching/test conversation, and persistent save feedback inside the Nursery.
 - Define release permissions, topic/action boundaries, and the visible pause model before building any autonomous behaviour.
 - Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
 
 ## BLOCKERS
-- The existing `server/prisma/dev.db` has migration-history drift. `prisma migrate dev` requests a reset, which was not run to protect local data; a temporary-db `migrate deploy` also returned an opaque Prisma schema-engine error. The committed migration and generated client/server build are valid, but the local database has not been migrated in this session.
 - No email provider or app recovery deep-link scheme is configured. Recovery endpoints and screens are complete, but reset links cannot yet reach end users.
 
 ## TOUCHED
@@ -30,16 +27,16 @@ DONE — private Orb setup is implemented across the API and mobile Nursery
 - app/src/routes/app/nursery.tsx
 - app/src/routeTree.gen.ts
 - server/prisma/{schema.prisma,migrations/20260727010000_add_orb_setup/migration.sql}
+- server/prisma/migrations/migration_lock.toml
 - server/src/{controllers/orb.controller,routes/orb.route,schemas/orb.schema,services/orb.service,types/orb.types}.ts
 - server/src/index.ts
 - server/swagger/swagger.json
 
 ## COMMANDS
-- `pnpm --dir server prisma:generate` — pass
-- `pnpm --dir server build` — pass
-- disposable `prisma migrate deploy` against SQLite — failed with opaque Prisma schema-engine error
-- `pnpm --dir app lint` — pass
-- `pnpm --dir app build` — pass
+- `pnpm exec prisma migrate resolve --applied <migration>` (in `server/`) — pass for both committed migrations
+- `pnpm exec prisma migrate deploy` and `prisma migrate status` (in `server/`) — pass against local development database
+- clean initialized SQLite `prisma migrate deploy` and `prisma migrate status` — pass for both migrations
+- `pnpm exec prisma validate`, `prisma generate`, and `pnpm run build` (in `server/`) — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
