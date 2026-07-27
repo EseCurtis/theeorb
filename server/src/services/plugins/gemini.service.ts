@@ -4,6 +4,7 @@ import { HttpException } from '../../utils/exceptions.util.js';
 
 type GeminiInteractionResponse = {
   output_text?: unknown;
+  steps?: unknown;
 };
 
 type GeminiRequest = {
@@ -13,7 +14,59 @@ type GeminiRequest = {
 };
 
 function isGeminiInteractionResponse(payload: unknown): payload is GeminiInteractionResponse {
-  return Boolean(payload && typeof payload === 'object' && 'output_text' in payload);
+  return Boolean(
+    payload &&
+      typeof payload === 'object' &&
+      ('output_text' in payload || 'steps' in payload),
+  );
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value && typeof value === 'object');
+}
+
+function getTextFromContent(content: unknown): string | null {
+  if (typeof content === 'string' && content.trim()) {
+    return content.trim();
+  }
+
+  if (!Array.isArray(content)) {
+    return null;
+  }
+
+  const textParts: string[] = [];
+
+  for (const part of content) {
+    if (!isRecord(part) || typeof part.text !== 'string' || !part.text.trim()) {
+      continue;
+    }
+
+    textParts.push(part.text.trim());
+  }
+
+  return textParts.length ? textParts.join('\n') : null;
+}
+
+function getTextFromSteps(steps: unknown): string | null {
+  if (!Array.isArray(steps)) {
+    return null;
+  }
+
+  for (let index = steps.length - 1; index >= 0; index -= 1) {
+    const step = steps[index];
+
+    if (!isRecord(step)) {
+      continue;
+    }
+
+    const text = getTextFromContent(step.content);
+
+    if (text) {
+      return text;
+    }
+  }
+
+  return null;
 }
 
 function getGeneratedText(payload: unknown): string | null {
@@ -21,11 +74,11 @@ function getGeneratedText(payload: unknown): string | null {
     return null;
   }
 
-  if (typeof payload.output_text !== 'string' || !payload.output_text.trim()) {
-    return null;
+  if (typeof payload.output_text === 'string' && payload.output_text.trim()) {
+    return payload.output_text.trim();
   }
 
-  return payload.output_text.trim();
+  return getTextFromSteps(payload.steps);
 }
 
 export default class GeminiService {
