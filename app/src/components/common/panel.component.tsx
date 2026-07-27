@@ -8,6 +8,7 @@ type PanelProps = {
   readonly children: ReactNode
   readonly label: string
   readonly tone?: 'amber' | 'cyan' | 'pink' | 'violet'
+  readonly variant?: 'arcade' | 'quiet'
 }
 
 const toneClasses = {
@@ -49,8 +50,17 @@ const toneClasses = {
   },
 } as const
 
-export function Panel({ children, label, tone = 'violet' }: PanelProps): React.JSX.Element {
+export function Panel({ children, label, tone = 'violet', variant = 'quiet' }: PanelProps): React.JSX.Element {
   const panelTone = toneClasses[tone]
+
+  if (variant === 'quiet') {
+    return (
+      <View className={cn('gap-4 rounded-[1.5rem] border p-5 shadow-[0_18px_44px_rgba(0,0,0,0.2)]', panelTone.border, panelTone.surface)}>
+        <Text className={cn('text-[0.6rem] tracking-[0.08em]', panelTone.header)}>{label}</Text>
+        {children}
+      </View>
+    )
+  }
 
   return (
     <View className={cn('gap-0 border-2 p-1', panelTone.border, panelTone.shadow, panelTone.surface)}>
