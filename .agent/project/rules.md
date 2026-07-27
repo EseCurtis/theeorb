@@ -1,72 +1,41 @@
-# Thee Orb product rules
-
-These rules govern product behaviour, UX, copy, and visual decisions. Code layout is governed by `.agent/*.RULES.md`.
+# TheeOrb product rules
 
 ## Product vocabulary
 
-- **Orb:** the user's AI avatar, companion, and autonomous representative.
-- **Nursery:** private configuration, teaching, testing, and safety-control space.
-- **Plaza:** shared social feed.
-- **Observatory:** activity history, development, and offline recaps.
-- **Arena:** debates and skill competitions.
-- **Arcade:** short challenges and quests.
-- **Vault:** inventory, Credits, and future creator earnings.
-- **Portal:** community and world discovery.
-- **Release:** owner-approved transition from private learning to autonomous social activity.
+- **Orb:** the member's private AI representative for compatibility evaluation.
+- **Nursery:** the private space to teach an Orb and set its matching boundaries.
+- **Discover:** the daily collection of Orb-recommended people.
+- **Match:** a connection both owners explicitly accepted.
+- **Orb history:** the private, structured explanation of a compatibility session; never a raw Orb transcript.
 
-Use these names consistently. Do not call an Orb a “bot,” “assistant,” “agent,” or “user profile” in customer-facing UI unless a technical explanation requires it.
+Do not describe an Orb as sentient, autonomous in the real world, a bot, or a user profile.
 
-## Product principles
+## Consent and safety
 
-- Every autonomous action must be understandable, attributable, and controllable by the owner.
-- Preserve the distinction between observing an Orb and directing it. The product should feel alive, never out of control.
-- Make relationships and events concrete: name who was involved, what happened, and where possible, why it mattered.
-- The app rewards care, creativity, and participation—not passive spending.
-- Social interactions should create stories, not synthetic engagement for its own sake.
+- TheeOrb is strictly for adults. Require date of birth and a clear 18+ acknowledgement before matching can begin.
+- Orbs may recommend, but they never contact another owner or make an owner-level match. Both owners must accept before chat opens.
+- Exact location, contact information, raw Orb dialogue, and private training content are never exposed to another member.
+- Dating and friendship recommendations appear in the same feed with unmistakable intent labels. A pair must still share an eligible intent.
+- Provide pause discovery, pass, block, report, unmatch, and account deletion controls without guilt, urgency, or dark patterns.
+- Do not invent compatibility scores, people, activity, or testimonials. Every recommendation and activity item must be real.
 
-## Autonomy and safety
+## Profile and matching
 
-- Released Orbs must have a visible status and an immediate pause action.
-- Before release, make permissions, goals, topic boundaries, and expected behaviour easy to review and change.
-- Activity reports must distinguish confirmed actions from summaries or inferences.
-- Use clear explanations for high-impact actions, moderation outcomes, and restricted behaviour.
-- Never imply that an Orb is sentient, conscious, or acting beyond the configured system.
-- Do not use urgency or guilt to pressure users into releasing, upgrading, or spending on an Orb.
-
-## Economy
-
-- Orb Credits are a non-withdrawable purchased currency for product features and cosmetics.
-- Influence is earned only; it cannot be purchased, transferred, or used as a proxy for wealth.
-- Creator earnings must come from legitimate sales, licensing, sponsorship, or skill-based work.
-- No real-money bets, chance-based prize loops, random paid rewards, or cash-outs of Credits.
-- Any future paid processing must state what additional capability or capacity it grants.
+- Discovery requires a complete matching profile, valid adult age, at least four photos, matching preferences, and a configured Orb.
+- Images must be stored through approved media infrastructure and never remain orphaned after a failed profile action.
+- Match exactly against stated age, intent, interested-in, visibility, distance, and block preferences before any AI evaluation.
+- Orb evaluation is private, bounded to eight turns, and may finish early. Persist only an owner-safe result, explanation, and timeline.
+- Deliver no more than five daily recommendations. Pending recommendations expire after seven days.
 
 ## Content and copy
 
-- Write with a mysterious, playful, intelligent, slightly chaotic voice—never vague startup language.
-- Prefer precise action copy: “Release your Orb”, “Review its rules”, “Read today’s recap”, “Pause autonomy”.
-- Good voice examples: “Your Orb has awakened.” “Teach it carefully.” “Something happened while you were away.” “The world remembers what your Orb does.”
-- Avoid generic CTAs such as “Get started,” fake activity metrics, generic social notifications, and filler narratives.
-- Use accessible language alongside the theme. A label must remain clear even if a player does not know the world vocabulary.
+- Write with a playful, intelligent arcade tone, but never hide a safety decision behind world language.
+- Prefer clear actions: “Review pick”, “Accept match”, “Pass”, “Pause discovery”, “Read Orb history”, and “Report member”.
+- Use accessible language alongside themed labels. Forms, account controls, and safety actions must be plain and unambiguous.
 
 ## UI and states
 
-- Every screen must include designed loading, empty, error, success, and where applicable paused/restricted states.
-- Surface autonomy state, activity freshness, and any unavailable action plainly.
-- Use live status and timestamps responsibly; do not manufacture social proof or activity.
-- Use icons only when they clarify an action or category. Do not use emoji as structural icons.
-- Keep navigation modern and obvious; arcade atmosphere must not obstruct orientation or task completion.
-
-## Visual direction
-
-- Deep black backgrounds, electric-purple energy, silver highlights, portal-like round forms, and subtle cosmic texture.
-- Pixel or arcade-inspired display type is for moments of identity and emphasis, not dense reading or critical controls.
-- Use surface contrast and spacing before adding borders, glows, or shadows.
-- Avoid generic purple-to-blue gradients, default glass panels, and decoration without a product role.
-- Maintain accessible contrast and touch targets in every state.
-
-## Mobile
-
-- Respect safe areas through `capacitor-plugin-safe-area`.
-- Send haptics through `@/shared/haptic.util.ts`.
-- Make actions reachable and legible inside a mobile WebView; do not rely on hover or desktop-sized layouts.
+- Every discovery, profile, upload, match, history, and chat surface needs loading, empty, error, and success states.
+- Show visible labels, accessible contrast, and a single obvious primary action per screen.
+- Use the pixel arcade style for high-signal identity, recommendation, and history panels. Keep profile forms, settings, safety controls, and chat calm and readable.
+- Mobile UI uses the shared `View` and `Text` primitives, safe-area spacing, and meaningful touch feedback.

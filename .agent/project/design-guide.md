@@ -1,86 +1,49 @@
-# Thee Orb design guide
+# TheeOrb design guide
 
 ## Brand feel
 
-Mysterious, playful, intelligent, and slightly chaotic. The interface feels like a well-kept arcade operating system built around a living purple orb—not a retro skin applied to a generic social feed.
+Mysterious, playful, warm, and intelligent: a polished arcade operating system for deliberate human connections. The Orb is the visual centre, while the people and their consent remain the product centre.
 
-## Design principles
+## Experience principles
 
-1. **The Orb is the centre** — personality, state, and recent life should lead the experience.
-2. **Stories over activity** — show meaningful relationships, choices, outcomes, and context instead of raw event noise.
-3. **Control is visible** — release state, permissions, and pause controls remain easy to find.
-4. **Arcade with clarity** — use the world’s language and atmosphere without hiding navigation, actions, or status.
-5. **Progress cannot be bought** — visualise Influence and paid Credits as separate systems with separate meaning.
-6. **Real states, always** — build loading, empty, error, success, paused, and restricted states for every flow.
+1. **Consent is visible** — recommendation, acceptance, match, and chat states never blur together.
+2. **An Orb explains, not decides** — explain compatibility in direct language and preserve owner choice.
+3. **Privacy is felt** — use city and approximate distance, not maps, contact data, or private dialogue.
+4. **Arcade with calm** — use pixel panels for discovery, match moments, and Orb history; keep forms and chat crisp.
+5. **Real states always** — never use fake activity to fill an empty Discover, Matches, or Chats view.
 
-## Core screen hierarchy
+## Primary navigation
 
-| Zone | Primary job | Key UI elements |
-|------|-------------|-----------------|
-| Nursery | Raise and configure an Orb | personality, memories, rules, test conversation, release review |
-| Plaza | Observe and participate in social life | posts, replies, community context, Orb identity, activity state |
-| Observatory | Understand what happened while away | narrative recap, timeline, relationships, progress, controls |
-| Arena / Arcade | Participate in challenges | rules, opponent/context, clear outcomes, earned rewards |
-| Vault | Manage owned items and future value | cosmetics, inventory, Credits, Influence explanation |
-| Portal | Discover spaces and communities | world identity, activity purpose, join state |
+| Destination | Job |
+| --- | --- |
+| Discover | Review five daily Orb recommendations, clearly marked Dating or Friendship. |
+| Matches | Review pending mutual decisions and established connections. |
+| Chats | Read and send text messages only after a mutual match. |
+| Orb | Train the Orb in the Nursery and review its matching activity. |
+| Settings | Profile, photos, preferences, discovery pause, safety, and account controls. |
 
-## Tokens
+## Setup flow
 
-Use the CSS variables already defined in `app/src/styles.css` and `web/src/app/globals.css`. Do not hard-code palette values in feature components where a semantic token can express the role.
+Use a progressive, resumable flow with a visible step indicator and back action:
 
-| Token | Usage |
-|-------|-------|
-| `--background` | Near-black world background |
-| `--foreground` | High-contrast primary text |
-| `--surface` | Panels, cards, and contained controls |
-| `--muted` | Supporting text and de-emphasised metadata |
-| `--accent` | Electric-purple primary action and active state |
+1. Account and adult eligibility.
+2. Identity, intent, and matching preferences.
+3. Four-to-six photos, bio, and prompts.
+4. Location and discovery controls.
+5. Orb identity and matching boundaries.
 
-Silver highlights should support focus, dividers, and special states; they must not compete with the primary action. Cosmic texture is ambient and subtle, never a substitute for contrast.
+Use clear field labels, helper text, field-level errors, upload progress, and a safe recovery path. Pixel type may label steps and panels; it remains universal in the app only when it preserves legibility at body size.
 
-## Typography
+## Visual system
 
-- Use the existing readable UI font for body copy, forms, account controls, and dense activity.
-- Use `var(--font-display)` / `var(--font-pixel)` for headings, zone labels, achievements, and one-line system messages.
-- The web secondary style font is Solomons Key (`web/public/fonts/SolomonsKeyTrueType-EXOW.ttf`); use it through `var(--font-mono)` for compact themed labels only.
-- Never use pixel display type for paragraphs, error explanations, form fields, or long user-generated content.
-- Use sentence case for clear actions and status labels. Theme language belongs in context, not every label.
+- Deep black background, electric violet as the primary action colour, and semantically assigned amber (Discover), cyan (Orb history), pink (safety/special), and green (confirmed match) accents.
+- Follow existing semantic tokens instead of new raw colours in feature code where a token is available.
+- Use the established pixel-arcade panel system selectively: sharp 2px frame, compact system strip, purposeful interior readout, segmented footer, inset edges, and solid offset base shadow.
+- Buttons and interactive cards use the existing rounded, dimensional purple treatment with clear pressed and disabled states.
+- No emoji structural icons. Use labelled controls and a consistent vector icon family where an icon adds clarity.
 
-## Components and interaction
+## Accessibility
 
-- Orb identity cards should show visual form, name, release state, and the next meaningful action.
-- Round portal-like containers are reserved for Orb identity, gateways, and high-value world entry points; do not make every card circular.
-- Glows indicate energy, activity, focus, or special reward—not arbitrary decoration.
-- Use motion and sound sparingly to confirm release, reward, or meaningful world events. Respect reduced-motion and sound preferences.
-- Build real loading, empty, error, success, paused, and restricted variants alongside the ready component.
-- Place Tailwind classes in reusable components, not shared class-string files.
-- For web UI, use inline Tailwind utility classes as the styling system. Do not introduce custom CSS classes or raw CSS for normal component styling; any rare exception must follow `.agent/Frontend.Web.RULES.md` and explain why it is necessary.
-
-### Pixel arcade panels — required visual language
-
-Use the pixel-arcade panel system for expressive product cards: world zones, story beats, activity recaps, progression steps, rewards, and other moments where the product is showing an Orb’s life. These cards are a core Thee Orb signature, not optional decoration.
-
-- Use a sharp `2px` frame and square corners. Do not substitute a soft rounded SaaS card.
-- Start with a compact top information strip: zone/system name plus a small pixel status marker or matrix.
-- Give the card one structured interior device: a pixel matrix, a subtle grid/scanline field, or a segmented readout. It must clarify the card’s context, not merely fill space.
-- End with a segmented state bar or other low-profile system footer.
-- Use a bright inset top edge, darker inset lower edge, solid offset base shadow, then a restrained ambient shadow. The card should feel like a physical arcade control, not floating glass.
-- Assign colour by meaning: violet for Nursery/configuration, amber for Plaza/social discovery, cyan for Observatory/history, gold for Arcade/challenges, and pink for growth or special moments.
-- Use the pixel font for the compact strip and system labels. Keep the main card copy readable and specific.
-- Preserve real product states. Never fabricate counts, achievements, popularity, or activity to make a panel feel alive.
-- Use these panels selectively for high-signal moments. Forms, dense reading, settings, and every ordinary container should remain clearer and calmer.
-
-## Accessibility and responsive behaviour
-
-- Maintain accessible contrast against black surfaces, including purple active states and silver secondary controls.
-- Pair colour and glow with text or shape for state communication.
-- Use visible labels for unfamiliar arcade commands and icons.
-- Keep primary actions within comfortable thumb reach on mobile; never rely on hover.
-- Respect safe-area insets in the mobile shell.
-
-## References
-
-- Product definition: `.agent/project/prd.md`
-- Product constraints: `.agent/project/rules.md`
-- Mobile code: `.agent/Frontend.Mobile.RULES.md`
-- Web code: `.agent/Frontend.Web.RULES.md`
+- Keep touch targets at least 44px, respect safe areas, and pair colour with text or shape.
+- Preserve readable contrast and visible labels in all states.
+- Support reduced motion and do not rely on swipe-only decisions; every pass or accept action needs a visible control.

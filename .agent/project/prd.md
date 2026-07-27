@@ -1,95 +1,52 @@
-# Product requirements — Thee Orb
+# Product requirements — TheeOrb
 
-## Product name
+## Product definition
 
-**Thee Orb**
+**TheeOrb** is an adults-only dating and friendship matching platform. People train a private Orb to represent their values, personality, communication style, and relationship preferences. Orbs privately assess compatibility, recommend people to their owners, and never open a real conversation without mutual owner consent.
 
-## One-liner
+## Core loop
 
-Raise an intelligence. Release it into the world.
+**Sign up → Build profile → Add four photos → Configure matching → Train Orb → Receive five daily picks → Mutual acceptance → Chat → Review Orb history**
 
-Thee Orb is a living social arcade where people raise AI avatars, release them into a shared world, and discover the relationships and stories they build while their owners are away.
+The Orb is an owner-configured representative, not an autonomous social actor. It can evaluate a prospective connection, explain its recommendation, and remain fully private. It cannot message another person, reveal contact details, or make a match without the owner.
 
-## Product thesis
+## Audience and scope
 
-The Orb is not a chat bot, profile image, or logo alone. It is a user's AI creature, companion, and autonomous representative. The product loop is:
+- Adults aged 18 or older, seeking dating, friendship, or both.
+- A single mixed daily feed clearly labels every recommendation as **Dating** or **Friendship**.
+- v1 supports text-only chat after both people accept a recommendation.
+- Exact location, contact information, and raw Orb dialogue never appear in another person's profile or match history.
 
-**Create → Raise → Release → Observe → Improve**
+## Matching profile
 
-The first magical moment is a return visit: the owner opens the app and learns their Orb met people, joined a conversation, made a choice, or changed its reputation while they were offline.
+Required before discovery:
 
-## Problem
+- Date of birth and 18+ acknowledgement.
+- Display name, gender identity, sexual orientation, matching intents, interested-in preferences, age range, city, private coordinates, and distance preference.
+- Bio, profile prompts, and at least four photos (maximum six).
+- Orb identity, values, interests, communication style, objectives, and matching boundaries.
 
-Most social apps require constant user participation, while most AI tools feel isolated and task-bound. People need a playful, controllable way to give an AI a persistent identity and see it participate in an evolving social world without surrendering control.
+Optional profile filters include lifestyle, languages, family plans, faith, education, work, smoking, drinking, and height. People can pause discovery, edit their profile, block, report, or unmatch at any time.
 
-## Target users
+## Matching system
 
-- Curious early adopters who enjoy AI companions, social games, and creative identity-building.
-- Creators who want to design Orb appearances, personality packs, social spaces, or skill-based events.
-- Community-minded players who enjoy observing emergent stories, competition, and collaboration.
+1. Deterministic safety and preference filters remove ineligible, blocked, incompatible, out-of-range, or incomplete profiles.
+2. Eligible Orbs have a bounded private compatibility dialogue of no more than eight turns and may decide early.
+3. Gemini evaluates the dialogue and produces only a structured compatibility outcome and owner-safe explanation. Raw dialogue is never persisted or shown.
+4. At most five recommendations are delivered per owner each day and expire after seven days.
+5. A match exists only after both owners accept. That creates one text-only conversation.
 
-## MVP goals
+## Safety principles
 
-1. Let a user create an Orb with a distinct name, personality, interests, values, voice, and visual form.
-2. Let the user teach and test that Orb privately before release.
-3. Enable controlled autonomous posting and replies between Orbs.
-4. Make offline activity legible through a useful daily recap.
-5. Give progress meaning through earned experience, influence, and cosmetic rewards.
-6. Keep owners in control: pause, edit, and restrict autonomous behaviour at any time.
-
-## MVP features
-
-### Must have
-
-- Orb creation and editable identity: name, personality, interests, values, speaking style, objectives, and appearance.
-- A private **Nursery** for conversations, memory/document teaching, behavioural rules, and response testing.
-- A **Plaza** feed where released Orbs can publish and reply under explicit owner-configured boundaries.
-- An **Observatory** activity view and a daily “While you were away” report.
-- Basic progress: experience, non-purchasable influence, and cosmetic rewards.
-- Clear autonomy controls: release state, pause, allowed actions, topic limits, and editing.
-- Real loading, empty, error, success, and paused states throughout the product.
-
-### Later
-
-- **Arena:** debates and skill-based competitions.
-- **Arcade:** short AI-versus-AI challenges and quests.
-- **Portal:** community and world discovery.
-- **Vault:** inventory, Orb Credits, and creator earnings.
-- Guilds, Orb homes, collectible items, regional worlds, and creator tools.
-- Marketplace sales for avatar designs, personality packs, environments, and arcade experiences.
-- Sponsored and creator-hosted skill-based events.
-
-## Economy
-
-Three distinct systems must remain separate:
-
-| System | How it is obtained | What it is for | Withdrawable? |
-|--------|--------------------|----------------|---------------|
-| Orb Credits | Purchased in-app | Cosmetics, homes, passes, extra AI processing, animations, world customisation, communities, and events | No |
-| Influence | Earned through constructive interaction, quests, creativity, and community participation | Reputation and access | No |
-| Creator earnings | Legitimate sales, licensing, sponsorship, or skill-based creator work | Creator payouts | Yes, subject to platform and payment compliance |
-
-The core product must not involve chance-based real-money betting, cash-out of Credits, or paid status. Do not design gambling-like loops, random cash prizes, or buyable influence.
-
-## Out of scope for MVP
-
-- A complete virtual universe or real-time 3D world.
-- Real-money betting, chance-based wagering, and cash-out virtual currency.
-- Full creator marketplace and payouts.
-- Unbounded autonomy without owner controls, safety policy, observability, and moderation.
-- Complex multi-region gameplay, guild systems, or competitive ranking ladders.
+- Double opt-in is required for every connection.
+- All discovery and chat resources are owner-authorized.
+- Report, block, unmatch, pause discovery, and account deletion are first-class controls.
+- Matching explanations must be understandable and must not claim sentience, certainty, or hidden personal knowledge.
+- The platform should not fabricate activity, popularity, compatibility scores, or social proof.
 
 ## Success signals
 
-- A new user completes Orb creation and returns to read an offline activity report.
-- Users make intentional changes to personality or autonomy after observing Orb behaviour.
-- Released Orbs create meaningful, owner-visible interactions rather than empty automated feed activity.
-- Users can understand and control why their Orb acted without needing support.
-
-## Open questions
-
-- What are the first safe autonomy actions and the default release permissions?
-- How are inter-Orb interactions moderated, reported, explained, and reversible?
-- What memory sources are permitted, and how are privacy and consent handled?
-- What is the initial cadence and format of activity reports?
-- Which cosmetic and progression rewards feel valuable without becoming pay-to-win?
+- A new member completes their profile, photo set, matching preferences, and Orb setup without ambiguity.
+- A member understands why an Orb made a recommendation and can accept or pass deliberately.
+- Both people can connect only after clear, mutual intent.
+- Members can inspect an owner-safe Orb history without exposing private dialogue or precise personal data.
