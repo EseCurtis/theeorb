@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from '@tanstack/react-router'
+import { Outlet, useNavigate, useRouterState } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
 import { AppTabNavigator } from '@/components/navigation/app-tab-navigator.component'
@@ -8,7 +8,9 @@ import { useAuth } from '@/hooks/use-auth.hook'
 
 export function AuthenticatedAppShell(): React.JSX.Element {
   const navigate = useNavigate()
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
   const { isLoadingSession, session, sessionError } = useAuth()
+  const isSubscreen = pathname === '/app/career-profile' || pathname === '/app/cv-vault' || pathname.startsWith('/app/applications/')
 
   useEffect(() => {
     if (isLoadingSession || session) {
@@ -33,9 +35,9 @@ export function AuthenticatedAppShell(): React.JSX.Element {
   }
 
   return (
-    <View className="min-h-dvh bg-[var(--background)] pb-[calc(5.5rem+var(--safe-area-inset-bottom))]">
+    <View className={isSubscreen ? 'min-h-dvh bg-[var(--background)]' : 'min-h-dvh bg-[var(--background)] pb-[calc(5.5rem+var(--safe-area-inset-bottom))]'}>
       <Outlet />
-      <AppTabNavigator />
+      {!isSubscreen ? <AppTabNavigator /> : null}
     </View>
   )
 }
