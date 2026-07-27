@@ -140,6 +140,53 @@
           "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
         }
       }
+    },
+    "/orb/nursery": {
+      "get": {
+        "tags": ["Orb"],
+        "summary": "Read the owner's private Nursery",
+        "description": "Returns the private Orb identity, owner-written behaviour rules, and recent Nursery lessons. It does not expose public or released activity.",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "Nursery retrieved", "schema": { "$ref": "#/definitions/NurseryResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "404": { "description": "Orb setup is required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/orb/nursery/teach": {
+      "post": {
+        "tags": ["Orb"],
+        "summary": "Teach or test an Orb privately",
+        "description": "Sends a private owner message to the Orb's configured Nursery voice, records the lesson, and does not trigger public or autonomous behaviour.",
+        "security": [{ "Bearer": [] }],
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/TeachOrbRequest" } }],
+        "responses": {
+          "201": { "description": "Private lesson recorded", "schema": { "$ref": "#/definitions/OrbLessonResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "404": { "description": "Orb setup is required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "503": { "description": "Nursery response unavailable", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
+    },
+    "/orb/nursery/rules": {
+      "put": {
+        "tags": ["Orb"],
+        "summary": "Set private Nursery behaviour rules",
+        "description": "Updates owner-controlled rules used only when privately testing the Orb in the Nursery.",
+        "security": [{ "Bearer": [] }],
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/UpdateOrbRulesRequest" } }],
+        "responses": {
+          "200": { "description": "Nursery rules saved", "schema": { "$ref": "#/definitions/OrbResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "404": { "description": "Orb setup is required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -202,7 +249,53 @@
         "speakingStyle": { "type": "string", "example": "Warm, precise, and playful" },
         "objective": { "type": "string", "example": "Find thoughtful people to learn with" },
         "visualForm": { "type": "string", "enum": ["ECLIPSE", "LUMEN", "NOVA"] },
+        "behaviourRules": { "type": "string", "example": "Ask before changing the topic. Never discuss private details." },
         "releaseStatus": { "type": "string", "enum": ["DRAFT"], "example": "DRAFT" }
+      }
+    },
+    "TeachOrbRequest": {
+      "type": "object",
+      "required": ["message"],
+      "properties": {
+        "message": { "type": "string", "minLength": 1, "maxLength": 1000, "example": "What kind of music would you like to explore first?" }
+      }
+    },
+    "UpdateOrbRulesRequest": {
+      "type": "object",
+      "required": ["behaviourRules"],
+      "properties": {
+        "behaviourRules": { "type": "string", "maxLength": 600, "example": "Ask before changing the topic. Never discuss private details." }
+      }
+    },
+    "OrbLesson": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "example": "clxlesson0001" },
+        "ownerMessage": { "type": "string", "example": "What kind of music would you like to explore first?" },
+        "orbReply": { "type": "string", "example": "I would begin with the people who make strange sounds feel like a place to return to." },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "OrbLessonResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": { "type": "object", "properties": { "lesson": { "$ref": "#/definitions/OrbLesson" } } }
+      }
+    },
+    "NurseryResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "orb": { "$ref": "#/definitions/OrbIdentity" },
+            "lessons": { "type": "array", "items": { "$ref": "#/definitions/OrbLesson" } }
+          }
+        }
       }
     },
     "OrbResponse": {

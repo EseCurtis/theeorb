@@ -12,8 +12,9 @@ function mapVisualForm(visualForm: string): OrbVisualForm {
   throw new Error('Stored Orb visual form is invalid');
 }
 
-function mapOrb(orb: Orb): OrbIdentity {
+export function mapOrb(orb: Orb): OrbIdentity {
   return {
+    behaviourRules: orb.behaviourRules,
     id: orb.id,
     interests: orb.interests,
     name: orb.name,
