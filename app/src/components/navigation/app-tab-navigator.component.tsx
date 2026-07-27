@@ -17,6 +17,13 @@ export function AppTabNavigator(): React.JSX.Element {
         <Link
           activeProps={{ className: 'text-[var(--foreground)]' }}
           className="flex min-w-20 flex-col items-center gap-1 text-[var(--muted)]"
+          to="/app/nursery"
+        >
+          <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.08em]">NURSERY</Text>
+        </Link>
+        <Link
+          activeProps={{ className: 'text-[var(--foreground)]' }}
+          className="flex min-w-20 flex-col items-center gap-1 text-[var(--muted)]"
           to="/app/settings"
         >
           <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.08em]">SETTINGS</Text>

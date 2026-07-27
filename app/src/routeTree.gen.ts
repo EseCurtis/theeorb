@@ -17,6 +17,7 @@ import { Route as AuthSignInRouteImport } from './routes/auth/sign-in'
 import { Route as AuthResetRouteImport } from './routes/auth/reset'
 import { Route as AuthRecoveryRouteImport } from './routes/auth/recovery'
 import { Route as AppSettingsRouteImport } from './routes/app/settings'
+import { Route as AppNurseryRouteImport } from './routes/app/nursery'
 import { Route as AppHomeRouteImport } from './routes/app/home'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -59,6 +60,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => AppRoute,
 } as any)
+const AppNurseryRoute = AppNurseryRouteImport.update({
+  id: '/nursery',
+  path: '/nursery',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppHomeRoute = AppHomeRouteImport.update({
   id: '/home',
   path: '/home',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/home': typeof AppHomeRoute
+  '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
   '/auth/recovery': typeof AuthRecoveryRoute
   '/auth/reset': typeof AuthResetRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/home': typeof AppHomeRoute
+  '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
   '/auth/recovery': typeof AuthRecoveryRoute
   '/auth/reset': typeof AuthResetRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/home': typeof AppHomeRoute
+  '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
   '/auth/recovery': typeof AuthRecoveryRoute
   '/auth/reset': typeof AuthResetRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/onboarding'
     | '/app/home'
+    | '/app/nursery'
     | '/app/settings'
     | '/auth/recovery'
     | '/auth/reset'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/onboarding'
     | '/app/home'
+    | '/app/nursery'
     | '/app/settings'
     | '/auth/recovery'
     | '/auth/reset'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/onboarding'
     | '/app/home'
+    | '/app/nursery'
     | '/app/settings'
     | '/auth/recovery'
     | '/auth/reset'
@@ -203,6 +215,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/nursery': {
+      id: '/app/nursery'
+      path: '/nursery'
+      fullPath: '/app/nursery'
+      preLoaderRoute: typeof AppNurseryRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/home': {
       id: '/app/home'
       path: '/home'
@@ -215,11 +234,13 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppHomeRoute: typeof AppHomeRoute
+  AppNurseryRoute: typeof AppNurseryRoute
   AppSettingsRoute: typeof AppSettingsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppHomeRoute: AppHomeRoute,
+  AppNurseryRoute: AppNurseryRoute,
   AppSettingsRoute: AppSettingsRoute,
 }
 
