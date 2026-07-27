@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router'
 
 import { OrbSetupForm } from '@/components/orb/orb-setup-form.component'
+import { NurseryWorkbench } from '@/components/orb/nursery-workbench.component'
 import { ButtonPrimary } from '@/components/common/button-primary.component'
 import { ButtonSecondary } from '@/components/common/button-secondary.component'
 import { Panel } from '@/components/common/panel.component'
@@ -8,12 +9,25 @@ import { ScreenLayout } from '@/components/layout/screen-layout.component'
 import { Text } from '@/components/layout/text.component'
 import { View } from '@/components/layout/view.component'
 import { useOrb } from '@/hooks/use-orb.hook'
+import { useNursery } from '@/hooks/use-nursery.hook'
 import { hapticFeedback } from '@/shared/haptic.util'
 import type { CreateOrbInput } from '@/shared/types/orb.types'
 
 export function OrbSetupScreen(): React.JSX.Element {
   const navigate = useNavigate()
   const { createOrb, createOrbError, isCreatingOrb, isLoadingOrb, orb, orbError, refetchOrb } = useOrb()
+  const {
+    isLoadingNursery,
+    isSavingRules,
+    isTeachingOrb,
+    nursery,
+    nurseryError,
+    refetchNursery,
+    saveRules,
+    saveRulesError,
+    teachOrb,
+    teachOrbError,
+  } = useNursery({ enabled: Boolean(orb) })
 
   async function handleCreateOrb(input: CreateOrbInput): Promise<void> {
     try {
@@ -21,6 +35,28 @@ export function OrbSetupScreen(): React.JSX.Element {
       await hapticFeedback.light()
     } catch {
       await hapticFeedback.selection()
+    }
+  }
+
+  async function handleSaveRules(behaviourRules: string): Promise<boolean> {
+    try {
+      await saveRules({ behaviourRules })
+      await hapticFeedback.light()
+      return true
+    } catch {
+      await hapticFeedback.selection()
+      return false
+    }
+  }
+
+  async function handleTeach(message: string): Promise<boolean> {
+    try {
+      await teachOrb({ message })
+      await hapticFeedback.light()
+      return true
+    } catch {
+      await hapticFeedback.selection()
+      return false
     }
   }
 
@@ -46,6 +82,43 @@ export function OrbSetupScreen(): React.JSX.Element {
   }
 
   if (orb) {
+    if (isLoadingNursery) {
+      return (
+        <ScreenLayout description="Opening the private space where you teach and test your Orb." title="The Nursery">
+          <Panel label="NURSERY // CONNECTING" tone="violet">
+            <Text className="text-[0.66rem] leading-6 tracking-[0.05em] text-[var(--muted)]">RESTORING PRIVATE LESSONS...</Text>
+          </Panel>
+        </ScreenLayout>
+      )
+    }
+
+    if (nurseryError) {
+      return (
+        <ScreenLayout description="The Nursery could not restore its private record right now." title="The Nursery">
+          <Panel label="NURSERY // SIGNAL LOST" tone="pink">
+            <Text className="text-sm leading-6 text-[var(--muted)]">{nurseryError.message}</Text>
+            <ButtonSecondary onClick={() => void refetchNursery()}>TRY AGAIN</ButtonSecondary>
+          </Panel>
+        </ScreenLayout>
+      )
+    }
+
+    if (nursery) {
+      return (
+        <ScreenLayout description="Teach carefully, set boundaries, and test how your Orb understands them." title="The Nursery">
+          <NurseryWorkbench
+            isSavingRules={isSavingRules}
+            isTeaching={isTeachingOrb}
+            nursery={nursery}
+            onSaveRules={handleSaveRules}
+            onTeach={handleTeach}
+            rulesError={saveRulesError}
+            teachError={teachOrbError}
+          />
+        </ScreenLayout>
+      )
+    }
+
     return (
       <ScreenLayout description="Your Orb is awake, private, and waiting for its first lesson." title="The Nursery">
         <Panel label="ORB // PRIVATE DRAFT" tone="violet">
