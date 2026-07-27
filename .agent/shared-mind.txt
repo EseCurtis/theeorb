@@ -3,9 +3,11 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — TheeOrb is now a private AI job-application copilot across product guidance, server APIs, data model, and mobile workspace.
+DONE — TheeOrb is a private AI job-application copilot with a calmer, route-based mobile workspace.
 
 ## LAST SESSION
+- Reduced the default mobile panel chrome to quiet rounded surfaces; the pixel/arcade treatment is now reserved for deliberate high-signal moments instead of every form section.
+- Split the previous stacked Career flow into a Career hub, Professional Profile screen, and CV Vault screen. Split application review/send from the tracker list into its own route.
 - Pivoted product guidance from matching to career applications: private CV/profile, Career Orb, Job Desk extraction, reviewed cover-letter drafts, Gmail review/send, and application history.
 - Added forward migration `20260727074125_pivot_to_career_copilot` which preserves prior history while dropping the now-unused matching/chat tables and creating career profile, private CV, job listing, application, Gmail connection, and OAuth-state records.
 - Added protected `/api/v1` career, job-listing, application, and Gmail OAuth endpoints, documented in Swagger. CV uploads use authenticated Cloudinary raw uploads; server-side signed retrieval attaches the selected original CV only during explicit Gmail sends.
@@ -17,6 +19,7 @@ DONE — TheeOrb is now a private AI job-application copilot across product guid
 - Configure `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, `GMAIL_REDIRECT_URI`, and a base64 32-byte `GMAIL_TOKEN_ENCRYPTION_KEY` for end-to-end upload/OAuth/send verification.
 - Add focused integration tests for CV ownership, Gemini failures, Gmail OAuth state, encrypted tokens, send failures, and direct MIME attachment delivery once provider credentials are available.
 - Add richer profile editors for experience, education, links, CV parsing, job-detail correction, and attachment selection in the mobile UI.
+- Apply the quiet-panel/route-based pattern to the remaining Career Orb setup if it still feels too dense after device review.
 
 ## BLOCKERS
 - Provider credentials and a mobile OAuth return/deep-link configuration are not present, so real Cloudinary uploads, Gmail authorization, and delivery cannot be exercised locally.
@@ -39,6 +42,7 @@ DONE — TheeOrb is now a private AI job-application copilot across product guid
 - `DATABASE_URL=... pnpm exec prisma migrate deploy` against clean SQLite — blocked by empty Prisma schema-engine error before DB creation
 - `pnpm --dir server run build` — pass
 - `pnpm --dir app run build` — pass
+- `pnpm --dir app run build` after quieter panels and route split — pass
 - `.agent/scripts/validate-api-contract.sh` — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
