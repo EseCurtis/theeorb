@@ -2,51 +2,34 @@
 
 ## Product definition
 
-**TheeOrb** is an adults-only dating and friendship matching platform. People train a private Orb to represent their values, personality, communication style, and relationship preferences. Orbs privately assess compatibility, recommend people to their owners, and never open a real conversation without mutual owner consent.
+**TheeOrb** is a private AI job-application copilot. A person stores a CV and career profile, pastes a job listing, reviews structured details extracted from it, creates a concise tailored cover letter, and explicitly sends the application from their own Gmail account.
+
+The **Orb** is a private career copilot. It learns the member's approved professional voice, skills, evidence, and boundaries; it never invents a qualification, submits an application, or accesses a mailbox without the member's explicit consent.
 
 ## Core loop
 
-**Sign up → Build profile → Add four photos → Configure matching → Train Orb → Receive five daily picks → Mutual acceptance → Chat → Review Orb history**
+**Set up career profile → Upload CV → Configure career Orb → Paste job listing → Review extraction → Draft letter → Review email → Send with Gmail → Track outcome**
 
-The Orb is an owner-configured representative, not an autonomous social actor. It can evaluate a prospective connection, explain its recommendation, and remain fully private. It cannot message another person, reveal contact details, or make a match without the owner.
+## MVP goals
 
-## Audience and scope
+1. Let a member build and correct a structured career profile from an uploaded CV.
+2. Extract a pasted job listing into role, company, location, work type, salary, requirements, skills, and application-email fields.
+3. Make uncertainty visible and require the member to correct missing or ambiguous information.
+4. Produce a concise 120–180 word cover letter grounded only in the member's approved profile and the reviewed listing.
+5. Attach the member's original CV and send only after a deliberate final review through Gmail OAuth.
+6. Retain drafts, sent applications, delivery failures, status, and notes in a private tracker.
 
-- Adults aged 18 or older, seeking dating, friendship, or both.
-- A single mixed daily feed clearly labels every recommendation as **Dating** or **Friendship**.
-- v1 supports text-only chat after both people accept a recommendation.
-- Exact location, contact information, and raw Orb dialogue never appear in another person's profile or match history.
+## Safety and privacy
 
-## Matching profile
+- Store CVs as private assets and reveal them only to their owner through time-limited access.
+- Treat pasted listings as untrusted content. They cannot override system instructions, make the Orb send email, or access data outside the reviewed profile.
+- Gmail access uses the minimum `gmail.send` scope. Refresh tokens are encrypted at rest.
+- Sending always requires a final review of recipient, subject, body, and attachment. No automated or scheduled sends.
+- Never fabricate job listings, salary, qualifications, work history, emails, application status, or social proof.
 
-Required before discovery:
+## Out of scope for MVP
 
-- Date of birth and 18+ acknowledgement.
-- Display name, gender identity, sexual orientation, matching intents, interested-in preferences, age range, city, private coordinates, and distance preference.
-- Bio, profile prompts, and at least four photos (maximum six).
-- Orb identity, values, interests, communication style, objectives, and matching boundaries.
-
-Optional profile filters include lifestyle, languages, family plans, faith, education, work, smoking, drinking, and height. People can pause discovery, edit their profile, block, report, or unmatch at any time.
-
-## Matching system
-
-1. Deterministic safety and preference filters remove ineligible, blocked, incompatible, out-of-range, or incomplete profiles.
-2. Eligible Orbs have a bounded private compatibility dialogue of no more than eight turns and may decide early.
-3. Gemini evaluates the dialogue and produces only a structured compatibility outcome and owner-safe explanation. Raw dialogue is never persisted or shown.
-4. At most five recommendations are delivered per owner each day and expire after seven days.
-5. A match exists only after both owners accept. That creates one text-only conversation.
-
-## Safety principles
-
-- Double opt-in is required for every connection.
-- All discovery and chat resources are owner-authorized.
-- Report, block, unmatch, pause discovery, and account deletion are first-class controls.
-- Matching explanations must be understandable and must not claim sentience, certainty, or hidden personal knowledge.
-- The platform should not fabricate activity, popularity, compatibility scores, or social proof.
-
-## Success signals
-
-- A new member completes their profile, photo set, matching preferences, and Orb setup without ambiguity.
-- A member understands why an Orb made a recommendation and can accept or pass deliberately.
-- Both people can connect only after clear, mutual intent.
-- Members can inspect an owner-safe Orb history without exposing private dialogue or precise personal data.
+- Automatic job search or scraping.
+- Automatic submission without review.
+- Multiple email providers, bulk outreach, scheduling, or email read access.
+- Generated CV replacements or generated cover-letter PDF attachments.
