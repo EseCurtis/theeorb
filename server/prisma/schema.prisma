@@ -8,32 +8,43 @@ datasource db {
 }
 
 model User {
-  id             String               @id @default(cuid())
-  email          String               @unique
-  displayName    String
-  passwordHash   String
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
-  orb            Orb?
-  passwordResets PasswordResetToken[]
+  id               String               @id @default(cuid())
+  email            String               @unique
+  displayName      String
+  passwordHash     String
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  orb              Orb?
+  datingProfile    DatingProfile?
+  passwordResets   PasswordResetToken[]
+  matchSessionsAsA OrbMatchSession[]    @relation("OrbMatchSessionUserA")
+  matchSessionsAsB OrbMatchSession[]    @relation("OrbMatchSessionUserB")
+  matchesAsA       ConnectionMatch[]    @relation("ConnectionMatchUserA")
+  matchesAsB       ConnectionMatch[]    @relation("ConnectionMatchUserB")
+  sentMessages     ChatMessage[]        @relation("ChatMessageSender")
+  blocksCreated    UserBlock[]          @relation("UserBlockCreator")
+  blocksReceived   UserBlock[]          @relation("UserBlockTarget")
+  reportsCreated   SafetyReport[]       @relation("SafetyReportCreator")
 }
 
 model Orb {
-  id             String      @id @default(cuid())
-  userId         String      @unique
-  name           String
-  personality    String
-  interests      String
-  values         String
-  speakingStyle  String
-  objective      String
-  visualForm     String
-  behaviourRules String      @default("")
-  releaseStatus  String      @default("DRAFT")
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
-  lessons        OrbLesson[]
-  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id               String            @id @default(cuid())
+  userId           String            @unique
+  name             String
+  personality      String
+  interests        String
+  values           String
+  speakingStyle    String
+  objective        String
+  visualForm       String
+  behaviourRules   String            @default("")
+  releaseStatus    String            @default("DRAFT")
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  lessons          OrbLesson[]
+  matchSessionsAsA OrbMatchSession[] @relation("OrbMatchSessionOrbA")
+  matchSessionsAsB OrbMatchSession[] @relation("OrbMatchSessionOrbB")
+  user             User              @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model OrbLesson {
@@ -48,13 +59,159 @@ model OrbLesson {
 }
 
 model PasswordResetToken {
-  id        String   @id @default(cuid())
-  tokenHash String   @unique
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
   expiresAt DateTime
   usedAt    DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+model DatingProfile {
+  id                String         @id @default(cuid())
+  userId            String         @unique
+  dateOfBirth       DateTime
+  genderIdentity    String
+  sexualOrientation String
+  intents           String
+  interestedIn      String
+  minimumAge        Int
+  maximumAge        Int
+  city              String
+  latitude          Float
+  longitude         Float
+  maximumDistanceKm Int
+  bio               String
+  prompts           String
+  lifestyle         String         @default("{}")
+  isDiscoverable    Boolean        @default(true)
+  completedAt       DateTime?
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  user              User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  photos            ProfilePhoto[]
+
+  @@index([isDiscoverable, completedAt])
+}
+
+model ProfilePhoto {
+  id              String        @id @default(cuid())
+  datingProfileId String
+  cloudinaryId    String        @unique
+  secureUrl       String
+  position        Int
+  createdAt       DateTime      @default(now())
+  datingProfile   DatingProfile @relation(fields: [datingProfileId], references: [id], onDelete: Cascade)
+
+  @@unique([datingProfileId, position])
+  @@index([datingProfileId, position])
+}
+
+model OrbMatchSession {
+  id                 String             @id @default(cuid())
+  userAId            String
+  userBId            String
+  orbAId             String
+  orbBId             String
+  intent             String
+  status             String             @default("PENDING")
+  userADecision      String?
+  userBDecision      String?
+  turnCount          Int
+  compatibilityScore Int
+  summary            String
+  highlights         String
+  expiresAt          DateTime
+  evaluatedAt        DateTime
+  matchedAt          DateTime?
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+  userA              User               @relation("OrbMatchSessionUserA", fields: [userAId], references: [id], onDelete: Cascade)
+  userB              User               @relation("OrbMatchSessionUserB", fields: [userBId], references: [id], onDelete: Cascade)
+  orbA               Orb                @relation("OrbMatchSessionOrbA", fields: [orbAId], references: [id], onDelete: Cascade)
+  orbB               Orb                @relation("OrbMatchSessionOrbB", fields: [orbBId], references: [id], onDelete: Cascade)
+  match              ConnectionMatch?
+  activities         OrbMatchActivity[]
+
+  @@index([userAId, status, expiresAt])
+  @@index([userBId, status, expiresAt])
+}
+
+model OrbMatchActivity {
+  id          String          @id @default(cuid())
+  sessionId   String
+  eventType   String
+  description String
+  createdAt   DateTime        @default(now())
+  session     OrbMatchSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+
+  @@index([sessionId, createdAt])
+}
+
+model ConnectionMatch {
+  id           String            @id @default(cuid())
+  sessionId    String            @unique
+  userAId      String
+  userBId      String
+  intent       String
+  createdAt    DateTime          @default(now())
+  unmatchedAt  DateTime?
+  session      OrbMatchSession   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userA        User              @relation("ConnectionMatchUserA", fields: [userAId], references: [id], onDelete: Cascade)
+  userB        User              @relation("ConnectionMatchUserB", fields: [userBId], references: [id], onDelete: Cascade)
+  conversation ChatConversation?
+
+  @@index([userAId, unmatchedAt])
+  @@index([userBId, unmatchedAt])
+}
+
+model ChatConversation {
+  id        String          @id @default(cuid())
+  matchId   String          @unique
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  match     ConnectionMatch @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  messages  ChatMessage[]
+}
+
+model ChatMessage {
+  id             String           @id @default(cuid())
+  conversationId String
+  senderId       String
+  body           String
+  createdAt      DateTime         @default(now())
+  readAt         DateTime?
+  conversation   ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  sender         User             @relation("ChatMessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+
+  @@index([conversationId, createdAt])
+}
+
+model UserBlock {
+  id        String   @id @default(cuid())
+  creatorId String
+  targetId  String
+  createdAt DateTime @default(now())
+  creator   User     @relation("UserBlockCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+  target    User     @relation("UserBlockTarget", fields: [targetId], references: [id], onDelete: Cascade)
+
+  @@unique([creatorId, targetId])
+  @@index([targetId])
+}
+
+model SafetyReport {
+  id        String   @id @default(cuid())
+  creatorId String
+  targetId  String
+  matchId   String?
+  reason    String
+  details   String?
+  createdAt DateTime @default(now())
+  creator   User     @relation("SafetyReportCreator", fields: [creatorId], references: [id], onDelete: Cascade)
+
+  @@index([targetId, createdAt])
+  @@index([creatorId, createdAt])
 }

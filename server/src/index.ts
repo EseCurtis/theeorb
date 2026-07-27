@@ -9,12 +9,25 @@ import passport from './middleware/jwt.token.js';
 import { requestLogger } from './middleware/request-logger.middleware.js';
 import authRoute from './routes/auth.route.js';
 import healthRoute from './routes/health.route.js';
+import matchingRoute from './routes/matching.route.js';
 import nurseryRoute from './routes/nursery.route.js';
 import orbRoute from './routes/orb.route.js';
+import conversationRoute from './routes/conversation.route.js';
+import profileRoute from './routes/profile.route.js';
+import safetyRoute from './routes/safety.route.js';
 import { swaggerSetup } from './swagger-setup.js';
 
 const app = express();
-const routes = [healthRoute, authRoute, orbRoute, nurseryRoute];
+const routes = [
+  healthRoute,
+  authRoute,
+  orbRoute,
+  nurseryRoute,
+  profileRoute,
+  matchingRoute,
+  conversationRoute,
+  safetyRoute,
+];
 
 app.set('trust proxy', true);
 app.use(express.json({ limit: '10mb' }));
