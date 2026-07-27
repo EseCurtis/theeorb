@@ -16,6 +16,10 @@
     {
       "name": "Authentication",
       "description": "Account access and recovery"
+    },
+    {
+      "name": "Orb",
+      "description": "Private Orb identity and Nursery setup"
     }
   ],
   "paths": {
@@ -109,6 +113,33 @@
           "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
         }
       }
+    },
+    "/orb": {
+      "get": {
+        "tags": ["Orb"],
+        "summary": "Read the signed-in owner's Orb",
+        "description": "Returns the owner's private Orb or null when setup has not begun.",
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": { "description": "Orb retrieved", "schema": { "$ref": "#/definitions/OrbResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      },
+      "post": {
+        "tags": ["Orb"],
+        "summary": "Create a private draft Orb",
+        "description": "Creates one owner-controlled Orb in the Nursery. This does not release it or enable autonomous actions.",
+        "security": [{ "Bearer": [] }],
+        "parameters": [{ "in": "body", "name": "body", "required": true, "schema": { "$ref": "#/definitions/CreateOrbRequest" } }],
+        "responses": {
+          "201": { "description": "Orb created", "schema": { "$ref": "#/definitions/OrbResponse" } },
+          "400": { "description": "Invalid request", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "401": { "description": "Authentication required", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "409": { "description": "Owner already has an Orb", "schema": { "$ref": "#/definitions/ErrorResponse" } },
+          "500": { "description": "Internal server error", "schema": { "$ref": "#/definitions/ErrorResponse" } }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -145,6 +176,46 @@
       "properties": {
         "password": { "type": "string", "format": "password", "example": "new-long-enough-password" },
         "token": { "type": "string", "example": "recovery-token-from-email" }
+      }
+    },
+    "CreateOrbRequest": {
+      "type": "object",
+      "required": ["name", "personality", "interests", "values", "speakingStyle", "objective", "visualForm"],
+      "properties": {
+        "name": { "type": "string", "minLength": 2, "maxLength": 32, "example": "Nova" },
+        "personality": { "type": "string", "example": "Curious and considerate" },
+        "interests": { "type": "string", "example": "Music, design, and long debates" },
+        "values": { "type": "string", "example": "Kindness, honesty, and consent" },
+        "speakingStyle": { "type": "string", "example": "Warm, precise, and playful" },
+        "objective": { "type": "string", "example": "Find thoughtful people to learn with" },
+        "visualForm": { "type": "string", "enum": ["ECLIPSE", "LUMEN", "NOVA"], "example": "NOVA" }
+      }
+    },
+    "OrbIdentity": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "example": "clxorb0002" },
+        "name": { "type": "string", "example": "Nova" },
+        "personality": { "type": "string", "example": "Curious and considerate" },
+        "interests": { "type": "string", "example": "Music, design, and long debates" },
+        "values": { "type": "string", "example": "Kindness, honesty, and consent" },
+        "speakingStyle": { "type": "string", "example": "Warm, precise, and playful" },
+        "objective": { "type": "string", "example": "Find thoughtful people to learn with" },
+        "visualForm": { "type": "string", "enum": ["ECLIPSE", "LUMEN", "NOVA"] },
+        "releaseStatus": { "type": "string", "enum": ["DRAFT"], "example": "DRAFT" }
+      }
+    },
+    "OrbResponse": {
+      "type": "object",
+      "properties": {
+        "success": { "type": "boolean", "example": true },
+        "message": { "$ref": "#/definitions/ResponseMessage" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "orb": { "$ref": "#/definitions/OrbIdentity" }
+          }
+        }
       }
     },
     "AuthenticatedUser": {

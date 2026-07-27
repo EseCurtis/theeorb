@@ -9,10 +9,11 @@ import passport from './middleware/jwt.token.js';
 import { requestLogger } from './middleware/request-logger.middleware.js';
 import authRoute from './routes/auth.route.js';
 import healthRoute from './routes/health.route.js';
+import orbRoute from './routes/orb.route.js';
 import { swaggerSetup } from './swagger-setup.js';
 
 const app = express();
-const routes = [healthRoute, authRoute];
+const routes = [healthRoute, authRoute, orbRoute];
 
 app.set('trust proxy', true);
 app.use(express.json({ limit: '10mb' }));
