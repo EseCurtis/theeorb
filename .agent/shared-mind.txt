@@ -6,6 +6,7 @@
 DONE — TheeOrb is a private AI job-application copilot with a calmer, route-based mobile workspace.
 
 ## LAST SESSION
+- Focused direct routes now hide the persistent tab navigator and use a compact back header: Career Profile and CV Vault return to Career, while Application Review returns to Applications.
 - Replaced conflicting `/app/career/profile` and `/app/career/cv` routes with direct sibling routes: `/app/career-profile` and `/app/cv-vault`. The generated route tree now treats `/app/career` as a leaf again.
 - Reduced the default mobile panel chrome to quiet rounded surfaces; the pixel/arcade treatment is now reserved for deliberate high-signal moments instead of every form section.
 - Split the previous stacked Career flow into a Career hub, Professional Profile screen, and CV Vault screen. Split application review/send from the tracker list into its own route.
@@ -45,6 +46,7 @@ DONE — TheeOrb is a private AI job-application copilot with a calmer, route-ba
 - `pnpm --dir app run build` — pass
 - `pnpm --dir app run build` after quieter panels and route split — pass
 - `pnpm --dir app exec tsc --noEmit` after direct career route rename — pass.
+- `pnpm --dir app exec tsc --noEmit` after focused sub-screen navigation — pass.
 - `pnpm --dir app run build` — blocked because the user’s active Vite dev server owns and recreates `app/dist/assets` during cleanup (`ENOTEMPTY`). `pnpm --dir app exec vite build --outDir <temporary directory>` — pass.
 - `.agent/scripts/validate-api-contract.sh` — pass
 - `git diff --check` — pass
