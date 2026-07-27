@@ -1,0 +1,15 @@
+import { Router } from 'express';
+import CareerController from '../controllers/career.controller.js';
+import { CatchErrors } from '../middleware/catchErrors.js';
+import passport from '../middleware/jwt.token.js';
+import { validate } from '../middleware/validate.js';
+import { CreateCareerDocumentRequestSchema, CreateDocumentSignatureRequestSchema, CreateJobListingRequestSchema, JobListingParamsSchema, ReviewJobListingRequestSchema, UpsertCareerProfileRequestSchema } from '../schemas/career.schema.js';
+const router = Router(); const controller = new CareerController(); const authenticate = passport.authenticate('jwt', { session: false });
+router.get('/career/profile', authenticate, CatchErrors(controller.getProfile));
+router.put('/career/profile', authenticate, validate(UpsertCareerProfileRequestSchema), CatchErrors(controller.saveProfile));
+router.get('/career/documents', authenticate, CatchErrors(controller.listDocuments));
+router.post('/career/documents/signature', authenticate, validate(CreateDocumentSignatureRequestSchema), CatchErrors(controller.createDocumentSignature));
+router.post('/career/documents', authenticate, validate(CreateCareerDocumentRequestSchema), CatchErrors(controller.saveDocument));
+router.post('/job-listings/extract', authenticate, validate(CreateJobListingRequestSchema), CatchErrors(controller.extractListing));
+router.put('/job-listings/:jobListingId', authenticate, validate(ReviewJobListingRequestSchema), CatchErrors(controller.reviewListing));
+export default router;

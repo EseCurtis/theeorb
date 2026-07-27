@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import GmailController from '../controllers/gmail.controller.js';
+import { CatchErrors } from '../middleware/catchErrors.js';
+import passport from '../middleware/jwt.token.js';
+import { validate } from '../middleware/validate.js';
+import { GmailCallbackRequestSchema } from '../schemas/career.schema.js';
+const router = Router(); const controller = new GmailController(); const authenticate = passport.authenticate('jwt', { session: false });
+router.get('/integrations/gmail/connect', authenticate, CatchErrors(controller.createConnectionUrl));
+router.get('/integrations/gmail/callback', validate(GmailCallbackRequestSchema), CatchErrors(controller.completeConnection));
+router.get('/integrations/gmail', authenticate, CatchErrors(controller.getConnection));
+router.delete('/integrations/gmail', authenticate, CatchErrors(controller.disconnect));
+export default router;

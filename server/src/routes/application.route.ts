@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import ApplicationController from '../controllers/application.controller.js';
+import { CatchErrors } from '../middleware/catchErrors.js';
+import passport from '../middleware/jwt.token.js';
+import { validate } from '../middleware/validate.js';
+import { ApplicationParamsSchema, CreateDraftApplicationRequestSchema, SendApplicationRequestSchema, UpdateApplicationRequestSchema } from '../schemas/career.schema.js';
+const router = Router(); const controller = new ApplicationController(); const authenticate = passport.authenticate('jwt', { session: false });
+router.get('/applications', authenticate, CatchErrors(controller.listApplications));
+router.post('/applications/drafts', authenticate, validate(CreateDraftApplicationRequestSchema), CatchErrors(controller.createDraft));
+router.put('/applications/:applicationId', authenticate, validate(UpdateApplicationRequestSchema), CatchErrors(controller.updateApplication));
+router.post('/applications/:applicationId/send', authenticate, validate(SendApplicationRequestSchema), CatchErrors(controller.sendApplication));
+export default router;

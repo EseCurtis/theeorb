@@ -33,3 +33,13 @@ export function getPathParam(request: Request, key: string): string {
 
   return value;
 }
+
+export function getQueryParam(request: Request, key: string): string {
+  const value = request.query[key];
+
+  if (typeof value !== 'string') {
+    throw new HttpException('Invalid request query.', 400);
+  }
+
+  return value;
+}

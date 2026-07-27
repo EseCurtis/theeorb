@@ -1,6 +1,5 @@
 import Env from '../../config/env.config.js';
 import logger from '../../helpers/logger.js';
-import type { GeminiCompatibilityEvaluation } from '../../types/matching.types.js';
 import { HttpException } from '../../utils/exceptions.util.js';
 
 type GeminiInteractionResponse = {
@@ -82,47 +81,6 @@ function getGeneratedText(payload: unknown): string | null {
   return getTextFromSteps(payload.steps);
 }
 
-function isCompatibilityEvaluation(value: unknown): value is GeminiCompatibilityEvaluation {
-  if (!isRecord(value)) {
-    return false;
-  }
-
-  return (
-    typeof value.compatibilityScore === 'number' &&
-    Array.isArray(value.highlights) &&
-    value.highlights.every((highlight) => typeof highlight === 'string') &&
-    typeof value.shouldRecommend === 'boolean' &&
-    typeof value.summary === 'string' &&
-    typeof value.turnCount === 'number'
-  );
-}
-
-function parseCompatibilityEvaluation(text: string): GeminiCompatibilityEvaluation | null {
-  const firstBrace = text.indexOf('{');
-  const lastBrace = text.lastIndexOf('}');
-
-  if (firstBrace === -1 || lastBrace === -1 || firstBrace >= lastBrace) {
-    return null;
-  }
-
-  try {
-    const evaluation: unknown = JSON.parse(text.slice(firstBrace, lastBrace + 1));
-
-    if (!isCompatibilityEvaluation(evaluation)) {
-      return null;
-    }
-
-    return {
-      compatibilityScore: Math.max(0, Math.min(100, Math.round(evaluation.compatibilityScore))),
-      highlights: evaluation.highlights.slice(0, 3).map((highlight) => highlight.trim()).filter(Boolean),
-      shouldRecommend: evaluation.shouldRecommend,
-      summary: evaluation.summary.trim().slice(0, 500),
-      turnCount: Math.max(1, Math.min(8, Math.round(evaluation.turnCount))),
-    };
-  } catch {
-    return null;
-  }
-}
 
 export default class GeminiService {
   private apiKey: string;
@@ -134,8 +92,12 @@ export default class GeminiService {
   }
 
   async createPrivateNurseryReply(systemInstruction: string, input: string): Promise<string> {
+    return this.generateText(systemInstruction, input, 'Nursery responses are unavailable. Try again later.');
+  }
+
+  async generateText(systemInstruction: string, input: string, unavailableMessage: string): Promise<string> {
     if (!this.apiKey) {
-      throw new HttpException('Nursery responses are unavailable. Try again later.', 503);
+      throw new HttpException(unavailableMessage, 503);
     }
 
     const request: GeminiRequest = {
@@ -154,35 +116,17 @@ export default class GeminiService {
 
     if (!response.ok) {
       logger.error({ provider: 'gemini', statusCode: response.status });
-      throw new HttpException('Nursery responses are unavailable. Try again later.', 503);
+      throw new HttpException(unavailableMessage, 503);
     }
 
     const generatedText = getGeneratedText(await response.json());
 
     if (!generatedText) {
       logger.error({ provider: 'gemini', reason: 'Response did not include text output' });
-      throw new HttpException('Nursery responses are unavailable. Try again later.', 503);
+      throw new HttpException(unavailableMessage, 503);
     }
 
     return generatedText;
   }
 
-  async evaluateOrbCompatibility(input: string): Promise<GeminiCompatibilityEvaluation> {
-    const systemInstruction = [
-      'You evaluate a private compatibility session for TheeOrb, an adults-only dating and friendship platform.',
-      'Simulate a respectful conversation between the two supplied Orbs for at most eight turns. They may decide early.',
-      'Do not claim sentience, certainty, or access to undisclosed information. Do not reveal contact details or precise location.',
-      'Return JSON only with shouldRecommend (boolean), compatibilityScore (0-100), summary (owner-safe, under 90 words), highlights (up to 3 strings), and turnCount (1-8).',
-      'Recommend only when both Orbs identify a specific, respectful reason to introduce their owners.',
-    ].join('\n');
-    const reply = await this.createPrivateNurseryReply(systemInstruction, input);
-    const evaluation = parseCompatibilityEvaluation(reply);
-
-    if (!evaluation || !evaluation.summary || !evaluation.highlights.length) {
-      logger.error({ provider: 'gemini', reason: 'Compatibility response did not match the expected shape' });
-      throw new HttpException('Compatibility evaluation is unavailable. Try again later.', 503);
-    }
-
-    return evaluation;
-  }
 }
