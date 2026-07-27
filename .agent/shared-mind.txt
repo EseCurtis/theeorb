@@ -3,42 +3,43 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — mobile auth and onboarding now share a pixel-cosmic background system
+DONE — private Orb setup is implemented across the API and mobile Nursery
 
 ## LAST SESSION
-- Preserved the user’s prior manual web edits in checkpoint `8029909`; do not alter the landing Hero/Orb composition unless the user requests it.
-- Authentication API remains versioned under `/api/v1`, with symmetric account-sensitive responses, Prisma-backed users/recovery tokens, Passport JWT, and Swagger coverage.
-- Rebuilt all mobile sign-in, sign-up, recovery, and password-reset screens around a single calm `AuthFormFrame` terminal, replacing the previous scattered rounded form surfaces.
-- Auth fields are now straight-edged, high-contrast console slots with visible labels, required markers, and a focused violet state. Do not reintroduce soft rounded fields.
-- Added `/onboarding`: a no-fake-metrics, three-step Raise → Release → Observe introduction. Root now redirects here; the final action opens sign-up, while existing members can enter sign-in at any point.
-- Pixel Digivolve is the global app typeface, including native form controls. The previous Inter/system body stack must not be restored without explicit direction.
-- Removed the Tailwind `font-sans` body class and the code-element system font override. Pixel Digivolve is now the only declared app typeface at every boundary.
-- Added a shared `CosmicBackground` behind every auth screen and onboarding: subtle grid mesh, orbital paths, violet/cyan/amber pixel stars, and portal glows. It is decorative and pointer-inert so it cannot interfere with form controls.
-- Preserved the user’s concurrent onboarding Orb-logo sizing adjustment (`size-full`) without altering its intent.
+- Preserved a user manual simplification of `CosmicBackground` in isolated checkpoint `baec6f2`; do not restore its removed orbital layers unless requested.
+- Added the protected, versioned `/api/v1/orb` API: owners can read their own Orb and create exactly one private `DRAFT` Orb. Swagger, strict validation, service/controller/route separation, and a Prisma migration are included.
+- Added the mobile `/app/nursery` flow: three clear stages capture name and form, personality and speaking style, then interests, values, and first objective.
+- The app holds a new Orb as private after creation; release is explicitly described as locked. No autonomous actions, social posting, or release controls are implied or enabled.
+- Home now reflects loading, error, empty, and private-draft Orb states, and the tab navigation includes Nursery.
+- Server Prisma generation/build and app lint/build pass. The seven pending commits through `ce5c6a6` were synced to `origin/master`; `c8664ab` is one new local commit ahead.
 
 ## NEXT
+- Resolve the local SQLite migration-history drift without deleting user data, then apply `20260727010000_add_orb_setup` to local development data.
+- Add editable Orb identity, private teaching/test conversation, and persistent save feedback inside the Nursery.
+- Define release permissions, topic/action boundaries, and the visible pause model before building any autonomous behaviour.
 - Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
-- Implement the first real Nursery/Orb creation flow and replace the disabled Home CTA.
-- Define the release-permission model and default autonomy boundaries.
 
 ## BLOCKERS
+- The existing `server/prisma/dev.db` has migration-history drift. `prisma migrate dev` requests a reset, which was not run to protect local data; a temporary-db `migrate deploy` also returned an opaque Prisma schema-engine error. The committed migration and generated client/server build are valid, but the local database has not been migrated in this session.
 - No email provider or app recovery deep-link scheme is configured. Recovery endpoints and screens are complete, but reset links cannot yet reach end users.
 
 ## TOUCHED
-- app/src/app/onboarding.screen.tsx
-- app/src/app/{sign-in,sign-up,password-recovery,password-reset}.screen.tsx
-- app/src/components/auth/{auth-shell,auth-form-frame,auth-field}.component.tsx
-- app/src/components/common/cosmic-background.component.tsx
-- app/src/routes/{index,onboarding}.tsx
+- app/src/app/{home,orb-setup}.screen.tsx
+- app/src/components/{navigation/app-tab-navigator,orb/orb-setup-form}.component.tsx
+- app/src/{hooks/use-orb.hook,shared/api/orb.api,shared/types/orb.types}.ts
+- app/src/routes/app/nursery.tsx
 - app/src/routeTree.gen.ts
-- app/src/styles.css
-- server/src/{routes,controllers,services}/auth.*
-- server/prisma/migrations/20260727003000_add_auth/migration.sql
+- server/prisma/{schema.prisma,migrations/20260727010000_add_orb_setup/migration.sql}
+- server/src/{controllers/orb.controller,routes/orb.route,schemas/orb.schema,services/orb.service,types/orb.types}.ts
+- server/src/index.ts
 - server/swagger/swagger.json
 
 ## COMMANDS
-- `pnpm build` (in `app/`) — pass
-- `pnpm lint` (in `app/`) — pass
+- `pnpm --dir server prisma:generate` — pass
+- `pnpm --dir server build` — pass
+- disposable `prisma migrate deploy` against SQLite — failed with opaque Prisma schema-engine error
+- `pnpm --dir app lint` — pass
+- `pnpm --dir app build` — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
