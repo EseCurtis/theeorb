@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { BrandLogo } from '@/components/brand/brand-logo.component'
 import { ButtonPrimary } from '@/components/common/button-primary.component'
 import { ButtonSecondary } from '@/components/common/button-secondary.component'
+import { CosmicBackground } from '@/components/common/cosmic-background.component'
 import { Text } from '@/components/layout/text.component'
 import { View } from '@/components/layout/view.component'
 import { hapticFeedback } from '@/shared/haptic.util'
@@ -76,7 +77,7 @@ export function OnboardingScreen(): React.JSX.Element {
 
   return (
     <View className="relative min-h-dvh overflow-hidden bg-[var(--background)] px-[calc(1.25rem+var(--safe-area-inset-left))] pb-[calc(2rem+var(--safe-area-inset-bottom))] pr-[calc(1.25rem+var(--safe-area-inset-right))] pt-[calc(1.25rem+var(--safe-area-inset-top))]">
-      <View className="pointer-events-none absolute left-1/2 top-[18%] size-72 -translate-x-1/2 rounded-full bg-[#7d22d5]/20 blur-3xl" />
+      <CosmicBackground variant="onboarding" />
       <View className="relative mx-auto flex min-h-[calc(100dvh-3rem-var(--safe-area-inset-top)-var(--safe-area-inset-bottom))] w-full max-w-md flex-col justify-between gap-9">
         <View className="flex-row items-center justify-between border-b border-[#b66bea]/25 pb-4">
           <Text className="text-sm tracking-[0.1em] text-[var(--foreground)]">THEE ORB</Text>
@@ -86,7 +87,7 @@ export function OnboardingScreen(): React.JSX.Element {
         </View>
         <View className="items-center gap-7 text-center">
           <View className="relative size-44 items-center justify-center rounded-full border border-[#d997ff]/55 bg-[#18052b] shadow-[inset_0_2px_0_rgba(255,225,255,0.28),inset_0_-6px_0_rgba(41,4,62,0.9),0_0_40px_rgba(172,59,255,0.38)]">
-            <BrandLogo className="size-36 rounded-full" />
+            <BrandLogo className="size-full rounded-full" />
           </View>
           <View className="gap-4">
             <Text className="text-[0.62rem] tracking-[0.1em] text-[#e7b2ff]">{currentContent.label}</Text>
