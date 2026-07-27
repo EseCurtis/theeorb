@@ -5,7 +5,7 @@
 ## STATUS
 DONE — TheeOrb is now a private AI job-application copilot across product guidance, server APIs, data model, and mobile workspace.
 
-## LAST_SESSION
+## LAST SESSION
 - Pivoted product guidance from matching to career applications: private CV/profile, Career Orb, Job Desk extraction, reviewed cover-letter drafts, Gmail review/send, and application history.
 - Added forward migration `20260727074125_pivot_to_career_copilot` which preserves prior history while dropping the now-unused matching/chat tables and creating career profile, private CV, job listing, application, Gmail connection, and OAuth-state records.
 - Added protected `/api/v1` career, job-listing, application, and Gmail OAuth endpoints, documented in Swagger. CV uploads use authenticated Cloudinary raw uploads; server-side signed retrieval attaches the selected original CV only during explicit Gmail sends.
