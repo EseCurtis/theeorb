@@ -19,10 +19,10 @@ import { Route as AuthRecoveryRouteImport } from './routes/auth/recovery'
 import { Route as AppSettingsRouteImport } from './routes/app/settings'
 import { Route as AppNurseryRouteImport } from './routes/app/nursery'
 import { Route as AppHomeRouteImport } from './routes/app/home'
+import { Route as AppCvVaultRouteImport } from './routes/app/cv-vault'
+import { Route as AppCareerProfileRouteImport } from './routes/app/career-profile'
 import { Route as AppCareerRouteImport } from './routes/app/career'
 import { Route as AppApplicationsRouteImport } from './routes/app/applications'
-import { Route as AppCareerProfileRouteImport } from './routes/app/career.profile'
-import { Route as AppCareerCvRouteImport } from './routes/app/career.cv'
 import { Route as AppApplicationsApplicationIdRouteImport } from './routes/app/applications.$applicationId'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -75,6 +75,16 @@ const AppHomeRoute = AppHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCvVaultRoute = AppCvVaultRouteImport.update({
+  id: '/cv-vault',
+  path: '/cv-vault',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCareerProfileRoute = AppCareerProfileRouteImport.update({
+  id: '/career-profile',
+  path: '/career-profile',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppCareerRoute = AppCareerRouteImport.update({
   id: '/career',
   path: '/career',
@@ -84,16 +94,6 @@ const AppApplicationsRoute = AppApplicationsRouteImport.update({
   id: '/applications',
   path: '/applications',
   getParentRoute: () => AppRoute,
-} as any)
-const AppCareerProfileRoute = AppCareerProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => AppCareerRoute,
-} as any)
-const AppCareerCvRoute = AppCareerCvRouteImport.update({
-  id: '/cv',
-  path: '/cv',
-  getParentRoute: () => AppCareerRoute,
 } as any)
 const AppApplicationsApplicationIdRoute =
   AppApplicationsApplicationIdRouteImport.update({
@@ -107,7 +107,9 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/applications': typeof AppApplicationsRouteWithChildren
-  '/app/career': typeof AppCareerRouteWithChildren
+  '/app/career': typeof AppCareerRoute
+  '/app/career-profile': typeof AppCareerProfileRoute
+  '/app/cv-vault': typeof AppCvVaultRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -116,15 +118,15 @@ export interface FileRoutesByFullPath {
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app/applications/$applicationId': typeof AppApplicationsApplicationIdRoute
-  '/app/career/cv': typeof AppCareerCvRoute
-  '/app/career/profile': typeof AppCareerProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/applications': typeof AppApplicationsRouteWithChildren
-  '/app/career': typeof AppCareerRouteWithChildren
+  '/app/career': typeof AppCareerRoute
+  '/app/career-profile': typeof AppCareerProfileRoute
+  '/app/cv-vault': typeof AppCvVaultRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -133,8 +135,6 @@ export interface FileRoutesByTo {
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app/applications/$applicationId': typeof AppApplicationsApplicationIdRoute
-  '/app/career/cv': typeof AppCareerCvRoute
-  '/app/career/profile': typeof AppCareerProfileRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -142,7 +142,9 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/app/applications': typeof AppApplicationsRouteWithChildren
-  '/app/career': typeof AppCareerRouteWithChildren
+  '/app/career': typeof AppCareerRoute
+  '/app/career-profile': typeof AppCareerProfileRoute
+  '/app/cv-vault': typeof AppCvVaultRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -151,8 +153,6 @@ export interface FileRoutesById {
   '/auth/sign-in': typeof AuthSignInRoute
   '/auth/sign-up': typeof AuthSignUpRoute
   '/app/applications/$applicationId': typeof AppApplicationsApplicationIdRoute
-  '/app/career/cv': typeof AppCareerCvRoute
-  '/app/career/profile': typeof AppCareerProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -162,6 +162,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/app/applications'
     | '/app/career'
+    | '/app/career-profile'
+    | '/app/cv-vault'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -170,8 +172,6 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app/applications/$applicationId'
-    | '/app/career/cv'
-    | '/app/career/profile'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -179,6 +179,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/app/applications'
     | '/app/career'
+    | '/app/career-profile'
+    | '/app/cv-vault'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -187,8 +189,6 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app/applications/$applicationId'
-    | '/app/career/cv'
-    | '/app/career/profile'
   id:
     | '__root__'
     | '/'
@@ -196,6 +196,8 @@ export interface FileRouteTypes {
     | '/onboarding'
     | '/app/applications'
     | '/app/career'
+    | '/app/career-profile'
+    | '/app/cv-vault'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -204,8 +206,6 @@ export interface FileRouteTypes {
     | '/auth/sign-in'
     | '/auth/sign-up'
     | '/app/applications/$applicationId'
-    | '/app/career/cv'
-    | '/app/career/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -290,6 +290,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHomeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/cv-vault': {
+      id: '/app/cv-vault'
+      path: '/cv-vault'
+      fullPath: '/app/cv-vault'
+      preLoaderRoute: typeof AppCvVaultRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/career-profile': {
+      id: '/app/career-profile'
+      path: '/career-profile'
+      fullPath: '/app/career-profile'
+      preLoaderRoute: typeof AppCareerProfileRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/career': {
       id: '/app/career'
       path: '/career'
@@ -303,20 +317,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/applications'
       preLoaderRoute: typeof AppApplicationsRouteImport
       parentRoute: typeof AppRoute
-    }
-    '/app/career/profile': {
-      id: '/app/career/profile'
-      path: '/profile'
-      fullPath: '/app/career/profile'
-      preLoaderRoute: typeof AppCareerProfileRouteImport
-      parentRoute: typeof AppCareerRoute
-    }
-    '/app/career/cv': {
-      id: '/app/career/cv'
-      path: '/cv'
-      fullPath: '/app/career/cv'
-      preLoaderRoute: typeof AppCareerCvRouteImport
-      parentRoute: typeof AppCareerRoute
     }
     '/app/applications/$applicationId': {
       id: '/app/applications/$applicationId'
@@ -340,23 +340,11 @@ const AppApplicationsRouteWithChildren = AppApplicationsRoute._addFileChildren(
   AppApplicationsRouteChildren,
 )
 
-interface AppCareerRouteChildren {
-  AppCareerCvRoute: typeof AppCareerCvRoute
-  AppCareerProfileRoute: typeof AppCareerProfileRoute
-}
-
-const AppCareerRouteChildren: AppCareerRouteChildren = {
-  AppCareerCvRoute: AppCareerCvRoute,
-  AppCareerProfileRoute: AppCareerProfileRoute,
-}
-
-const AppCareerRouteWithChildren = AppCareerRoute._addFileChildren(
-  AppCareerRouteChildren,
-)
-
 interface AppRouteChildren {
   AppApplicationsRoute: typeof AppApplicationsRouteWithChildren
-  AppCareerRoute: typeof AppCareerRouteWithChildren
+  AppCareerRoute: typeof AppCareerRoute
+  AppCareerProfileRoute: typeof AppCareerProfileRoute
+  AppCvVaultRoute: typeof AppCvVaultRoute
   AppHomeRoute: typeof AppHomeRoute
   AppNurseryRoute: typeof AppNurseryRoute
   AppSettingsRoute: typeof AppSettingsRoute
@@ -364,7 +352,9 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppApplicationsRoute: AppApplicationsRouteWithChildren,
-  AppCareerRoute: AppCareerRouteWithChildren,
+  AppCareerRoute: AppCareerRoute,
+  AppCareerProfileRoute: AppCareerProfileRoute,
+  AppCvVaultRoute: AppCvVaultRoute,
   AppHomeRoute: AppHomeRoute,
   AppNurseryRoute: AppNurseryRoute,
   AppSettingsRoute: AppSettingsRoute,

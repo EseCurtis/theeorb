@@ -20,8 +20,8 @@ export function CareerScreen(): React.JSX.Element {
           <Text className="text-sm leading-6 text-[var(--muted)]">Your Orb uses only the information you confirm here.</Text>
         </View>
       </Panel>
-      <Link className="block" to="/app/career/profile"><Panel label={profileReady ? 'Profile complete' : 'Step 1 · Profile'} tone="cyan"><Text className="text-base text-[var(--foreground)]">Professional profile</Text><Text className="text-sm leading-6 text-[var(--muted)]">Headline, summary, skills, location, and contact details.</Text></Panel></Link>
-      <Link className="block" to="/app/career/cv"><Panel label={cvReady ? `${careerDocuments.length} CV ${careerDocuments.length === 1 ? 'file' : 'files'}` : 'Step 2 · CV'} tone="amber"><Text className="text-base text-[var(--foreground)]">Private CV vault</Text><Text className="text-sm leading-6 text-[var(--muted)]">Upload PDF or DOCX files. You choose the attachment before sending.</Text></Panel></Link>
+      <Link className="block" to="/app/career-profile"><Panel label={profileReady ? 'Profile complete' : 'Step 1 · Profile'} tone="cyan"><Text className="text-base text-[var(--foreground)]">Professional profile</Text><Text className="text-sm leading-6 text-[var(--muted)]">Headline, summary, skills, location, and contact details.</Text></Panel></Link>
+      <Link className="block" to="/app/cv-vault"><Panel label={cvReady ? `${careerDocuments.length} CV ${careerDocuments.length === 1 ? 'file' : 'files'}` : 'Step 2 · CV'} tone="amber"><Text className="text-base text-[var(--foreground)]">Private CV vault</Text><Text className="text-sm leading-6 text-[var(--muted)]">Upload PDF or DOCX files. You choose the attachment before sending.</Text></Panel></Link>
     </ScreenLayout>
   )
 }
