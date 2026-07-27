@@ -3,18 +3,21 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — Prisma migration history is valid and private Orb setup is ready for local development
+DONE — private Gemini-powered Nursery is implemented and verified end-to-end
 
 ## LAST SESSION
-- Repaired the local `server/prisma/dev.db` history without deleting data: its schema already contained the two migration results but lacked `_prisma_migrations`, so both committed migrations were marked applied through Prisma.
-- Added the standard `server/prisma/migrations/migration_lock.toml`, declaring SQLite. This was the missing repository artifact that prevented Prisma’s migration tooling from determining the connector for a clean database.
-- Verified a clean, initialized disposable SQLite database applies both `20260727003000_add_auth` and `20260727010000_add_orb_setup`, and Prisma subsequently reports it up to date.
-- The local development database now reports two migrations and is up to date; Prisma schema validation, client generation, and the server TypeScript build all pass.
-- The private Orb API and mobile Nursery setup from the previous session remain intact. No autonomous action or release capability is enabled.
+- Added `20260727065154_add_orb_nursery`: private owner behaviour rules on `Orb` plus durable `OrbLesson` records for owner messages and Orb replies.
+- Added protected, versioned Nursery endpoints under `/api/v1/orb/nursery` for private state, private teaching/testing, and behaviour-rule updates. Swagger fully documents the endpoints and response shapes.
+- Gemini is called only from `server/src/services/plugins/gemini.service.ts`; `GEMINI_API_KEY` remains server-only. Provider failures surface a generic 503 to the app and retain only safe diagnostics in server logs.
+- Corrected the Gemini REST parser to read text from Interactions `steps` rather than the SDK-only `output_text` helper.
+- Rebuilt `/app/nursery` into a real workbench with explicit private-DRAFT state, editable owner rules, persisted teaching transcript, and loading/empty/error/saving states. It still cannot release or trigger public actions.
+- Verified a full temporary-database flow: sign-up, sign-in, Orb creation, and Gemini Nursery lesson returned HTTP 201 with a non-empty persisted reply. The disposable database was removed afterwards.
+- Server build, app lint/build, and Prisma migration application pass. The seven outstanding commits through `a9268e4` were pushed to `origin/master`.
 
 ## NEXT
-- Add editable Orb identity, private teaching/test conversation, and persistent save feedback inside the Nursery.
 - Define release permissions, topic/action boundaries, and the visible pause model before building any autonomous behaviour.
+- Add safe document/memory teaching with explicit source review, deletion, and owner control.
+- Add editable Orb identity beyond behaviour rules, including visual form and objective revisions.
 - Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
 
 ## BLOCKERS
@@ -22,21 +25,23 @@ DONE — Prisma migration history is valid and private Orb setup is ready for lo
 
 ## TOUCHED
 - app/src/app/{home,orb-setup}.screen.tsx
-- app/src/components/{navigation/app-tab-navigator,orb/orb-setup-form}.component.tsx
-- app/src/{hooks/use-orb.hook,shared/api/orb.api,shared/types/orb.types}.ts
+- app/src/components/{navigation/app-tab-navigator,orb/orb-setup-form,orb/nursery-workbench}.component.tsx
+- app/src/{hooks/use-orb.hook,hooks/use-nursery.hook,shared/api/orb.api,shared/types/orb.types}.ts
 - app/src/routes/app/nursery.tsx
 - app/src/routeTree.gen.ts
 - server/prisma/{schema.prisma,migrations/20260727010000_add_orb_setup/migration.sql}
 - server/prisma/migrations/migration_lock.toml
-- server/src/{controllers/orb.controller,routes/orb.route,schemas/orb.schema,services/orb.service,types/orb.types}.ts
+- server/prisma/migrations/20260727065154_add_orb_nursery/migration.sql
+- server/src/{controllers/nursery.controller,schemas/nursery.schema,routes/nursery.route,services/nursery.service,services/plugins/gemini.service}.ts
+- server/src/{services/orb.service,types/orb.types}.ts
 - server/src/index.ts
 - server/swagger/swagger.json
 
 ## COMMANDS
-- `pnpm exec prisma migrate resolve --applied <migration>` (in `server/`) — pass for both committed migrations
-- `pnpm exec prisma migrate deploy` and `prisma migrate status` (in `server/`) — pass against local development database
-- clean initialized SQLite `prisma migrate deploy` and `prisma migrate status` — pass for both migrations
-- `pnpm exec prisma validate`, `prisma generate`, and `pnpm run build` (in `server/`) — pass
+- `pnpm exec prisma migrate dev --name add_orb_nursery` (in `server/`) — pass
+- `pnpm run build` (in `server/`) — pass
+- temporary-database private Nursery integration flow through Gemini — pass (HTTP 201 with persisted reply)
+- `pnpm --dir app lint` and `pnpm --dir app build` — pass
 - `git diff --check` — pass
 - `.agent/scripts/agen-run.sh .agent/post-agent-run.acmd` — pending final handover commit
 
