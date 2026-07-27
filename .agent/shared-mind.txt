@@ -3,7 +3,7 @@
 # Do not delete this file. Do not leave STATUS as UNKNOWN when you exit.
 
 ## STATUS
-DONE — mobile auth experience rebuilt with a three-step onboarding flow
+DONE — mobile auth and onboarding now share a pixel-cosmic background system
 
 ## LAST SESSION
 - Preserved the user’s prior manual web edits in checkpoint `8029909`; do not alter the landing Hero/Orb composition unless the user requests it.
@@ -13,6 +13,8 @@ DONE — mobile auth experience rebuilt with a three-step onboarding flow
 - Added `/onboarding`: a no-fake-metrics, three-step Raise → Release → Observe introduction. Root now redirects here; the final action opens sign-up, while existing members can enter sign-in at any point.
 - Pixel Digivolve is the global app typeface, including native form controls. The previous Inter/system body stack must not be restored without explicit direction.
 - Removed the Tailwind `font-sans` body class and the code-element system font override. Pixel Digivolve is now the only declared app typeface at every boundary.
+- Added a shared `CosmicBackground` behind every auth screen and onboarding: subtle grid mesh, orbital paths, violet/cyan/amber pixel stars, and portal glows. It is decorative and pointer-inert so it cannot interfere with form controls.
+- Preserved the user’s concurrent onboarding Orb-logo sizing adjustment (`size-full`) without altering its intent.
 
 ## NEXT
 - Add an email delivery plugin/service for recovery links, then configure Capacitor deep links to open `/auth/reset` with the recovery token.
@@ -26,6 +28,7 @@ DONE — mobile auth experience rebuilt with a three-step onboarding flow
 - app/src/app/onboarding.screen.tsx
 - app/src/app/{sign-in,sign-up,password-recovery,password-reset}.screen.tsx
 - app/src/components/auth/{auth-shell,auth-form-frame,auth-field}.component.tsx
+- app/src/components/common/cosmic-background.component.tsx
 - app/src/routes/{index,onboarding}.tsx
 - app/src/routeTree.gen.ts
 - app/src/styles.css
