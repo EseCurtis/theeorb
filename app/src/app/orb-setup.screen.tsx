@@ -62,7 +62,7 @@ export function OrbSetupScreen(): React.JSX.Element {
 
   if (isLoadingOrb) {
     return (
-      <ScreenLayout description="Checking the private space reserved for your Orb." title="The Nursery">
+      <ScreenLayout description="Checking the private space where your Career Orb learns your writing voice." title="Career Orb">
         <Panel label="NURSERY // CONNECTING" tone="violet">
           <Text className="text-[0.66rem] leading-6 tracking-[0.05em] text-[var(--muted)]">READING YOUR ORB SIGNAL...</Text>
         </Panel>
@@ -72,7 +72,7 @@ export function OrbSetupScreen(): React.JSX.Element {
 
   if (orbError) {
     return (
-      <ScreenLayout description="The Nursery could not read your Orb right now." title="The Nursery">
+      <ScreenLayout description="Your Career Orb could not be read right now." title="Career Orb">
         <Panel label="NURSERY // SIGNAL LOST" tone="pink">
           <Text className="text-sm leading-6 text-[var(--muted)]">{orbError.message}</Text>
           <ButtonSecondary onClick={() => void refetchOrb()}>TRY AGAIN</ButtonSecondary>
@@ -84,7 +84,7 @@ export function OrbSetupScreen(): React.JSX.Element {
   if (orb) {
     if (isLoadingNursery) {
       return (
-        <ScreenLayout description="Opening the private space where you teach and test your Orb." title="The Nursery">
+        <ScreenLayout description="Opening the private space where you teach your Career Orb." title="Career Orb">
           <Panel label="NURSERY // CONNECTING" tone="violet">
             <Text className="text-[0.66rem] leading-6 tracking-[0.05em] text-[var(--muted)]">RESTORING PRIVATE LESSONS...</Text>
           </Panel>
@@ -94,7 +94,7 @@ export function OrbSetupScreen(): React.JSX.Element {
 
     if (nurseryError) {
       return (
-        <ScreenLayout description="The Nursery could not restore its private record right now." title="The Nursery">
+        <ScreenLayout description="Your Career Orb history could not be restored right now." title="Career Orb">
           <Panel label="NURSERY // SIGNAL LOST" tone="pink">
             <Text className="text-sm leading-6 text-[var(--muted)]">{nurseryError.message}</Text>
             <ButtonSecondary onClick={() => void refetchNursery()}>TRY AGAIN</ButtonSecondary>
@@ -105,7 +105,7 @@ export function OrbSetupScreen(): React.JSX.Element {
 
     if (nursery) {
       return (
-        <ScreenLayout description="Teach carefully, set boundaries, and test how your Orb understands them." title="The Nursery">
+        <ScreenLayout description="Teach your writing voice and set strict boundaries for application drafts." title="Career Orb">
           <NurseryWorkbench
             isSavingRules={isSavingRules}
             isTeaching={isTeachingOrb}
@@ -120,7 +120,7 @@ export function OrbSetupScreen(): React.JSX.Element {
     }
 
     return (
-      <ScreenLayout description="Your Orb is awake, private, and waiting for its first lesson." title="The Nursery">
+      <ScreenLayout description="Your Career Orb is private and waiting for its first lesson." title="Career Orb">
         <Panel label="ORB // PRIVATE DRAFT" tone="violet">
           <View className="gap-2">
             <Text className="text-lg leading-7 tracking-[0.06em] text-[var(--foreground)]">{orb.name.toUpperCase()}</Text>
@@ -128,16 +128,16 @@ export function OrbSetupScreen(): React.JSX.Element {
             <Text className="text-sm leading-6 text-[var(--muted)]">{orb.objective}</Text>
           </View>
           <View className="border-y border-[#d997ff]/25 py-4">
-            <Text className="text-[0.56rem] leading-5 tracking-[0.05em] text-[#d9b5e7]">RELEASE IS LOCKED. YOU WILL REVIEW TOPICS, ACTIONS, AND PAUSE CONTROLS BEFORE YOUR ORB CAN ENTER THE PLAZA.</Text>
+            <Text className="text-[0.56rem] leading-5 tracking-[0.05em] text-[#d9b5e7]">YOUR ORB ONLY HELPS DRAFT. YOU REVIEW EVERY FACT, RECIPIENT, ATTACHMENT, AND SEND ACTION.</Text>
           </View>
-          <ButtonPrimary onClick={() => void navigate({ to: '/app/home' })}>RETURN TO HOME</ButtonPrimary>
+          <ButtonPrimary onClick={() => void navigate({ to: '/app/home' })}>RETURN TO JOB DESK</ButtonPrimary>
         </Panel>
       </ScreenLayout>
     )
   }
 
   return (
-    <ScreenLayout description="Build an identity first. Your Orb will remain private until you deliberately release it." title="Awaken an Orb">
+    <ScreenLayout description="Create a private Career Orb that learns your voice, never invents your qualifications, and never sends on its own." title="Awaken a Career Orb">
       <OrbSetupForm error={createOrbError} isSaving={isCreatingOrb} onSubmit={handleCreateOrb} />
     </ScreenLayout>
   )

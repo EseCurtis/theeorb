@@ -19,6 +19,8 @@ import { Route as AuthRecoveryRouteImport } from './routes/auth/recovery'
 import { Route as AppSettingsRouteImport } from './routes/app/settings'
 import { Route as AppNurseryRouteImport } from './routes/app/nursery'
 import { Route as AppHomeRouteImport } from './routes/app/home'
+import { Route as AppCareerRouteImport } from './routes/app/career'
+import { Route as AppApplicationsRouteImport } from './routes/app/applications'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -70,11 +72,23 @@ const AppHomeRoute = AppHomeRouteImport.update({
   path: '/home',
   getParentRoute: () => AppRoute,
 } as any)
+const AppCareerRoute = AppCareerRouteImport.update({
+  id: '/career',
+  path: '/career',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppApplicationsRoute = AppApplicationsRouteImport.update({
+  id: '/applications',
+  path: '/applications',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
+  '/app/applications': typeof AppApplicationsRoute
+  '/app/career': typeof AppCareerRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -87,6 +101,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
+  '/app/applications': typeof AppApplicationsRoute
+  '/app/career': typeof AppCareerRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -100,6 +116,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/onboarding': typeof OnboardingRoute
+  '/app/applications': typeof AppApplicationsRoute
+  '/app/career': typeof AppCareerRoute
   '/app/home': typeof AppHomeRoute
   '/app/nursery': typeof AppNurseryRoute
   '/app/settings': typeof AppSettingsRoute
@@ -114,6 +132,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/onboarding'
+    | '/app/applications'
+    | '/app/career'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -126,6 +146,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/onboarding'
+    | '/app/applications'
+    | '/app/career'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -138,6 +160,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/onboarding'
+    | '/app/applications'
+    | '/app/career'
     | '/app/home'
     | '/app/nursery'
     | '/app/settings'
@@ -229,16 +253,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppHomeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/career': {
+      id: '/app/career'
+      path: '/career'
+      fullPath: '/app/career'
+      preLoaderRoute: typeof AppCareerRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/applications': {
+      id: '/app/applications'
+      path: '/applications'
+      fullPath: '/app/applications'
+      preLoaderRoute: typeof AppApplicationsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
+  AppApplicationsRoute: typeof AppApplicationsRoute
+  AppCareerRoute: typeof AppCareerRoute
   AppHomeRoute: typeof AppHomeRoute
   AppNurseryRoute: typeof AppNurseryRoute
   AppSettingsRoute: typeof AppSettingsRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppApplicationsRoute: AppApplicationsRoute,
+  AppCareerRoute: AppCareerRoute,
   AppHomeRoute: AppHomeRoute,
   AppNurseryRoute: AppNurseryRoute,
   AppSettingsRoute: AppSettingsRoute,

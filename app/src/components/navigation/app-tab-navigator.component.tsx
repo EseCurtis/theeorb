@@ -12,21 +12,24 @@ export function AppTabNavigator(): React.JSX.Element {
           className="flex min-w-20 flex-col items-center gap-1 text-[var(--muted)]"
           to="/app/home"
         >
-          <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.08em]">HOME</Text>
+          <Text className="font-[family-name:var(--font-pixel)] text-[0.52rem] tracking-[0.06em]">JOB DESK</Text>
+        </Link>
+        <Link activeProps={{ className: 'text-[var(--foreground)]' }} className="flex min-w-16 flex-col items-center gap-1 text-[var(--muted)]" to="/app/applications">
+          <Text className="font-[family-name:var(--font-pixel)] text-[0.52rem] tracking-[0.06em]">APPS</Text>
         </Link>
         <Link
           activeProps={{ className: 'text-[var(--foreground)]' }}
           className="flex min-w-20 flex-col items-center gap-1 text-[var(--muted)]"
           to="/app/nursery"
         >
-          <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.08em]">NURSERY</Text>
+          <Text className="font-[family-name:var(--font-pixel)] text-[0.52rem] tracking-[0.06em]">CAREER ORB</Text>
         </Link>
         <Link
           activeProps={{ className: 'text-[var(--foreground)]' }}
           className="flex min-w-20 flex-col items-center gap-1 text-[var(--muted)]"
           to="/app/settings"
         >
-          <Text className="font-[family-name:var(--font-pixel)] text-xs tracking-[0.08em]">SETTINGS</Text>
+          <Text className="font-[family-name:var(--font-pixel)] text-[0.52rem] tracking-[0.06em]">SETTINGS</Text>
         </Link>
       </View>
     </View>

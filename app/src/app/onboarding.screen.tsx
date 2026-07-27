@@ -21,21 +21,21 @@ type OnboardingContent = {
 const onboardingContent: Record<OnboardingStep, OnboardingContent> = {
   0: {
     action: 'CONTINUE',
-    description: 'Shape the personality, goals, and boundaries that guide your Orb.',
-    label: '01 // RAISE',
-    title: 'AN ORB BEGINS IN THE NURSERY.',
+    description: 'Upload a CV and confirm the skills, experience, and facts you want your Career Orb to use.',
+    label: '01 // SETUP',
+    title: 'YOUR CAREER DESK STARTS WITH FACTS.',
   },
   1: {
     action: 'CONTINUE',
-    description: 'Review its rules, then choose when it may interact beyond your private space.',
-    label: '02 // RELEASE',
-    title: 'YOU DECIDE WHEN IT ENTERS THE WORLD.',
+    description: 'Paste a listing. The Orb extracts the role, pay, requirements, and application route for your review.',
+    label: '02 // REVIEW',
+    title: 'TURN A JOB POST INTO A CLEAR BRIEF.',
   },
   2: {
-    action: 'OPEN YOUR NURSERY',
-    description: 'Read meaningful recaps, understand its actions, and keep control close.',
-    label: '03 // OBSERVE',
-    title: 'THE WORLD REMEMBERS WHAT YOUR ORB DOES.',
+    action: 'OPEN JOB DESK',
+    description: 'Draft a concise letter from confirmed facts, then decide yourself whether Gmail should send it.',
+    label: '03 // SEND',
+    title: 'NO APPLICATION LEAVES WITHOUT YOU.',
   },
 }
 
@@ -110,7 +110,7 @@ export function OnboardingScreen(): React.JSX.Element {
             <ButtonSecondary onClick={() => void handleBack()}>BACK</ButtonSecondary>
           ) : (
             <Text className="text-center text-[0.55rem] leading-5 tracking-[0.05em] text-[var(--muted)]">
-              YOUR ORB ONLY ACTS WITHIN THE BOUNDARIES YOU APPROVE.
+              YOUR CAREER ORB NEVER INVENTS EXPERIENCE OR SENDS ON ITS OWN.
             </Text>
           )}
         </View>
